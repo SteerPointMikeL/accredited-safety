@@ -630,6 +630,96 @@
   }
 }
 
+/* ----- Split variant: navy band with overflowing image (Figma "Content w/Image (Alternate)") ----- */
+.section--navy-band {
+  position: relative;
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+.section--navy-band::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #0f2a3d 0%, #2870a3 100%);
+  z-index: 0;
+}
+.section--navy-band > .container {
+  position: relative;
+  z-index: 1;
+}
+.split--navy-band {
+  align-items: center;
+  gap: clamp(var(--space-6), 4vw, var(--space-12));
+}
+.split--navy-band .split__text {
+  color: #fff;
+}
+.split--navy-band .eyebrow {
+  color: var(--color-orange);
+}
+.split--navy-band .section-title {
+  color: #fff;
+  text-transform: uppercase;
+}
+.split--navy-band .section-title em,
+.split--navy-band .section-title strong {
+  color: var(--color-orange);
+  font-style: normal;
+  font-weight: inherit;
+}
+.split--navy-band .split__image {
+  aspect-ratio: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl, var(--shadow-lg));
+  margin: calc(var(--space-12) * -1) 0;
+  align-self: stretch;
+  min-height: 100%;
+}
+.split--navy-band .split__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.split__features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin: var(--space-6) 0;
+}
+.split__feature-title {
+  font-family: var(--font-display, inherit);
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--space-2);
+  color: inherit;
+}
+.split__feature-body {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: inherit;
+  opacity: 0.85;
+}
+@media (max-width: 880px) {
+  .section--navy-band {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+  .split--navy-band .split__image {
+    margin: 0;
+    aspect-ratio: 4 / 3;
+  }
+  .split__features {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
 /* ----- Class Schedule Table ----- */
 .classes-table-wrap {
   background: var(--color-surface);

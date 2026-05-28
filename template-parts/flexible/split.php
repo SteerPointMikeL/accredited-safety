@@ -3,6 +3,11 @@
  * Layout: split — two-column text + image. Reused for "Hands-on" section,
  * mission, every certification split, etc. Supports reverse, bullets, buttons.
  *
+ * The "navy_band" background variant renders the Figma "Content w/Image
+ * (Alternate)" treatment: a blue gradient band behind the text column, with
+ * the image overflowing the band's top and bottom edges. Pairs with the
+ * optional `features` repeater (two mini columns under the body).
+ *
  * @package ACCR_Theme
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
@@ -13,15 +18,32 @@ $body            = get_sub_field( 'body' );
 $bullets_heading = get_sub_field( 'bullets_heading' );
 $bullets         = get_sub_field( 'bullets' );
 $bullet_style    = get_sub_field( 'bullet_style' ) ?: 'check';
+$features        = get_sub_field( 'features' );
 $buttons         = get_sub_field( 'buttons' );
 $image           = get_sub_field( 'image' );
 $reverse         = get_sub_field( 'reverse' );
 $bg              = get_sub_field( 'background' ) ?: 'default';
 $anchor          = get_sub_field( 'anchor' );
 
-$split_class = 'split' . ( $reverse ? ' split--reverse' : '' );
+$is_navy = ( 'navy_band' === $bg );
 
-accr_section_open( array( 'background' => $bg, 'id' => $anchor ) );
+$split_class = 'split';
+if ( $reverse ) {
+	$split_class .= ' split--reverse';
+}
+if ( $is_navy ) {
+	$split_class .= ' split--navy-band';
+}
+
+// The navy variant draws its own background band, so don't double up via
+// accr_section_open's surface_2 styling.
+$section_bg = $is_navy ? 'default' : $bg;
+
+accr_section_open( array(
+	'background' => $section_bg,
+	'id'         => $anchor,
+	'class'      => $is_navy ? 'section section--navy-band' : 'section',
+) );
 ?>
 	<div class="container">
 		<div class="<?php echo esc_attr( $split_class ); ?>">
@@ -34,13 +56,13 @@ accr_section_open( array( 'background' => $bg, 'id' => $anchor ) );
 				<?php endif; ?>
 
 				<?php if ( $body ) : ?>
-					<div class="split__body" style="color: var(--color-text-muted); font-size: var(--text-base);">
+					<div class="split__body" style="color: <?php echo $is_navy ? '#cfdde9' : 'var(--color-text-muted)'; ?>; font-size: var(--text-base);">
 						<?php echo wp_kses_post( $body ); ?>
 					</div>
 				<?php endif; ?>
 
 				<?php if ( $bullets_heading ) : ?>
-					<h3 style="font-size: var(--text-base); margin-bottom: var(--space-3); text-transform:uppercase; letter-spacing:0.08em; color: var(--color-text);"><?php echo esc_html( $bullets_heading ); ?></h3>
+					<h3 style="font-size: var(--text-base); margin-bottom: var(--space-3); text-transform:uppercase; letter-spacing:0.08em; color: <?php echo $is_navy ? '#fff' : 'var(--color-text)'; ?>;"><?php echo esc_html( $bullets_heading ); ?></h3>
 				<?php endif; ?>
 
 				<?php if ( $bullets ) :
@@ -64,6 +86,22 @@ accr_section_open( array( 'background' => $bg, 'id' => $anchor ) );
 							<?php endif;
 						endforeach; ?>
 					</ul>
+				<?php endif; ?>
+
+				<?php if ( $features ) : ?>
+					<div class="split__features">
+						<?php foreach ( $features as $f ) :
+							if ( empty( $f['title'] ) && empty( $f['body'] ) ) continue; ?>
+							<div class="split__feature">
+								<?php if ( ! empty( $f['title'] ) ) : ?>
+									<h4 class="split__feature-title"><?php echo esc_html( $f['title'] ); ?></h4>
+								<?php endif; ?>
+								<?php if ( ! empty( $f['body'] ) ) : ?>
+									<p class="split__feature-body"><?php echo wp_kses_post( $f['body'] ); ?></p>
+								<?php endif; ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
 				<?php endif; ?>
 
 				<?php if ( $buttons ) : ?>

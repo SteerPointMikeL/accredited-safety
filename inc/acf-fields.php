@@ -213,6 +213,18 @@ function accr_register_acf_fields() {
 									'default_value' => 'check',
 								),
 								array(
+									'key'   => 'f_sp_features',
+									'label' => 'Mini-feature columns (optional, used by Navy band variant)',
+									'name'  => 'features',
+									'type'  => 'repeater',
+									'layout' => 'block',
+									'button_label' => 'Add feature',
+									'sub_fields' => array(
+										array( 'key' => 'f_sp_feature_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
+										array( 'key' => 'f_sp_feature_body',  'label' => 'Body',  'name' => 'body',  'type' => 'textarea', 'rows' => 2, 'new_lines' => '' ),
+									),
+								),
+								array(
 									'key'   => 'f_sp_buttons',
 									'label' => 'Buttons',
 									'name'  => 'buttons',
@@ -234,8 +246,13 @@ function accr_register_acf_fields() {
 									'label'   => 'Background',
 									'name'    => 'background',
 									'type'    => 'select',
-									'choices' => array( 'default' => 'Default', 'surface_2' => 'Tinted (surface 2)' ),
+									'choices' => array(
+										'default'   => 'Default',
+										'surface_2' => 'Tinted (surface 2)',
+										'navy_band' => 'Navy band (image overflows top/bottom)',
+									),
 									'default_value' => 'default',
+									'instructions' => 'Use "Navy band" for the Content w/Image (Alternate) layout — blue gradient band with the image extending above/below it. Pairs well with the mini-feature columns.',
 								),
 								array( 'key' => 'f_sp_anchor', 'label' => 'Anchor ID (optional)', 'name' => 'anchor', 'type' => 'text' ),
 							),

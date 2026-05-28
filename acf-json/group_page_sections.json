@@ -311,6 +311,30 @@
                             "default_value": "check"
                         },
                         {
+                            "key": "f_sp_features",
+                            "label": "Mini-feature columns (optional, used by Navy band variant)",
+                            "name": "features",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add feature",
+                            "sub_fields": [
+                                {
+                                    "key": "f_sp_feature_title",
+                                    "label": "Title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_sp_feature_body",
+                                    "label": "Body",
+                                    "name": "body",
+                                    "type": "textarea",
+                                    "rows": 2,
+                                    "new_lines": ""
+                                }
+                            ]
+                        },
+                        {
                             "key": "f_sp_buttons",
                             "label": "Buttons",
                             "name": "buttons",
@@ -389,9 +413,11 @@
                             "type": "select",
                             "choices": {
                                 "default": "Default",
-                                "surface_2": "Tinted (surface 2)"
+                                "surface_2": "Tinted (surface 2)",
+                                "navy_band": "Navy band (image overflows top/bottom)"
                             },
-                            "default_value": "default"
+                            "default_value": "default",
+                            "instructions": "Use \"Navy band\" for the Content w/Image (Alternate) layout — blue gradient band with the image extending above/below it. Pairs well with the mini-feature columns."
                         },
                         {
                             "key": "f_sp_anchor",
