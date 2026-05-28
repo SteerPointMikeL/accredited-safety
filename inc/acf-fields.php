@@ -38,9 +38,10 @@ function accr_cta_button_subfields( $key_prefix ) {
 			'name'    => 'style',
 			'type'    => 'select',
 			'choices' => array(
-				'btn--primary' => 'Primary (orange)',
-				'btn--outline' => 'Outline',
-				'btn--ghost'   => 'Ghost (white on dark)',
+				'btn--primary'   => 'Primary (orange)',
+				'btn--secondary' => 'Secondary (navy)',
+				'btn--outline'   => 'Outline',
+				'btn--ghost'     => 'Ghost (white on dark)',
 			),
 			'default_value' => 'btn--primary',
 			'return_format' => 'value',
