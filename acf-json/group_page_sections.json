@@ -103,6 +103,7 @@
                                     "type": "select",
                                     "choices": {
                                         "btn--primary": "Primary (orange)",
+                                        "btn--secondary": "Secondary (navy)",
                                         "btn--outline": "Outline",
                                         "btn--ghost": "Ghost (white on dark)"
                                     },
@@ -337,6 +338,7 @@
                                     "type": "select",
                                     "choices": {
                                         "btn--primary": "Primary (orange)",
+                                        "btn--secondary": "Secondary (navy)",
                                         "btn--outline": "Outline",
                                         "btn--ghost": "Ghost (white on dark)"
                                     },
@@ -846,6 +848,7 @@
                                     "type": "select",
                                     "choices": {
                                         "btn--primary": "Primary (orange)",
+                                        "btn--secondary": "Secondary (navy)",
                                         "btn--outline": "Outline",
                                         "btn--ghost": "Ghost (white on dark)"
                                     },
