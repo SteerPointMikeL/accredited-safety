@@ -1,0 +1,17 @@
+/*
+Theme Name: Accredited Safety Solutions
+Theme URI: https://accredited-safety.com/
+Author: Accredited Safety Solutions
+Author URI: https://accredited-safety.com/
+Description: Custom WordPress theme for Accredited Safety Solutions — Indiana NCCCO crane operator certification training. Uses ACF Pro flexible content for all page sections, with custom post types for Certifications and Classes. Gravity Forms compatible. No WooCommerce.
+Version: 1.0.1
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: accr-theme
+Tags: custom-theme, acf-pro, flexible-content, gravity-forms, training, certification
+*/
+
+/* Theme stylesheet is intentionally bare — design system lives in assets/css/base.css + assets/css/style.css. */

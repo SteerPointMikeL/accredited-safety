@@ -1,0 +1,47 @@
+{
+    "key": "group_certification_details",
+    "title": "Certification details",
+    "fields": [
+        {
+            "key": "field_cert_short_name",
+            "label": "Short name (for cards)",
+            "name": "short_name",
+            "type": "text"
+        },
+        {
+            "key": "field_cert_card_image",
+            "label": "Card image",
+            "name": "card_image",
+            "type": "image",
+            "return_format": "array"
+        },
+        {
+            "key": "field_cert_badge",
+            "label": "Card badge (e.g. NCCCO, NEW)",
+            "name": "badge",
+            "type": "text"
+        },
+        {
+            "key": "field_cert_featured",
+            "label": "Featured certification",
+            "name": "featured_certification",
+            "type": "true_false",
+            "ui": 1,
+            "instructions": "Featured certifications can be queried by the Certifications grid section, for example the limited grid on the home page."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "certification"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "active": true,
+    "modified": 1779990410
+}

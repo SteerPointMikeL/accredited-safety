@@ -1,0 +1,79 @@
+{
+    "key": "group_class_details",
+    "title": "Class details",
+    "fields": [
+        {
+            "key": "field_class_subtitle",
+            "label": "Subtitle (shown beneath class name)",
+            "name": "subtitle",
+            "type": "text"
+        },
+        {
+            "key": "field_class_date",
+            "label": "Class date",
+            "name": "class_date",
+            "type": "date_picker",
+            "display_format": "F j, Y",
+            "return_format": "Y-m-d",
+            "first_day": 0
+        },
+        {
+            "key": "field_class_date_display",
+            "label": "Date display override",
+            "name": "class_date_display",
+            "type": "text",
+            "instructions": "Optional. If set, used verbatim in the schedule table instead of the formatted Class date (e.g. \"Apr 28, 2026\")."
+        },
+        {
+            "key": "field_class_time",
+            "label": "Time (display string)",
+            "name": "class_time",
+            "type": "text",
+            "instructions": "Free-form time, e.g. \"7:30 AM – 6:30 PM\"."
+        },
+        {
+            "key": "field_class_price",
+            "label": "Tuition price (numeric)",
+            "name": "price",
+            "type": "number",
+            "instructions": "Optional. If empty, \"Request pricing\" is shown."
+        },
+        {
+            "key": "field_class_tuition_display",
+            "label": "Tuition display override",
+            "name": "tuition_display",
+            "type": "text",
+            "instructions": "Optional. Overrides the formatted price (e.g. \"Request pricing\", \"$795 / seat\")."
+        },
+        {
+            "key": "field_class_request_class_label",
+            "label": "Request-pricing modal class label",
+            "name": "request_class_label",
+            "type": "text",
+            "instructions": "Optional. Falls back to the post title. Used as data-class on the table button."
+        },
+        {
+            "key": "field_class_show_in_schedule",
+            "label": "Show in schedule table",
+            "name": "show_in_schedule",
+            "type": "true_false",
+            "ui": 1,
+            "default_value": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "class"
+            }
+        ]
+    ],
+    "menu_order": -10,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "active": true,
+    "modified": 1779990410
+}

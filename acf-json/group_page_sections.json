@@ -1,0 +1,1241 @@
+{
+    "key": "group_page_sections",
+    "title": "Page Sections",
+    "fields": [
+        {
+            "key": "field_page_sections",
+            "label": "Sections",
+            "name": "page_sections",
+            "type": "flexible_content",
+            "button_label": "Add section",
+            "layouts": {
+                "layout_page_hero": {
+                    "key": "layout_page_hero",
+                    "name": "page_hero",
+                    "label": "Page hero (eyebrow + title + lead)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_ph_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_ph_title",
+                            "label": "Title (HTML allowed, e.g. <br/>, <em>)",
+                            "name": "title",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "f_ph_lead",
+                            "label": "Lead paragraph",
+                            "name": "lead",
+                            "type": "textarea",
+                            "rows": 4,
+                            "new_lines": "wpautop"
+                        }
+                    ]
+                },
+                "layout_hero_image": {
+                    "key": "layout_hero_image",
+                    "name": "hero_image",
+                    "label": "Image hero (full-bleed, home)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_hi_image",
+                            "label": "Background image",
+                            "name": "image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "f_hi_tagline",
+                            "label": "Tagline (small)",
+                            "name": "tagline",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_hi_title",
+                            "label": "Title (HTML allowed)",
+                            "name": "title",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "f_hi_lead",
+                            "label": "Lead paragraph",
+                            "name": "lead",
+                            "type": "textarea",
+                            "rows": 4,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "f_hi_buttons",
+                            "label": "Buttons",
+                            "name": "buttons",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add button",
+                            "sub_fields": [
+                                {
+                                    "key": "f_hi_button_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_hi_button_url",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "text",
+                                    "instructions": "Use a relative path (e.g. /classes/) or full URL. tel: and mailto: also supported."
+                                },
+                                {
+                                    "key": "f_hi_button_style",
+                                    "label": "Style",
+                                    "name": "style",
+                                    "type": "select",
+                                    "choices": {
+                                        "btn--primary": "Primary (orange)",
+                                        "btn--outline": "Outline",
+                                        "btn--ghost": "Ghost (white on dark)"
+                                    },
+                                    "default_value": "btn--primary",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "f_hi_button_size",
+                                    "label": "Size",
+                                    "name": "size",
+                                    "type": "select",
+                                    "choices": {
+                                        "": "Default",
+                                        "btn--lg": "Large"
+                                    },
+                                    "default_value": "btn--lg",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "f_hi_button_open_modal",
+                                    "label": "Triggers pricing modal (legacy)",
+                                    "name": "open_modal",
+                                    "type": "true_false",
+                                    "ui": 1,
+                                    "instructions": "Optional. If checked, this button opens the legacy Request-Pricing modal. Leave off if you use Gravity Forms."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_trust_bar": {
+                    "key": "layout_trust_bar",
+                    "name": "trust_bar",
+                    "label": "Trust bar (label + icon items)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_tb_label",
+                            "label": "Label (HTML allowed)",
+                            "name": "label",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "f_tb_items",
+                            "label": "Items",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "table",
+                            "sub_fields": [
+                                {
+                                    "key": "f_tb_item_icon",
+                                    "label": "Icon slug",
+                                    "name": "icon",
+                                    "type": "select",
+                                    "choices": {
+                                        "shield": "Shield",
+                                        "shield_check": "Shield with check",
+                                        "check": "Check",
+                                        "check_circle": "Check (in circle)",
+                                        "award": "Award",
+                                        "building": "Building",
+                                        "building_alt": "Building (alt)",
+                                        "clock": "Clock",
+                                        "plus": "Plus",
+                                        "pencil": "Pencil",
+                                        "users": "Users",
+                                        "tower": "Tower / crane",
+                                        "layers": "Layers / rigging",
+                                        "sun": "Sun / signal",
+                                        "forklift": "Forklift / telehandler",
+                                        "classroom": "Classroom / on-site",
+                                        "calendar": "Calendar",
+                                        "cube": "Cube / impact",
+                                        "arrow_right": "Arrow right",
+                                        "alert": "Alert / info",
+                                        "mail": "Mail",
+                                        "phone": "Phone"
+                                    },
+                                    "default_value": "shield"
+                                },
+                                {
+                                    "key": "f_tb_item_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_section_intro": {
+                    "key": "layout_section_intro",
+                    "name": "section_intro",
+                    "label": "Section intro (eyebrow + title + lead)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_si_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_si_title",
+                            "label": "Title (HTML allowed)",
+                            "name": "title",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "f_si_lead",
+                            "label": "Lead paragraph",
+                            "name": "lead",
+                            "type": "textarea",
+                            "rows": 4,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "f_si_align",
+                            "label": "Alignment",
+                            "name": "align",
+                            "type": "select",
+                            "choices": {
+                                "left": "Left",
+                                "center": "Center"
+                            },
+                            "default_value": "left"
+                        },
+                        {
+                            "key": "f_si_bg",
+                            "label": "Background",
+                            "name": "background",
+                            "type": "select",
+                            "choices": {
+                                "default": "Default",
+                                "surface_2": "Tinted (surface 2)"
+                            },
+                            "default_value": "default"
+                        }
+                    ]
+                },
+                "layout_split": {
+                    "key": "layout_split",
+                    "name": "split",
+                    "label": "Text + image split (two-column)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_sp_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_sp_title",
+                            "label": "Title (HTML allowed)",
+                            "name": "title",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "f_sp_body",
+                            "label": "Body (rich text)",
+                            "name": "body",
+                            "type": "wysiwyg",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0
+                        },
+                        {
+                            "key": "f_sp_bullets_heading",
+                            "label": "Bullets heading (optional)",
+                            "name": "bullets_heading",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_sp_bullets",
+                            "label": "Bullets",
+                            "name": "bullets",
+                            "type": "repeater",
+                            "layout": "table",
+                            "sub_fields": [
+                                {
+                                    "key": "f_sp_bullet_text",
+                                    "label": "Text",
+                                    "name": "text",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "f_sp_bullet_style",
+                            "label": "Bullet style",
+                            "name": "bullet_style",
+                            "type": "select",
+                            "choices": {
+                                "check": "Checkmark icon",
+                                "arrow": "Orange ▸ arrow",
+                                "arrow_2col": "Orange ▸ arrow (2 columns)"
+                            },
+                            "default_value": "check"
+                        },
+                        {
+                            "key": "f_sp_buttons",
+                            "label": "Buttons",
+                            "name": "buttons",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add button",
+                            "sub_fields": [
+                                {
+                                    "key": "f_sp_button_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_sp_button_url",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "text",
+                                    "instructions": "Use a relative path (e.g. /classes/) or full URL. tel: and mailto: also supported."
+                                },
+                                {
+                                    "key": "f_sp_button_style",
+                                    "label": "Style",
+                                    "name": "style",
+                                    "type": "select",
+                                    "choices": {
+                                        "btn--primary": "Primary (orange)",
+                                        "btn--outline": "Outline",
+                                        "btn--ghost": "Ghost (white on dark)"
+                                    },
+                                    "default_value": "btn--primary",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "f_sp_button_size",
+                                    "label": "Size",
+                                    "name": "size",
+                                    "type": "select",
+                                    "choices": {
+                                        "": "Default",
+                                        "btn--lg": "Large"
+                                    },
+                                    "default_value": "btn--lg",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "f_sp_button_open_modal",
+                                    "label": "Triggers pricing modal (legacy)",
+                                    "name": "open_modal",
+                                    "type": "true_false",
+                                    "ui": 1,
+                                    "instructions": "Optional. If checked, this button opens the legacy Request-Pricing modal. Leave off if you use Gravity Forms."
+                                }
+                            ]
+                        },
+                        {
+                            "key": "f_sp_image",
+                            "label": "Image",
+                            "name": "image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "f_sp_reverse",
+                            "label": "Image on left (reverse)",
+                            "name": "reverse",
+                            "type": "true_false",
+                            "ui": 1
+                        },
+                        {
+                            "key": "f_sp_bg",
+                            "label": "Background",
+                            "name": "background",
+                            "type": "select",
+                            "choices": {
+                                "default": "Default",
+                                "surface_2": "Tinted (surface 2)"
+                            },
+                            "default_value": "default"
+                        },
+                        {
+                            "key": "f_sp_anchor",
+                            "label": "Anchor ID (optional)",
+                            "name": "anchor",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "layout_cards_grid": {
+                    "key": "layout_cards_grid",
+                    "name": "cards_grid",
+                    "label": "Card grid (features / testimonials / steps)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_cg_eyebrow",
+                            "label": "Eyebrow (optional)",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_cg_title",
+                            "label": "Title (optional, HTML allowed)",
+                            "name": "title",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "f_cg_lead",
+                            "label": "Lead (optional)",
+                            "name": "lead",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "f_cg_variant",
+                            "label": "Card variant",
+                            "name": "variant",
+                            "type": "select",
+                            "choices": {
+                                "feature": "Feature card (icon + heading + body)",
+                                "feature_num": "Step card (number + heading + body)",
+                                "testimonial": "Testimonial (quote + author)"
+                            },
+                            "default_value": "feature"
+                        },
+                        {
+                            "key": "f_cg_cols",
+                            "label": "Columns",
+                            "name": "columns",
+                            "type": "select",
+                            "choices": {
+                                "2": "2",
+                                "3": "3",
+                                "4": "4"
+                            },
+                            "default_value": "3"
+                        },
+                        {
+                            "key": "f_cg_bg",
+                            "label": "Background",
+                            "name": "background",
+                            "type": "select",
+                            "choices": {
+                                "default": "Default",
+                                "surface_2": "Tinted (surface 2)"
+                            },
+                            "default_value": "default"
+                        },
+                        {
+                            "key": "f_cg_cards",
+                            "label": "Cards",
+                            "name": "cards",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add card",
+                            "sub_fields": [
+                                {
+                                    "key": "f_cg_card_image",
+                                    "label": "Image (cert card)",
+                                    "name": "image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                },
+                                {
+                                    "key": "f_cg_card_badge",
+                                    "label": "Badge (cert card)",
+                                    "name": "badge",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_icon",
+                                    "label": "Icon (feature card)",
+                                    "name": "icon",
+                                    "type": "select",
+                                    "choices": {
+                                        "shield": "Shield",
+                                        "shield_check": "Shield with check",
+                                        "check": "Check",
+                                        "check_circle": "Check (in circle)",
+                                        "award": "Award",
+                                        "building": "Building",
+                                        "building_alt": "Building (alt)",
+                                        "clock": "Clock",
+                                        "plus": "Plus",
+                                        "pencil": "Pencil",
+                                        "users": "Users",
+                                        "tower": "Tower / crane",
+                                        "layers": "Layers / rigging",
+                                        "sun": "Sun / signal",
+                                        "forklift": "Forklift / telehandler",
+                                        "classroom": "Classroom / on-site",
+                                        "calendar": "Calendar",
+                                        "cube": "Cube / impact",
+                                        "arrow_right": "Arrow right",
+                                        "alert": "Alert / info",
+                                        "mail": "Mail",
+                                        "phone": "Phone"
+                                    },
+                                    "allow_null": 1
+                                },
+                                {
+                                    "key": "f_cg_card_number",
+                                    "label": "Step number (step card)",
+                                    "name": "number",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_title",
+                                    "label": "Heading",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_body",
+                                    "label": "Body",
+                                    "name": "body",
+                                    "type": "textarea",
+                                    "rows": 3,
+                                    "new_lines": "wpautop"
+                                },
+                                {
+                                    "key": "f_cg_card_link_label",
+                                    "label": "Link label",
+                                    "name": "link_label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_link_url",
+                                    "label": "Link URL",
+                                    "name": "link_url",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_anchor",
+                                    "label": "Anchor ID (optional)",
+                                    "name": "anchor",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_quote",
+                                    "label": "Quote (testimonial)",
+                                    "name": "quote",
+                                    "type": "textarea",
+                                    "rows": 3
+                                },
+                                {
+                                    "key": "f_cg_card_avatar",
+                                    "label": "Avatar initials (testimonial)",
+                                    "name": "avatar",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_author",
+                                    "label": "Author name (testimonial)",
+                                    "name": "author",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_card_role",
+                                    "label": "Author role (testimonial)",
+                                    "name": "role",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "f_cg_footer_button",
+                            "label": "Footer button (optional, centered below grid)",
+                            "name": "footer_button",
+                            "type": "group",
+                            "sub_fields": [
+                                {
+                                    "key": "f_cg_fb_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cg_fb_url",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_certifications_grid": {
+                    "key": "layout_certifications_grid",
+                    "name": "certifications_grid",
+                    "label": "Certifications grid (queries Certification CPT)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_cq_eyebrow",
+                            "label": "Eyebrow (optional)",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_cq_title",
+                            "label": "Title (optional, HTML allowed)",
+                            "name": "title",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": ""
+                        },
+                        {
+                            "key": "f_cq_lead",
+                            "label": "Lead (optional)",
+                            "name": "lead",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "f_cq_source",
+                            "label": "Which certifications to show",
+                            "name": "source",
+                            "type": "select",
+                            "choices": {
+                                "featured": "Featured certifications",
+                                "all": "All certifications",
+                                "selected": "Manually selected certifications"
+                            },
+                            "default_value": "featured",
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "f_cq_selected",
+                            "label": "Selected certifications",
+                            "name": "selected_certifications",
+                            "type": "relationship",
+                            "post_type": [
+                                "certification"
+                            ],
+                            "filters": [
+                                "search"
+                            ],
+                            "return_format": "id",
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "f_cq_source",
+                                        "operator": "==",
+                                        "value": "selected"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "f_cq_limit",
+                            "label": "Post limit",
+                            "name": "limit",
+                            "type": "number",
+                            "default_value": 3,
+                            "min": 0,
+                            "instructions": "Use 0 to show all matching certifications."
+                        },
+                        {
+                            "key": "f_cq_cols",
+                            "label": "Columns",
+                            "name": "columns",
+                            "type": "select",
+                            "choices": {
+                                "2": "2",
+                                "3": "3",
+                                "4": "4"
+                            },
+                            "default_value": "3"
+                        },
+                        {
+                            "key": "f_cq_bg",
+                            "label": "Background",
+                            "name": "background",
+                            "type": "select",
+                            "choices": {
+                                "default": "Default",
+                                "surface_2": "Tinted (surface 2)"
+                            },
+                            "default_value": "default"
+                        },
+                        {
+                            "key": "f_cq_link_label",
+                            "label": "Card link label",
+                            "name": "link_label",
+                            "type": "text",
+                            "default_value": "Get details"
+                        },
+                        {
+                            "key": "f_cq_footer_button",
+                            "label": "Footer button (optional, centered below grid)",
+                            "name": "footer_button",
+                            "type": "group",
+                            "sub_fields": [
+                                {
+                                    "key": "f_cq_fb_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cq_fb_url",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_stats_band": {
+                    "key": "layout_stats_band",
+                    "name": "stats_band",
+                    "label": "Stats band (numeric strip)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_st_items",
+                            "label": "Stats",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "table",
+                            "sub_fields": [
+                                {
+                                    "key": "f_st_value",
+                                    "label": "Value",
+                                    "name": "value",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_st_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_logos_band": {
+                    "key": "layout_logos_band",
+                    "name": "logos_band",
+                    "label": "Logos / clients band",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_lb_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_lb_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_lb_items",
+                            "label": "Logo tiles",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "table",
+                            "sub_fields": [
+                                {
+                                    "key": "f_lb_label",
+                                    "label": "Label (HTML <br/> allowed)",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_lb_image",
+                                    "label": "Image (optional)",
+                                    "name": "image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_cta_banner": {
+                    "key": "layout_cta_banner",
+                    "name": "cta_banner",
+                    "label": "CTA banner (dark navy)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_ct_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_ct_text",
+                            "label": "Text",
+                            "name": "text",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "f_ct_buttons",
+                            "label": "Buttons",
+                            "name": "buttons",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add button",
+                            "sub_fields": [
+                                {
+                                    "key": "f_ct_button_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_ct_button_url",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "text",
+                                    "instructions": "Use a relative path (e.g. /classes/) or full URL. tel: and mailto: also supported."
+                                },
+                                {
+                                    "key": "f_ct_button_style",
+                                    "label": "Style",
+                                    "name": "style",
+                                    "type": "select",
+                                    "choices": {
+                                        "btn--primary": "Primary (orange)",
+                                        "btn--outline": "Outline",
+                                        "btn--ghost": "Ghost (white on dark)"
+                                    },
+                                    "default_value": "btn--primary",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "f_ct_button_size",
+                                    "label": "Size",
+                                    "name": "size",
+                                    "type": "select",
+                                    "choices": {
+                                        "": "Default",
+                                        "btn--lg": "Large"
+                                    },
+                                    "default_value": "btn--lg",
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "f_ct_button_open_modal",
+                                    "label": "Triggers pricing modal (legacy)",
+                                    "name": "open_modal",
+                                    "type": "true_false",
+                                    "ui": 1,
+                                    "instructions": "Optional. If checked, this button opens the legacy Request-Pricing modal. Leave off if you use Gravity Forms."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_anchor_nav": {
+                    "key": "layout_anchor_nav",
+                    "name": "anchor_nav",
+                    "label": "Sticky anchor nav (in-page links)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_an_items",
+                            "label": "Anchor links",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "table",
+                            "sub_fields": [
+                                {
+                                    "key": "f_an_label",
+                                    "label": "Label",
+                                    "name": "label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_an_anchor",
+                                    "label": "Anchor (without #)",
+                                    "name": "anchor",
+                                    "type": "text"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_notice_bar": {
+                    "key": "layout_notice_bar",
+                    "name": "notice_bar",
+                    "label": "Notice / info bar",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_nb_tone",
+                            "label": "Tone",
+                            "name": "tone",
+                            "type": "select",
+                            "choices": {
+                                "warning": "Warning (yellow)",
+                                "info": "Info",
+                                "success": "Success"
+                            },
+                            "default_value": "warning"
+                        },
+                        {
+                            "key": "f_nb_text",
+                            "label": "Text (HTML allowed; wrap headline in <strong>)",
+                            "name": "text",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": ""
+                        }
+                    ]
+                },
+                "layout_classes_table": {
+                    "key": "layout_classes_table",
+                    "name": "classes_table",
+                    "label": "Classes schedule (auto from CPT)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_clt_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_clt_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_clt_show_filters",
+                            "label": "Show category filter buttons",
+                            "name": "show_filters",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 1
+                        },
+                        {
+                            "key": "f_clt_limit",
+                            "label": "Maximum classes to show",
+                            "name": "limit",
+                            "type": "number",
+                            "default_value": 50
+                        },
+                        {
+                            "key": "f_clt_only_future",
+                            "label": "Only show classes on or after today",
+                            "name": "only_future",
+                            "type": "true_false",
+                            "ui": 1,
+                            "default_value": 1
+                        },
+                        {
+                            "key": "f_clt_footnote",
+                            "label": "Footnote (HTML allowed)",
+                            "name": "footnote",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": ""
+                        }
+                    ]
+                },
+                "layout_openings_list": {
+                    "key": "layout_openings_list",
+                    "name": "openings_list",
+                    "label": "Career openings list",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_op_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_op_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_op_items",
+                            "label": "Openings",
+                            "name": "items",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add opening",
+                            "sub_fields": [
+                                {
+                                    "key": "f_op_type",
+                                    "label": "Type tag (e.g. Part-time)",
+                                    "name": "type",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_op_location",
+                                    "label": "Location tag",
+                                    "name": "location",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_op_title2",
+                                    "label": "Role title",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_op_body",
+                                    "label": "Description",
+                                    "name": "body",
+                                    "type": "textarea",
+                                    "rows": 3,
+                                    "new_lines": "wpautop"
+                                },
+                                {
+                                    "key": "f_op_apply_url",
+                                    "label": "Apply URL (mailto: ok)",
+                                    "name": "apply_url",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_op_apply_label",
+                                    "label": "Apply button label",
+                                    "name": "apply_label",
+                                    "type": "text",
+                                    "default_value": "Apply"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "layout_contact_split": {
+                    "key": "layout_contact_split",
+                    "name": "contact_split",
+                    "label": "Contact info + form split",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_cs_blocks",
+                            "label": "Info blocks (left column)",
+                            "name": "blocks",
+                            "type": "repeater",
+                            "layout": "block",
+                            "button_label": "Add info block",
+                            "sub_fields": [
+                                {
+                                    "key": "f_cs_eyebrow",
+                                    "label": "Eyebrow",
+                                    "name": "eyebrow",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cs_title",
+                                    "label": "Heading",
+                                    "name": "title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cs_body",
+                                    "label": "Body (HTML allowed)",
+                                    "name": "body",
+                                    "type": "textarea",
+                                    "rows": 4,
+                                    "new_lines": "wpautop"
+                                },
+                                {
+                                    "key": "f_cs_emphasis",
+                                    "label": "Emphasis style",
+                                    "name": "emphasis",
+                                    "type": "select",
+                                    "choices": {
+                                        "none": "No emphasis line",
+                                        "phone": "Large orange phone link",
+                                        "email": "Email link",
+                                        "button": "Outline button"
+                                    },
+                                    "default_value": "none"
+                                },
+                                {
+                                    "key": "f_cs_emp_label",
+                                    "label": "Emphasis label/text",
+                                    "name": "emphasis_label",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "f_cs_emp_url",
+                                    "label": "Emphasis URL",
+                                    "name": "emphasis_url",
+                                    "type": "text"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "f_cs_form_title",
+                            "label": "Form title",
+                            "name": "form_title",
+                            "type": "text",
+                            "default_value": "Send us a message"
+                        },
+                        {
+                            "key": "f_cs_form_lead",
+                            "label": "Form lead text",
+                            "name": "form_lead",
+                            "type": "textarea",
+                            "rows": 2,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "f_cs_gf_id",
+                            "label": "Gravity Form ID",
+                            "name": "gravity_form_id",
+                            "type": "number",
+                            "instructions": "Optional. If provided and Gravity Forms is active, the form renders here; otherwise a styled fallback is shown."
+                        }
+                    ]
+                },
+                "layout_rich_content": {
+                    "key": "layout_rich_content",
+                    "name": "rich_content",
+                    "label": "Rich content (free WYSIWYG)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_rc_content",
+                            "label": "Content",
+                            "name": "content",
+                            "type": "wysiwyg",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1
+                        },
+                        {
+                            "key": "f_rc_bg",
+                            "label": "Background",
+                            "name": "background",
+                            "type": "select",
+                            "choices": {
+                                "default": "Default",
+                                "surface_2": "Tinted (surface 2)"
+                            },
+                            "default_value": "default"
+                        }
+                    ]
+                },
+                "layout_gravity_form": {
+                    "key": "layout_gravity_form",
+                    "name": "gravity_form",
+                    "label": "Gravity Form (standalone)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_gf_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_gf_title",
+                            "label": "Title",
+                            "name": "title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "f_gf_lead",
+                            "label": "Lead",
+                            "name": "lead",
+                            "type": "textarea",
+                            "rows": 3,
+                            "new_lines": "wpautop"
+                        },
+                        {
+                            "key": "f_gf_id",
+                            "label": "Gravity Form ID",
+                            "name": "form_id",
+                            "type": "number",
+                            "required": 1
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "certification"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "class"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "Shared flexible-content layouts used by every page and CPT in the theme.",
+    "modified": 1779990410
+}
