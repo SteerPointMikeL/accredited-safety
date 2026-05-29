@@ -319,6 +319,40 @@
                             "button_label": "Add feature",
                             "sub_fields": [
                                 {
+                                    "key": "f_sp_feature_icon",
+                                    "label": "Icon (optional)",
+                                    "name": "icon",
+                                    "type": "select",
+                                    "choices": {
+                                        "shield": "Shield",
+                                        "shield_check": "Shield with check",
+                                        "check": "Check",
+                                        "check_circle": "Check (in circle)",
+                                        "award": "Award",
+                                        "building": "Building",
+                                        "building_alt": "Building (alt)",
+                                        "clock": "Clock",
+                                        "plus": "Plus",
+                                        "pencil": "Pencil",
+                                        "users": "Users",
+                                        "tower": "Tower / crane",
+                                        "layers": "Layers / rigging",
+                                        "sun": "Sun / signal",
+                                        "forklift": "Forklift / telehandler",
+                                        "classroom": "Classroom / on-site",
+                                        "calendar": "Calendar",
+                                        "cube": "Cube / impact",
+                                        "arrow_right": "Arrow right",
+                                        "alert": "Alert / info",
+                                        "mail": "Mail",
+                                        "phone": "Phone",
+                                        "document": "Document",
+                                        "crane": "Crane"
+                                    },
+                                    "allow_null": 1,
+                                    "instructions": "Optional SVG icon shown before the feature title."
+                                },
+                                {
                                     "key": "f_sp_feature_title",
                                     "label": "Title",
                                     "name": "title",
@@ -1266,5 +1300,5 @@
     ],
     "active": true,
     "description": "Shared flexible-content layouts used by every page and CPT in the theme.",
-    "modified": 1780017678
+    "modified": 1780019360
 }

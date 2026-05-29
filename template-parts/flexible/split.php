@@ -61,7 +61,12 @@ accr_section_open( array(
 							if ( empty( $f['title'] ) && empty( $f['body'] ) ) continue; ?>
 							<div class="split__feature">
 								<?php if ( ! empty( $f['title'] ) ) : ?>
-									<h4 class="split__feature-title"><?php echo esc_html( $f['title'] ); ?></h4>
+									<h4 class="split__feature-title">
+										<?php if ( ! empty( $f['icon'] ) ) :
+											echo accr_icon( $f['icon'], array( 'width' => '20', 'height' => '20', 'class' => 'split__feature-icon' ) );
+										endif; ?>
+										<span><?php echo esc_html( $f['title'] ); ?></span>
+									</h4>
 								<?php endif; ?>
 								<?php if ( ! empty( $f['body'] ) ) : ?>
 									<p class="split__feature-body"><?php echo wp_kses_post( $f['body'] ); ?></p>

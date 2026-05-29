@@ -220,6 +220,15 @@ function accr_register_acf_fields() {
 									'layout' => 'block',
 									'button_label' => 'Add feature',
 									'sub_fields' => array(
+										array(
+											'key'          => 'f_sp_feature_icon',
+											'label'        => 'Icon (optional)',
+											'name'         => 'icon',
+											'type'         => 'select',
+											'choices'      => accr_icon_choices(),
+											'allow_null'   => 1,
+											'instructions' => 'Optional SVG icon shown before the feature title.',
+										),
 										array( 'key' => 'f_sp_feature_title', 'label' => 'Title', 'name' => 'title', 'type' => 'text' ),
 										array( 'key' => 'f_sp_feature_body',  'label' => 'Body',  'name' => 'body',  'type' => 'textarea', 'rows' => 2, 'new_lines' => '' ),
 									),

@@ -707,6 +707,13 @@
   letter-spacing: 0.04em;
   margin: 0 0 var(--space-2);
   color: inherit;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.split__feature-icon {
+  flex-shrink: 0;
+  color: var(--color-orange);
 }
 .split__feature-body {
   margin: 0;
