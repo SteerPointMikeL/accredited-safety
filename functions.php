@@ -47,7 +47,7 @@ function accr_theme_enqueue() {
 	// Google Fonts — same families as the static design.
 	wp_enqueue_style(
 		'accr-fonts',
-		'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow+Semi+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap',
 		array(),
 		null
 	);
@@ -69,6 +69,7 @@ require_once ACCR_THEME_DIR . '/inc/acf-fields.php';
 require_once ACCR_THEME_DIR . '/inc/acf-bootstrap.php';
 require_once ACCR_THEME_DIR . '/inc/gravity-forms.php';
 require_once ACCR_THEME_DIR . '/inc/helpers.php';
+require_once ACCR_THEME_DIR . '/inc/nav-walker.php';
 
 /* --------------------------------------------------------------------------
  * ACF Local JSON: save/load to /acf-json so field groups stay in version control.
