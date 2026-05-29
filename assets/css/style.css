@@ -1551,10 +1551,12 @@ body.no-scroll {
   text-transform: uppercase;
   color: var(--color-navy);
   font-size: var(--text-2xl);
-  font-weight: 800;
-  letter-spacing: 0.01em;
+  font-weight: 700;
   line-height: 1.05;
   margin: 0 0 var(--space-4);
+}
+.contact-split__heading span {
+  color: var(--color-primary);
 }
 .contact-split__lead {
   color: var(--color-navy);
@@ -1592,13 +1594,12 @@ body.no-scroll {
   letter-spacing: 0.12em;
   font-size: var(--text-sm);
   font-weight: 700;
-  color: var(--color-text-muted);
 }
 .contact-split__row-value {
   font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: 800;
-  color: var(--color-navy);
+  font-weight: 700;
+  color: var(--color-text-heading);
   text-transform: uppercase;
   letter-spacing: 0.02em;
   line-height: 1.1;
@@ -1658,6 +1659,7 @@ a.contact-split__row-value:focus {
 .contact-split__form-panel {
   background: var(--color-surface-2);
   padding: clamp(var(--space-6), 4vw, var(--space-12));
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
@@ -1709,6 +1711,7 @@ a.contact-split__row-value:focus {
   flex-direction: column;
   gap: var(--space-2);
   margin: 0;
+  border: none;
 }
 .contact-split__form .gform_wrapper .gfield_label,
 .contact-split__form .gform_wrapper label.gfield_label {
@@ -1719,6 +1722,10 @@ a.contact-split__row-value:focus {
   font-weight: 700;
   color: var(--color-navy);
   margin: 0;
+}
+.contact-split__form .gform_wrapper .hidden_label .gfield_label,
+.contact-split__form .gform_wrapper .hidden_label label.gfield_label {
+  display: none;
 }
 .contact-split__form .gform_wrapper .gfield_required {
   color: var(--color-orange);

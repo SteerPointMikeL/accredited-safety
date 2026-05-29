@@ -16,7 +16,6 @@ $intro_eyebrow = get_sub_field( 'intro_eyebrow' );
 $intro_heading = get_sub_field( 'intro_heading' );
 $intro_body    = get_sub_field( 'intro_body' );
 $rows          = get_sub_field( 'rows' );
-$blocks        = get_sub_field( 'blocks' ); // legacy fallback
 $form_heading  = get_sub_field( 'form_heading' );
 if ( ! $form_heading ) {
 	$form_heading = get_sub_field( 'form_title' );
@@ -35,7 +34,7 @@ $gf_id     = (int) get_sub_field( 'gravity_form_id' );
 							<p class="contact-split__eyebrow"><?php echo esc_html( $intro_eyebrow ); ?></p>
 						<?php endif; ?>
 						<?php if ( $intro_heading ) : ?>
-							<h2 class="contact-split__heading"><?php echo esc_html( $intro_heading ); ?></h2>
+							<h2 class="contact-split__heading"><?php echo wp_kses_post( $intro_heading ); ?></h2>
 						<?php endif; ?>
 						<?php if ( $intro_body ) : ?>
 							<div class="contact-split__lead"><?php echo wp_kses_post( wpautop( $intro_body ) ); ?></div>
@@ -69,44 +68,6 @@ $gf_id     = (int) get_sub_field( 'gravity_form_id' );
 							</li>
 						<?php endforeach; ?>
 					</ul>
-				<?php elseif ( $blocks ) :
-					/* Legacy fallback: render original info blocks. */
-					?>
-					<div class="contact-split__legacy">
-						<?php $first = true;
-						foreach ( $blocks as $b ) :
-							$wrap_class = $first ? 'contact-split__legacy-block' : 'contact-split__legacy-block contact-split__legacy-block--bordered';
-							$first = false;
-							?>
-							<div class="<?php echo esc_attr( $wrap_class ); ?>">
-								<?php if ( ! empty( $b['eyebrow'] ) ) : ?>
-									<span class="eyebrow"><?php echo esc_html( $b['eyebrow'] ); ?></span>
-								<?php endif; ?>
-								<?php if ( ! empty( $b['title'] ) ) : ?>
-									<h3 class="contact-split__legacy-title"><?php echo esc_html( $b['title'] ); ?></h3>
-								<?php endif; ?>
-								<?php
-								$emphasis  = $b['emphasis'] ?? 'none';
-								$emp_label = $b['emphasis_label'] ?? '';
-								$emp_url   = $b['emphasis_url'] ?? '';
-								switch ( $emphasis ) :
-									case 'phone': ?>
-										<a class="contact-split__legacy-phone" href="<?php echo esc_attr( $emp_url ); ?>"><?php echo esc_html( $emp_label ); ?></a>
-										<?php break;
-									case 'email': ?>
-										<a class="contact-split__legacy-email" href="<?php echo esc_attr( $emp_url ); ?>"><?php echo esc_html( $emp_label ); ?></a>
-										<?php break;
-									case 'button': ?>
-										<a class="btn btn--outline contact-split__legacy-btn" href="<?php echo esc_url( $emp_url ); ?>"><?php echo esc_html( $emp_label ); ?></a>
-										<?php break;
-								endswitch;
-								?>
-								<?php if ( ! empty( $b['body'] ) ) : ?>
-									<div class="contact-split__legacy-body"><?php echo wp_kses_post( $b['body'] ); ?></div>
-								<?php endif; ?>
-							</div>
-						<?php endforeach; ?>
-					</div>
 				<?php endif; ?>
 			</div>
 
