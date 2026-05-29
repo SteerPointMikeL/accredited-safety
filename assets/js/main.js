@@ -31,6 +31,86 @@
     navToggle.addEventListener('click', () => {
       const open = navLinks.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', String(open));
+      if (!open) {
+        navLinks.querySelectorAll('.has-dropdown.is-open').forEach((item) => closeDropdown(item));
+      }
+    });
+  }
+
+  // ---------- Primary nav dropdowns ----------
+  const dropdownParents = navLinks
+    ? Array.from(navLinks.querySelectorAll('.has-dropdown'))
+    : [];
+
+  function openDropdown(parent) {
+    parent.classList.add('is-open');
+    const trigger = parent.querySelector(':scope > a');
+    const toggle = parent.querySelector(':scope > .nav-submenu-toggle');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDropdown(parent) {
+    parent.classList.remove('is-open');
+    const trigger = parent.querySelector(':scope > a');
+    const toggle = parent.querySelector(':scope > .nav-submenu-toggle');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function closeAllDropdowns(except) {
+    dropdownParents.forEach((parent) => {
+      if (parent !== except) closeDropdown(parent);
+    });
+  }
+
+  const isMobileViewport = () => window.matchMedia('(max-width: 980px)').matches;
+  const isCoarsePointer = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  dropdownParents.forEach((parent) => {
+    const toggle = parent.querySelector(':scope > .nav-submenu-toggle');
+    const trigger = parent.querySelector(':scope > a');
+
+    if (toggle) {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const willOpen = !parent.classList.contains('is-open');
+        if (!isMobileViewport()) closeAllDropdowns(parent);
+        if (willOpen) openDropdown(parent);
+        else closeDropdown(parent);
+      });
+    }
+
+    // Touch / coarse-pointer: first tap on parent link opens the dropdown
+    // instead of navigating; second tap follows the link. On desktop this is
+    // a no-op (CSS hover/focus-within handles it).
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
+        if (isMobileViewport()) return; // handled by toggle button
+        if (!isCoarsePointer()) return;
+        if (!parent.classList.contains('is-open')) {
+          e.preventDefault();
+          closeAllDropdowns(parent);
+          openDropdown(parent);
+        }
+      });
+    }
+  });
+
+  if (dropdownParents.length) {
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest || e.target.closest('.nav-links .has-dropdown')) return;
+      closeAllDropdowns();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      const openParent = dropdownParents.find((p) => p.classList.contains('is-open'));
+      if (!openParent) return;
+      closeDropdown(openParent);
+      const trigger = openParent.querySelector(':scope > a');
+      if (trigger) trigger.focus();
     });
   }
 

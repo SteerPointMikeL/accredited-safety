@@ -151,6 +151,9 @@
   gap: var(--space-1);
   list-style: none;
 }
+.nav-links > li {
+  position: relative;
+}
 .nav-links a {
   display: inline-block;
   padding: var(--space-2) var(--space-4);
@@ -161,6 +164,10 @@
   color: rgb(255 255 255 / 0.85);
   border-radius: var(--radius-sm);
 }
+.nav-links > li > a {
+  position: relative;
+  z-index: 1;
+}
 .nav-links a:hover,
 .nav-links a[aria-current='page'] {
   color: #ffffff;
@@ -169,6 +176,137 @@
 .nav-links a[aria-current='page'] {
   box-shadow: inset 0 -3px 0 0 var(--color-orange);
   border-radius: 0;
+}
+
+/* ----- Primary nav dropdown sub-menu ----- */
+.nav-links .has-dropdown > a {
+  padding-right: var(--space-6);
+}
+.nav-links .has-dropdown > a::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: var(--space-2);
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform var(--transition-interactive);
+  vertical-align: middle;
+  opacity: 0.85;
+}
+.nav-links .has-dropdown:hover > a,
+.nav-links .has-dropdown:focus-within > a,
+.nav-links .has-dropdown.is-open > a {
+  background: var(--color-navy-3);
+  color: #ffffff;
+  box-shadow: none;
+}
+.nav-links .has-dropdown:hover > a::after,
+.nav-links .has-dropdown:focus-within > a::after,
+.nav-links .has-dropdown.is-open > a::after {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+.nav-submenu-toggle {
+  display: none;
+}
+
+.nav-links .nav-submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  width: 302px;
+  max-width: calc(100vw - var(--space-6));
+  background: #e1e5eb;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 0 0 4px 4px;
+  box-shadow: var(--shadow-lg);
+  list-style: none;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--transition-interactive),
+    transform var(--transition-interactive),
+    visibility 0s linear var(--transition-interactive);
+  z-index: 60;
+}
+.nav-links .has-dropdown:hover > .nav-submenu,
+.nav-links .has-dropdown:focus-within > .nav-submenu,
+.nav-links .has-dropdown.is-open > .nav-submenu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+  transition:
+    opacity var(--transition-interactive),
+    transform var(--transition-interactive),
+    visibility 0s linear 0s;
+}
+.nav-links .nav-submenu > li {
+  position: relative;
+  list-style: none;
+}
+.nav-links .nav-submenu a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 46px;
+  padding: 12px;
+  background: #f2f4f7;
+  color: #111b24;
+  font-family: 'Barlow Semi Condensed', var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+}
+.nav-links .nav-submenu a:hover,
+.nav-links .nav-submenu a:focus-visible,
+.nav-links .nav-submenu a[aria-current='page'] {
+  background: var(--color-navy-3);
+  color: #ffffff;
+  box-shadow: none;
+}
+.nav-links .nav-submenu .nav-submenu--nested {
+  position: static;
+  width: auto;
+  padding: 0;
+  margin-top: 8px;
+  background: transparent;
+  box-shadow: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  gap: 8px;
+  border-radius: 0;
+}
+.nav-links .nav-submenu--nested a {
+  background: #ffffff;
+  font-size: 16px;
+}
+
+[data-theme='dark'] .nav-links .nav-submenu {
+  background: var(--color-surface-offset);
+}
+[data-theme='dark'] .nav-links .nav-submenu a {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+[data-theme='dark'] .nav-links .nav-submenu a:hover,
+[data-theme='dark'] .nav-links .nav-submenu a:focus-visible {
+  background: var(--color-navy-3);
+  color: #ffffff;
 }
 
 .nav-actions {
@@ -1302,6 +1440,8 @@ body.no-scroll {
     padding: var(--space-3) var(--space-4);
     box-shadow: var(--shadow-lg);
     display: none;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
   }
   .nav-links.is-open {
     display: flex;
@@ -1316,5 +1456,79 @@ body.no-scroll {
   }
   .nav-actions .btn--primary {
     display: none;
+  }
+
+  /* Mobile dropdown: inline accordion-style expansion */
+  .nav-links > li {
+    position: relative;
+  }
+  .nav-links .has-dropdown > a {
+    padding-right: 48px;
+  }
+  .nav-links .has-dropdown > a::after {
+    display: none;
+  }
+  .nav-submenu-toggle {
+    display: inline-flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255 255 255 / 0.85);
+    background: transparent;
+  }
+  .nav-submenu-toggle__icon {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform var(--transition-interactive);
+  }
+  .nav-links .has-dropdown.is-open > .nav-submenu-toggle .nav-submenu-toggle__icon {
+    transform: translateY(2px) rotate(-135deg);
+  }
+  .nav-links .nav-submenu {
+    position: static;
+    width: 100%;
+    max-width: none;
+    transform: none;
+    padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
+    gap: var(--space-2);
+    background: rgb(255 255 255 / 0.04);
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+    transition: none;
+  }
+  .nav-links .has-dropdown.is-open > .nav-submenu {
+    visibility: visible;
+    pointer-events: auto;
+    height: auto;
+  }
+  /* Disable hover/focus-within open on mobile — JS controls is-open. */
+  .nav-links .has-dropdown:hover > .nav-submenu,
+  .nav-links .has-dropdown:focus-within > .nav-submenu {
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+  }
+  .nav-links .has-dropdown.is-open:hover > .nav-submenu,
+  .nav-links .has-dropdown.is-open:focus-within > .nav-submenu {
+    visibility: visible;
+    pointer-events: auto;
+    height: auto;
+  }
+  .nav-links .nav-submenu a {
+    font-size: 16px;
+    min-height: 44px;
   }
 }

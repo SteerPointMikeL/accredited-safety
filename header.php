@@ -64,7 +64,8 @@
 					'menu_class'     => 'nav-links',
 					'container'      => false,
 					'items_wrap'     => '<ul class="%2$s" data-nav-links role="list">%3$s</ul>',
-					'depth'          => 1,
+					'depth'          => 0,
+					'walker'         => new ACCR_Primary_Nav_Walker(),
 				)
 			);
 			?>
