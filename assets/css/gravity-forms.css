@@ -1,0 +1,779 @@
+/* =========================================================
+   Accredited Safety Solutions — Gravity Forms Theme Styles
+   ---------------------------------------------------------
+   The theme disables Gravity Forms' bundled CSS via the
+   gform_disable_css filter, so this stylesheet provides the
+   full visual + layout system that GF normally ships.
+   Targets both legacy markup (gform_wrapper / gform_fields /
+   gfield) and the GF 2.5+ grid (gfield--width-*).
+   ========================================================= */
+
+/* ----- Wrapper & form ----- */
+.gform_wrapper {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+.gform_wrapper form {
+  margin: 0;
+}
+
+/* Heading + description: respect GF's "display form title/description"
+   settings. GF hides these by removing the elements, so we only style
+   them when they are actually rendered. */
+.gform_wrapper .gform_heading {
+  margin-bottom: var(--space-6);
+}
+.gform_wrapper .gform_title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin: 0 0 var(--space-2);
+  letter-spacing: 0.01em;
+}
+.gform_wrapper .gform_description {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+/* The required-field legend GF renders above the form */
+.gform_wrapper .gform_required_legend {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  margin: 0 0 var(--space-4);
+}
+
+/* ----- Field list (legacy <ul> and modern <div>) ----- */
+.gform_wrapper .gform_fields,
+.gform_wrapper .gform_body ul.gform_fields {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4) var(--space-5);
+}
+
+/* Default each field to a full row */
+.gform_wrapper .gfield,
+.gform_wrapper li.gfield {
+  grid-column: span 12;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ----- Labels & descriptions ----- */
+.gform_wrapper .gfield_label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-2);
+}
+.gform_wrapper .gfield_required,
+.gform_wrapper .gfield_required_text,
+.gform_wrapper .gfield_required_asterisk {
+  color: var(--color-orange);
+  margin-left: var(--space-1);
+  font-weight: 700;
+}
+.gform_wrapper .gfield_description {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  margin-top: var(--space-2);
+  line-height: 1.45;
+}
+.gform_wrapper .gfield--type-html .gfield_description,
+.gform_wrapper .gfield_html {
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+/* Visually hidden helper for screen-reader-only labels (GF uses this when
+   "hide label" is selected). Avoid display:none so a11y is preserved. */
+.gform_wrapper .gfield_visibility_hidden,
+.gform_wrapper .hidden_label .gfield_label,
+.gform_wrapper .screen-reader-text,
+.gform_wrapper .gform_hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.gform_wrapper .gform_hidden {
+  display: none !important;
+}
+
+/* ----- Inputs, selects, textareas ----- */
+.gform_wrapper .ginput_container input[type='text'],
+.gform_wrapper .ginput_container input[type='email'],
+.gform_wrapper .ginput_container input[type='url'],
+.gform_wrapper .ginput_container input[type='tel'],
+.gform_wrapper .ginput_container input[type='number'],
+.gform_wrapper .ginput_container input[type='password'],
+.gform_wrapper .ginput_container input[type='search'],
+.gform_wrapper .ginput_container input[type='date'],
+.gform_wrapper .ginput_container input[type='time'],
+.gform_wrapper .ginput_container input[type='datetime-local'],
+.gform_wrapper .ginput_container input[type='month'],
+.gform_wrapper .ginput_container input[type='week'],
+.gform_wrapper .ginput_container input[type='file'],
+.gform_wrapper .ginput_container select,
+.gform_wrapper .ginput_container textarea,
+.gform_wrapper input.large,
+.gform_wrapper input.medium,
+.gform_wrapper input.small,
+.gform_wrapper select.large,
+.gform_wrapper select.medium,
+.gform_wrapper select.small,
+.gform_wrapper textarea.textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.4;
+  transition:
+    border-color var(--transition-interactive),
+    box-shadow var(--transition-interactive),
+    background var(--transition-interactive);
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Native select arrow */
+.gform_wrapper .ginput_container select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-text-muted) 50%),
+    linear-gradient(135deg, var(--color-text-muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 13px) 50%;
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  padding-right: var(--space-10);
+}
+
+.gform_wrapper .ginput_container textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* Focus ring — accessible high-contrast */
+.gform_wrapper .ginput_container input:focus,
+.gform_wrapper .ginput_container select:focus,
+.gform_wrapper .ginput_container textarea:focus,
+.gform_wrapper input:focus-visible,
+.gform_wrapper select:focus-visible,
+.gform_wrapper textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-orange);
+  box-shadow: 0 0 0 3px rgb(238 106 25 / 0.25);
+}
+
+/* Placeholder */
+.gform_wrapper ::placeholder {
+  color: var(--color-text-faint);
+  opacity: 1;
+}
+
+/* Disabled / readonly */
+.gform_wrapper input:disabled,
+.gform_wrapper select:disabled,
+.gform_wrapper textarea:disabled,
+.gform_wrapper input[readonly],
+.gform_wrapper textarea[readonly],
+.gform_wrapper .gfield--input-disabled .ginput_container input,
+.gform_wrapper .gfield--input-disabled .ginput_container select,
+.gform_wrapper .gfield--input-disabled .ginput_container textarea {
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+/* ----- Checkboxes & radios ----- */
+.gform_wrapper .gfield_checkbox,
+.gform_wrapper .gfield_radio {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.gform_wrapper .gfield_checkbox li,
+.gform_wrapper .gfield_radio li,
+.gform_wrapper .gchoice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gform_wrapper .gfield_checkbox input[type='checkbox'],
+.gform_wrapper .gfield_radio input[type='radio'],
+.gform_wrapper .gchoice input[type='checkbox'],
+.gform_wrapper .gchoice input[type='radio'] {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--color-orange);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.gform_wrapper .gfield_checkbox label,
+.gform_wrapper .gfield_radio label,
+.gform_wrapper .gchoice label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--color-text);
+  margin: 0;
+  cursor: pointer;
+  line-height: 1.5;
+}
+
+/* Consent field (GDPR / TOS checkbox + text block) */
+.gform_wrapper .gfield--type-consent .ginput_container_consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.gform_wrapper .gfield--type-consent .ginput_container_consent input[type='checkbox'] {
+  margin: 0.25rem 0 0;
+  accent-color: var(--color-orange);
+}
+.gform_wrapper .gfield_consent_description {
+  margin-top: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  max-height: 160px;
+  overflow: auto;
+}
+
+/* ----- Complex composite fields ----- */
+/* Name, Address, Date, Time, Email confirm, Password confirm */
+.gform_wrapper .ginput_complex {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+.gform_wrapper .ginput_complex > span {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+.gform_wrapper .ginput_complex label,
+.gform_wrapper .ginput_complex .gform-field-label--type-sub {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Address: full-row for street/city, narrower for state/zip */
+.gform_wrapper .ginput_complex.ginput_container_address {
+  grid-template-columns: repeat(2, 1fr);
+}
+.gform_wrapper .ginput_complex.ginput_container_address .address_line_1,
+.gform_wrapper .ginput_complex.ginput_container_address .address_line_2 {
+  grid-column: 1 / -1;
+}
+
+/* Date/Time pickers */
+.gform_wrapper .ginput_container_date,
+.gform_wrapper .ginput_container_time {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.gform_wrapper .ginput_container_date input,
+.gform_wrapper .ginput_container_time input,
+.gform_wrapper .ginput_container_date select,
+.gform_wrapper .ginput_container_time select {
+  width: auto;
+  min-width: 4.5rem;
+}
+.gform_wrapper .ginput_container_time .gfield_time_ampm select {
+  min-width: 4rem;
+}
+.gform_wrapper .gfield_time_hour,
+.gform_wrapper .gfield_time_minute,
+.gform_wrapper .gfield_time_ampm,
+.gform_wrapper .gfield_date_month,
+.gform_wrapper .gfield_date_day,
+.gform_wrapper .gfield_date_year,
+.gform_wrapper .gfield_date_dropdown_month,
+.gform_wrapper .gfield_date_dropdown_day,
+.gform_wrapper .gfield_date_dropdown_year {
+  display: flex;
+  flex-direction: column;
+}
+.gform_wrapper .gfield_date_dropdown_month select,
+.gform_wrapper .gfield_date_dropdown_day select,
+.gform_wrapper .gfield_date_dropdown_year select {
+  min-width: 5.5rem;
+}
+
+/* Phone */
+.gform_wrapper .ginput_container_phone input {
+  letter-spacing: 0.02em;
+}
+
+/* File upload */
+.gform_wrapper .ginput_container_fileupload {
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+.gform_wrapper .ginput_container_fileupload input[type='file'] {
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+.gform_wrapper .ginput_container_fileupload input[type='file']::file-selector-button,
+.gform_wrapper .ginput_container_fileupload input[type='file']::-webkit-file-upload-button {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-4);
+  margin-right: var(--space-3);
+  background: var(--color-navy-3);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-interactive);
+}
+.gform_wrapper .ginput_container_fileupload input[type='file']::file-selector-button:hover {
+  background: var(--color-navy-2);
+}
+.gform_wrapper .gform_drop_area,
+.gform_wrapper .gform_fileupload_multifile .gform_drop_area {
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+.gform_wrapper .gform_drop_instructions {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-3);
+}
+.gform_wrapper .gform_fileupload_rules {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  margin-top: var(--space-2);
+}
+.gform_wrapper .ginput_preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  margin-top: var(--space-2);
+}
+
+/* ----- HTML / section break fields ----- */
+.gform_wrapper .gfield--type-section,
+.gform_wrapper .gsection {
+  border: none;
+  padding: 0;
+  margin: var(--space-6) 0 var(--space-2);
+  grid-column: span 12;
+}
+.gform_wrapper .gsection_title,
+.gform_wrapper .gfield--type-section .gfield_label {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-heading);
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-divider);
+}
+.gform_wrapper .gsection_description {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: var(--space-2) 0 0;
+}
+
+/* ----- Fieldsets / legends (composite + radio/checkbox groups) ----- */
+.gform_wrapper fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.gform_wrapper fieldset > legend,
+.gform_wrapper .gfield > legend {
+  padding: 0;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ----- Validation: errors ----- */
+.gform_wrapper .validation_error,
+.gform_wrapper .gform_validation_errors {
+  background: var(--color-warning-highlight);
+  border-left: 4px solid var(--color-error);
+  color: var(--color-error);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-6);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.gform_wrapper .gform_validation_errors h2 {
+  font-size: var(--text-base);
+  margin: 0 0 var(--space-2);
+  color: var(--color-error);
+}
+.gform_wrapper .gform_validation_errors ol,
+.gform_wrapper .gform_validation_errors ul {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+.gform_wrapper .gform_validation_errors a {
+  color: var(--color-error);
+  text-decoration: underline;
+}
+
+.gform_wrapper .gfield_error .gfield_label,
+.gform_wrapper .gfield.gfield_error > label {
+  color: var(--color-error);
+}
+.gform_wrapper .gfield_error .ginput_container input,
+.gform_wrapper .gfield_error .ginput_container select,
+.gform_wrapper .gfield_error .ginput_container textarea,
+.gform_wrapper .gfield.gfield_error input,
+.gform_wrapper .gfield.gfield_error select,
+.gform_wrapper .gfield.gfield_error textarea {
+  border-color: var(--color-error);
+  background: #fff5f5;
+}
+.gform_wrapper .gfield_error .ginput_container input:focus,
+.gform_wrapper .gfield_error .ginput_container select:focus,
+.gform_wrapper .gfield_error .ginput_container textarea:focus {
+  box-shadow: 0 0 0 3px rgb(192 40 40 / 0.18);
+  border-color: var(--color-error);
+}
+.gform_wrapper .gfield_validation_message,
+.gform_wrapper .validation_message {
+  margin-top: var(--space-2);
+  color: var(--color-error);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+/* ----- Confirmation ----- */
+.gform_confirmation_wrapper,
+.gform_wrapper .gform_confirmation_message {
+  background: var(--color-success-highlight);
+  border-left: 4px solid var(--color-success);
+  color: var(--color-text);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+}
+.gform_confirmation_wrapper a {
+  color: var(--color-success);
+  font-weight: 600;
+}
+
+/* ----- AJAX spinner ----- */
+.gform_wrapper .gform_ajax_spinner {
+  margin-left: var(--space-3);
+  vertical-align: middle;
+}
+
+/* ----- Page / progress / footer ----- */
+.gform_wrapper .gf_progressbar_wrapper {
+  margin-bottom: var(--space-6);
+}
+.gform_wrapper .gf_progressbar_title {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+.gform_wrapper .gf_progressbar {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  height: 0.5rem;
+}
+.gform_wrapper .gf_progressbar_percentage {
+  background: var(--color-orange);
+  color: #ffffff;
+  height: 100%;
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-align: right;
+  padding: 0 var(--space-2);
+  line-height: 0.5rem;
+  transition: width var(--transition-interactive);
+}
+.gform_wrapper .percentbar_blue,
+.gform_wrapper .percentbar_gray,
+.gform_wrapper .percentbar_green,
+.gform_wrapper .percentbar_orange,
+.gform_wrapper .percentbar_red {
+  background: var(--color-orange);
+}
+
+.gform_wrapper .gform_page_footer,
+.gform_wrapper .gform_footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-divider);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* ----- Buttons (submit / next / previous) ----- */
+.gform_wrapper .gform_button,
+.gform_wrapper .gform_next_button,
+.gform_wrapper .gform_previous_button,
+.gform_wrapper .gform_save_link,
+.gform_wrapper input[type='submit'].gform_button,
+.gform_wrapper button.gform_button,
+.gform_wrapper button[type='submit'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  background: var(--color-orange);
+  color: #ffffff;
+  cursor: pointer;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition:
+    background var(--transition-interactive),
+    transform var(--transition-interactive),
+    box-shadow var(--transition-interactive);
+}
+.gform_wrapper .gform_button:hover,
+.gform_wrapper .gform_next_button:hover,
+.gform_wrapper button[type='submit']:hover {
+  background: var(--color-orange-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-orange);
+}
+.gform_wrapper .gform_button:focus-visible,
+.gform_wrapper .gform_next_button:focus-visible,
+.gform_wrapper .gform_previous_button:focus-visible,
+.gform_wrapper button[type='submit']:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+.gform_wrapper .gform_previous_button,
+.gform_wrapper .gform_save_link {
+  background: transparent;
+  color: var(--color-navy);
+  border-color: var(--color-navy);
+  box-shadow: none;
+}
+.gform_wrapper .gform_previous_button:hover,
+.gform_wrapper .gform_save_link:hover {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+.gform_wrapper .gform_button:disabled,
+.gform_wrapper button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* When the theme injects .btn--block on submit (functions.php / gravity-forms.php),
+   preserve the full-width treatment. */
+.gform_wrapper .gform_button.btn--block,
+.gform_wrapper button[type='submit'].btn--block {
+  width: 100%;
+}
+
+/* ----- Notices (save-and-continue, login required, etc.) ----- */
+.gform_wrapper .gform_save_link_message,
+.gform_wrapper .gform_anchor,
+.gform_wrapper .gf_login_message,
+.gform_wrapper .gform_require_login_message {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-left: 4px solid var(--color-navy-3);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-4);
+}
+
+/* ----- Legacy grid classes (gf_left_half / gf_*_third / gf_*_quarter) ----- */
+.gform_wrapper .gfield.gf_left_half,
+.gform_wrapper .gfield.gf_right_half {
+  grid-column: span 6;
+}
+.gform_wrapper .gfield.gf_left_third,
+.gform_wrapper .gfield.gf_middle_third,
+.gform_wrapper .gfield.gf_right_third {
+  grid-column: span 4;
+}
+.gform_wrapper .gfield.gf_first_quarter,
+.gform_wrapper .gfield.gf_second_quarter,
+.gform_wrapper .gfield.gf_third_quarter,
+.gform_wrapper .gfield.gf_fourth_quarter {
+  grid-column: span 3;
+}
+.gform_wrapper .gfield.gf_inline {
+  grid-column: auto;
+  display: inline-flex;
+  flex-direction: column;
+  margin-right: var(--space-4);
+}
+
+/* ----- GF 2.5+ grid classes ----- */
+.gform_wrapper .gfield--width-full {
+  grid-column: span 12;
+}
+.gform_wrapper .gfield--width-half {
+  grid-column: span 6;
+}
+.gform_wrapper .gfield--width-third {
+  grid-column: span 4;
+}
+.gform_wrapper .gfield--width-two-thirds {
+  grid-column: span 8;
+}
+.gform_wrapper .gfield--width-quarter {
+  grid-column: span 3;
+}
+.gform_wrapper .gfield--width-three-quarter {
+  grid-column: span 9;
+}
+.gform_wrapper .gfield--width-fifth {
+  grid-column: span 2;
+}
+
+/* ----- Responsive: collapse to a single column on narrow viewports ----- */
+@media (max-width: 640px) {
+  .gform_wrapper .gform_fields,
+  .gform_wrapper .gform_body ul.gform_fields {
+    gap: var(--space-3);
+  }
+  .gform_wrapper .gfield,
+  .gform_wrapper li.gfield,
+  .gform_wrapper .gfield.gf_left_half,
+  .gform_wrapper .gfield.gf_right_half,
+  .gform_wrapper .gfield.gf_left_third,
+  .gform_wrapper .gfield.gf_middle_third,
+  .gform_wrapper .gfield.gf_right_third,
+  .gform_wrapper .gfield.gf_first_quarter,
+  .gform_wrapper .gfield.gf_second_quarter,
+  .gform_wrapper .gfield.gf_third_quarter,
+  .gform_wrapper .gfield.gf_fourth_quarter,
+  .gform_wrapper .gfield--width-half,
+  .gform_wrapper .gfield--width-third,
+  .gform_wrapper .gfield--width-two-thirds,
+  .gform_wrapper .gfield--width-quarter,
+  .gform_wrapper .gfield--width-three-quarter,
+  .gform_wrapper .gfield--width-fifth {
+    grid-column: span 12;
+  }
+  .gform_wrapper .ginput_complex {
+    grid-template-columns: 1fr;
+  }
+  .gform_wrapper .gform_footer,
+  .gform_wrapper .gform_page_footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .gform_wrapper .gform_button,
+  .gform_wrapper .gform_next_button,
+  .gform_wrapper .gform_previous_button {
+    width: 100%;
+  }
+}
+
+/* ----- Dark surface adjustments: when GF renders inside .contact-form-card
+   (light surface) the defaults already work. When dropped on dark backgrounds
+   (e.g. navy section), invert input chrome. ----- */
+[data-theme='dark'] .gform_wrapper .ginput_container input,
+[data-theme='dark'] .gform_wrapper .ginput_container select,
+[data-theme='dark'] .gform_wrapper .ginput_container textarea {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+/* ----- Honeypot / hidden inputs from GF ----- */
+.gform_wrapper .gform_validation_container,
+.gform_wrapper .gfield_visibility_hidden {
+  display: none !important;
+}
+
+/* ----- Inline tooltip wrapper used by some GF add-ons ----- */
+.gform_wrapper .tooltip,
+.gform_wrapper .gf_tooltip {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
