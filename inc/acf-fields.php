@@ -601,13 +601,34 @@ function accr_register_acf_fields() {
 							'label'   => 'Contact info + form split',
 							'display' => 'block',
 							'sub_fields' => array(
+								array( 'key' => 'f_cs_intro_eyebrow', 'label' => 'Intro eyebrow (orange)', 'name' => 'intro_eyebrow', 'type' => 'text', 'default_value' => 'Have questions?' ),
+								array( 'key' => 'f_cs_intro_heading', 'label' => 'Intro heading (navy)',  'name' => 'intro_heading', 'type' => 'text', 'default_value' => 'We’re here to help!' ),
+								array( 'key' => 'f_cs_intro_body',    'label' => 'Intro body', 'name' => 'intro_body', 'type' => 'textarea', 'rows' => 4, 'new_lines' => 'wpautop' ),
+								array(
+									'key'   => 'f_cs_rows',
+									'label' => 'Contact rows (left column)',
+									'name'  => 'rows',
+									'type'  => 'repeater',
+									'layout' => 'block',
+									'button_label' => 'Add contact row',
+									'instructions' => 'Each row renders as: small uppercase label, large value/link, optional note. Rows are separated by a horizontal divider.',
+									'sub_fields' => array(
+										array( 'key' => 'f_cs_row_label', 'label' => 'Label (small uppercase)', 'name' => 'label', 'type' => 'text' ),
+										array( 'key' => 'f_cs_row_value', 'label' => 'Value (large)', 'name' => 'value', 'type' => 'text' ),
+										array( 'key' => 'f_cs_row_href',  'label' => 'Value link URL (optional, e.g. tel: / mailto:)', 'name' => 'value_href', 'type' => 'text' ),
+										array( 'key' => 'f_cs_row_note',  'label' => 'Note (optional, small muted text)', 'name' => 'note', 'type' => 'textarea', 'rows' => 2, 'new_lines' => 'wpautop' ),
+									),
+								),
+
+								/* Legacy info blocks repeater kept for back-compat; ignored if Contact rows is set. */
 								array(
 									'key'   => 'f_cs_blocks',
-									'label' => 'Info blocks (left column)',
+									'label' => 'Info blocks (legacy, optional)',
 									'name'  => 'blocks',
 									'type'  => 'repeater',
 									'layout' => 'block',
 									'button_label' => 'Add info block',
+									'instructions' => 'Legacy field. Only rendered when Contact rows is empty.',
 									'sub_fields' => array(
 										array( 'key' => 'f_cs_eyebrow', 'label' => 'Eyebrow', 'name' => 'eyebrow', 'type' => 'text' ),
 										array( 'key' => 'f_cs_title',   'label' => 'Heading', 'name' => 'title', 'type' => 'text' ),
@@ -629,8 +650,10 @@ function accr_register_acf_fields() {
 										array( 'key' => 'f_cs_emp_url',   'label' => 'Emphasis URL', 'name' => 'emphasis_url', 'type' => 'text' ),
 									),
 								),
-								array( 'key' => 'f_cs_form_title', 'label' => 'Form title', 'name' => 'form_title', 'type' => 'text', 'default_value' => 'Send us a message' ),
-								array( 'key' => 'f_cs_form_lead',  'label' => 'Form lead text', 'name' => 'form_lead', 'type' => 'textarea', 'rows' => 2, 'new_lines' => 'wpautop' ),
+
+								array( 'key' => 'f_cs_form_heading', 'label' => 'Form heading (uppercase navy)', 'name' => 'form_heading', 'type' => 'text', 'default_value' => 'Send us a message' ),
+								array( 'key' => 'f_cs_form_title', 'label' => 'Form title (legacy, optional)', 'name' => 'form_title', 'type' => 'text', 'instructions' => 'Legacy. Used as fallback if Form heading is empty.' ),
+								array( 'key' => 'f_cs_form_lead',  'label' => 'Form lead text (optional)', 'name' => 'form_lead', 'type' => 'textarea', 'rows' => 2, 'new_lines' => 'wpautop' ),
 								array(
 									'key'     => 'f_cs_gf_id',
 									'label'   => 'Gravity Form ID',
