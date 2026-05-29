@@ -55,6 +55,22 @@ accr_section_open( array(
 					<h2 class="section-title"><?php echo wp_kses_post( $title ); ?></h2>
 				<?php endif; ?>
 
+				<?php if ( $features ) : ?>
+					<div class="split__features">
+						<?php foreach ( $features as $f ) :
+							if ( empty( $f['title'] ) && empty( $f['body'] ) ) continue; ?>
+							<div class="split__feature">
+								<?php if ( ! empty( $f['title'] ) ) : ?>
+									<h4 class="split__feature-title"><?php echo esc_html( $f['title'] ); ?></h4>
+								<?php endif; ?>
+								<?php if ( ! empty( $f['body'] ) ) : ?>
+									<p class="split__feature-body"><?php echo wp_kses_post( $f['body'] ); ?></p>
+								<?php endif; ?>
+							</div>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+
 				<?php if ( $body ) : ?>
 					<div class="split__body" style="color: <?php echo $is_navy ? '#cfdde9' : 'var(--color-text-muted)'; ?>; font-size: var(--text-base);">
 						<?php echo wp_kses_post( $body ); ?>
@@ -86,22 +102,6 @@ accr_section_open( array(
 							<?php endif;
 						endforeach; ?>
 					</ul>
-				<?php endif; ?>
-
-				<?php if ( $features ) : ?>
-					<div class="split__features">
-						<?php foreach ( $features as $f ) :
-							if ( empty( $f['title'] ) && empty( $f['body'] ) ) continue; ?>
-							<div class="split__feature">
-								<?php if ( ! empty( $f['title'] ) ) : ?>
-									<h4 class="split__feature-title"><?php echo esc_html( $f['title'] ); ?></h4>
-								<?php endif; ?>
-								<?php if ( ! empty( $f['body'] ) ) : ?>
-									<p class="split__feature-body"><?php echo wp_kses_post( $f['body'] ); ?></p>
-								<?php endif; ?>
-							</div>
-						<?php endforeach; ?>
-					</div>
 				<?php endif; ?>
 
 				<?php if ( $buttons ) : ?>
