@@ -689,9 +689,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: var(--space-6) 0;
-  padding: var(--space-6);
+  padding: var(--space-4) var(--space-6);
   background: rgba(46 122 169 / 0.4);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 .split__feature {
   padding: 0 0 0 var(--space-6);
@@ -721,6 +721,9 @@
   line-height: 1.5;
   color: inherit;
   opacity: 0.85;
+}
+.split__body {
+  margin: var(--space-5) 0;
 }
 @media (max-width: 880px) {
   .section--navy-band {
