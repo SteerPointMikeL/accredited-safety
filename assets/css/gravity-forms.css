@@ -70,13 +70,11 @@
 /* ----- Labels & descriptions ----- */
 .gform_wrapper .gfield_label {
   display: block;
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 600;
-  color: var(--color-text);
-  margin: 0 0 var(--space-2);
+  font-weight: 700;
+  color: var(--color-text-heading);
 }
 .gform_wrapper .gfield_required,
 .gform_wrapper .gfield_required_text,
@@ -176,6 +174,12 @@
 .gform_wrapper .ginput_container textarea {
   min-height: 110px;
   resize: vertical;
+}
+.gform_wrapper .ginput_container textarea.medium {
+  height: 8em;
+}
+.gform_wrapper .ginput_container textarea.small {
+  height: 6em;
 }
 
 /* Focus ring — accessible high-contrast */
@@ -574,8 +578,6 @@
 .gform_wrapper .gform_page_footer,
 .gform_wrapper .gform_footer {
   margin-top: var(--space-6);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-divider);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
@@ -646,6 +648,9 @@
   transform: none;
   box-shadow: none;
 }
+.gform_wrapper .gform_button.gform-button--width-full {
+  flex-grow: 1;
+}
 
 /* When the theme injects .btn--block on submit (functions.php / gravity-forms.php),
    preserve the full-width treatment. */
@@ -656,7 +661,7 @@
 
 /* ----- Notices (save-and-continue, login required, etc.) ----- */
 .gform_wrapper .gform_save_link_message,
-.gform_wrapper .gform_anchor,
+/* .gform_wrapper .gform_anchor, */
 .gform_wrapper .gf_login_message,
 .gform_wrapper .gform_require_login_message {
   padding: var(--space-3) var(--space-4);
