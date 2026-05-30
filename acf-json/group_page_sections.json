@@ -3198,6 +3198,327 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_staff_grid": {
+                    "key": "layout_staff_grid",
+                    "name": "staff_grid",
+                    "label": "Staff grid (team members + optional detail modal)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_sg_eyebrow",
+                            "label": "Eyebrow (optional)",
+                            "name": "eyebrow",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "f_sg_title",
+                            "label": "Heading (centered, HTML allowed)",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 2,
+                            "new_lines": "",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "f_sg_intro",
+                            "label": "Intro (optional)",
+                            "name": "intro",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 3,
+                            "new_lines": "wpautop",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "f_sg_cols",
+                            "label": "Columns",
+                            "name": "columns",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "2": "2",
+                                "3": "3",
+                                "4": "4"
+                            },
+                            "default_value": "3",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "f_sg_bg",
+                            "label": "Background",
+                            "name": "background",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "default": "Default",
+                                "surface_2": "Tinted (surface 2)"
+                            },
+                            "default_value": "default",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "f_sg_members",
+                            "label": "Staff members",
+                            "name": "members",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Add staff member",
+                            "min": 0,
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "f_sg_m_photo",
+                                    "label": "Photo",
+                                    "name": "photo",
+                                    "aria-label": "",
+                                    "type": "image",
+                                    "instructions": "Leave empty to show a \"Photo not available\" placeholder.",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all",
+                                    "min_width": 0,
+                                    "min_height": 0,
+                                    "min_size": 0,
+                                    "max_width": 0,
+                                    "max_height": 0,
+                                    "max_size": 0,
+                                    "mime_types": "",
+                                    "parent_repeater": "f_sg_members"
+                                },
+                                {
+                                    "key": "f_sg_m_name",
+                                    "label": "Name",
+                                    "name": "name",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": true,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "f_sg_members"
+                                },
+                                {
+                                    "key": "f_sg_m_role",
+                                    "label": "Role \/ title",
+                                    "name": "role",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "f_sg_members"
+                                },
+                                {
+                                    "key": "f_sg_m_details",
+                                    "label": "Card detail lines (optional)",
+                                    "name": "details",
+                                    "aria-label": "",
+                                    "type": "repeater",
+                                    "instructions": "Short labelled lines shown on the card, e.g. \"CCO Certifications\" then \"ABC, ABL, ...\".",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "layout": "table",
+                                    "button_label": "Add detail line",
+                                    "min": 0,
+                                    "max": 0,
+                                    "rows_per_page": 20,
+                                    "collapsed": "",
+                                    "parent_repeater": "f_sg_members",
+                                    "sub_fields": [
+                                        {
+                                            "key": "f_sg_m_detail_heading",
+                                            "label": "Heading",
+                                            "name": "heading",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": false,
+                                            "conditional_logic": false,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "f_sg_m_details"
+                                        },
+                                        {
+                                            "key": "f_sg_m_detail_text",
+                                            "label": "Text",
+                                            "name": "text",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": false,
+                                            "conditional_logic": false,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "f_sg_m_details"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "key": "f_sg_m_email",
+                                    "label": "Email (optional, shown as button)",
+                                    "name": "email",
+                                    "aria-label": "",
+                                    "type": "email",
+                                    "instructions": "",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "f_sg_members"
+                                },
+                                {
+                                    "key": "f_sg_m_modal",
+                                    "label": "Detailed bio \/ modal content (optional)",
+                                    "name": "modal_content",
+                                    "aria-label": "",
+                                    "type": "wysiwyg",
+                                    "instructions": "If filled, the card becomes a button that opens a modal with this content. If empty, the card is static (no modal).",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "tabs": "all",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "default_value": "",
+                                    "delay": 0,
+                                    "parent_repeater": "f_sg_members"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -3241,5 +3562,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780098948
+    "modified": 1780106550
 }

@@ -184,6 +184,88 @@
     });
   }
 
+  // ---------- Staff detail modals ----------
+  (function () {
+    const triggers = Array.from(document.querySelectorAll('.staff-card__trigger[aria-controls]'));
+    if (!triggers.length) return;
+
+    const FOCUSABLE =
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+    let activeModal = null;
+    let lastTrigger = null;
+
+    function getFocusable(container) {
+      return Array.from(container.querySelectorAll(FOCUSABLE)).filter(
+        (el) => el.offsetParent !== null || el === document.activeElement
+      );
+    }
+
+    function openStaffModal(trigger) {
+      const id = trigger.getAttribute('aria-controls');
+      const modal = id && document.getElementById(id);
+      if (!modal) return;
+
+      lastTrigger = trigger;
+      activeModal = modal;
+      modal.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('staff-modal-open');
+
+      const focusables = getFocusable(modal);
+      const target = modal.querySelector('[data-staff-modal-close]') || focusables[0] || modal;
+      window.setTimeout(() => target.focus(), 0);
+    }
+
+    function closeStaffModal() {
+      if (!activeModal) return;
+      activeModal.hidden = true;
+      document.body.classList.remove('staff-modal-open');
+      if (lastTrigger) {
+        lastTrigger.setAttribute('aria-expanded', 'false');
+        lastTrigger.focus();
+      }
+      activeModal = null;
+      lastTrigger = null;
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => openStaffModal(trigger));
+    });
+
+    document.querySelectorAll('[data-staff-modal]').forEach((modal) => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal || (e.target.closest && e.target.closest('[data-staff-modal-close]'))) {
+          closeStaffModal();
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!activeModal) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeStaffModal();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const focusables = getFocusable(activeModal);
+        if (!focusables.length) {
+          e.preventDefault();
+          return;
+        }
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  })();
+
   // ---------- Classes table category filters ----------
   document.querySelectorAll('[data-classes-filter]').forEach((filterBar) => {
     const section = filterBar.closest('section');
