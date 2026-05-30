@@ -54,6 +54,7 @@ function accr_theme_enqueue() {
 
 	wp_enqueue_style( 'accr-base', ACCR_THEME_URI . '/assets/css/base.css', array(), ACCR_THEME_VERSION );
 	wp_enqueue_style( 'accr-style', ACCR_THEME_URI . '/assets/css/style.css', array( 'accr-base' ), ACCR_THEME_VERSION );
+	wp_enqueue_style( 'accr-staff', ACCR_THEME_URI . '/assets/css/staff.css', array( 'accr-base' ), ACCR_THEME_VERSION );
 
 	// Theme stylesheet (mostly for WordPress validation; design lives in base+style).
 	wp_enqueue_style( 'accr-theme', get_stylesheet_uri(), array( 'accr-style' ), ACCR_THEME_VERSION );
