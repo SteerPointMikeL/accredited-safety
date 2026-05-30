@@ -1160,6 +1160,76 @@
   gap: var(--space-5) !important;
   list-style: none;
 }
+/* ----- Footer newsletter card (dummy preview → opens modal) ----- */
+.newsletter-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 297px;
+  padding: 28px;
+  background: #e1e5eb;
+  border: none;
+  border-radius: var(--radius-md);
+  text-align: left;
+  cursor: pointer;
+  color: #002634;
+  transition: box-shadow var(--transition-interactive), transform var(--transition-interactive);
+}
+.newsletter-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.newsletter-card__heading {
+  font-family: 'Barlow Semi Condensed', var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #002634;
+}
+.newsletter-card__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: #002634;
+}
+.newsletter-card__field {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: var(--space-3) 24px;
+  background: #e9edf1;
+  border: 1px solid rgb(0 38 52 / 0.12);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: rgb(0 38 52 / 0.55);
+}
+.newsletter-card__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 53px;
+  padding: var(--space-3) 24px;
+  background: var(--color-orange);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-base);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.newsletter-card:hover .newsletter-card__submit {
+  background: var(--color-orange-hover);
+}
+.newsletter-card__submit svg {
+  flex: 0 0 auto;
+}
+
 .footer-bottom {
   border-top: 1px solid rgb(255 255 255 / 0.1);
   padding-top: var(--space-6);

@@ -76,6 +76,7 @@ require_once ACCR_THEME_DIR . '/inc/acf-bootstrap.php';
 require_once ACCR_THEME_DIR . '/inc/gravity-forms.php';
 require_once ACCR_THEME_DIR . '/inc/helpers.php';
 require_once ACCR_THEME_DIR . '/inc/nav-walker.php';
+require_once ACCR_THEME_DIR . '/inc/customizer.php';
 
 /* --------------------------------------------------------------------------
  * ACF Local JSON: save/load to /acf-json so field groups stay in version control.
