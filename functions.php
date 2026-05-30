@@ -56,6 +56,11 @@ function accr_theme_enqueue() {
 	wp_enqueue_style( 'accr-style', ACCR_THEME_URI . '/assets/css/style.css', array( 'accr-base' ), ACCR_THEME_VERSION );
 	wp_enqueue_style( 'accr-staff', ACCR_THEME_URI . '/assets/css/staff.css', array( 'accr-base' ), ACCR_THEME_VERSION );
 
+	// Blog templates: posts index/archive and single posts.
+	if ( is_home() || is_singular( 'post' ) || ( is_archive() && ! is_post_type_archive() ) ) {
+		wp_enqueue_style( 'accr-blog', ACCR_THEME_URI . '/assets/css/blog.css', array( 'accr-base', 'accr-style' ), ACCR_THEME_VERSION );
+	}
+
 	// Theme stylesheet (mostly for WordPress validation; design lives in base+style).
 	wp_enqueue_style( 'accr-theme', get_stylesheet_uri(), array( 'accr-style' ), ACCR_THEME_VERSION );
 
