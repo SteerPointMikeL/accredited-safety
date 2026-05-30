@@ -25,6 +25,25 @@ function accr_body_class_gravityforms( $classes ) {
 }
 
 /**
+ * Enqueue the theme's Gravity Forms stylesheet. Loaded on every front-end
+ * page (priority 20 so it lands after accr-style) — Gravity Forms can be
+ * rendered via AJAX, popups, or partials, so we cannot reliably gate this
+ * on the presence of a [gravityform] shortcode in the current request.
+ *
+ * The stylesheet supplies the full visual + layout system normally provided
+ * by Gravity Forms' bundled CSS (which is disabled below).
+ */
+add_action( 'wp_enqueue_scripts', 'accr_gform_enqueue_styles', 20 );
+function accr_gform_enqueue_styles() {
+	wp_enqueue_style(
+		'accr-gravity-forms',
+		ACCR_THEME_URI . '/assets/css/gravity-forms.css',
+		array( 'accr-style' ),
+		ACCR_THEME_VERSION
+	);
+}
+
+/**
  * Disable Gravity Forms' built-in CSS so the theme styling fully controls form look.
  * Site owners can re-enable by removing this filter via a child theme.
  */
