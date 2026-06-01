@@ -103,6 +103,16 @@ function accr_icon_choices() {
 }
 
 /**
+ * Keep the class detail-column icon select in sync with accr_icon_choices()
+ * so the icon library remains the single source of truth.
+ */
+add_filter( 'acf/load_field/key=field_class_detail_icon', 'accr_load_icon_choices' );
+function accr_load_icon_choices( $field ) {
+	$field['choices'] = accr_icon_choices();
+	return $field;
+}
+
+/**
  * Render a button HTML element from an ACF row produced by the shared CTA repeater.
  *
  * @param array  $btn   Repeater row.
@@ -176,6 +186,47 @@ function accr_format_class_date( $post_id ) {
 		return $raw;
 	}
 	return date_i18n( 'M&nbsp;j, Y', $ts );
+}
+
+/**
+ * Format a class CPT date range for display.
+ *
+ * Prefers the verbatim display override (class_date_display). Otherwise derives
+ * a range from the start (class_date) and optional end (class_end_date) dates,
+ * collapsing to a single date when no end date is set or the two match.
+ *
+ * @param int $post_id
+ * @return string
+ */
+function accr_format_class_date_range( $post_id ) {
+	if ( ! function_exists( 'get_field' ) ) {
+		return '';
+	}
+	$override = get_field( 'class_date_display', $post_id );
+	if ( $override ) {
+		return $override;
+	}
+	$start_raw = get_field( 'class_date', $post_id );
+	$end_raw   = get_field( 'class_end_date', $post_id );
+	if ( ! $start_raw ) {
+		return '';
+	}
+	$start_ts = strtotime( $start_raw );
+	if ( ! $start_ts ) {
+		return $start_raw;
+	}
+	$end_ts = $end_raw ? strtotime( $end_raw ) : 0;
+	if ( ! $end_ts || $end_ts <= $start_ts ) {
+		return date_i18n( 'M&nbsp;j, Y', $start_ts );
+	}
+	// Same month + year: "April 28 – 30, 2026"; otherwise full both ends.
+	if ( date( 'Y', $start_ts ) === date( 'Y', $end_ts ) ) {
+		if ( date( 'n', $start_ts ) === date( 'n', $end_ts ) ) {
+			return date_i18n( 'M&nbsp;j', $start_ts ) . '&nbsp;&ndash;&nbsp;' . date_i18n( 'j, Y', $end_ts );
+		}
+		return date_i18n( 'M&nbsp;j', $start_ts ) . '&nbsp;&ndash;&nbsp;' . date_i18n( 'M&nbsp;j, Y', $end_ts );
+	}
+	return date_i18n( 'M&nbsp;j, Y', $start_ts ) . '&nbsp;&ndash;&nbsp;' . date_i18n( 'M&nbsp;j, Y', $end_ts );
 }
 
 /**

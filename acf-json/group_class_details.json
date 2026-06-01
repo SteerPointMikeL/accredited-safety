@@ -4,15 +4,26 @@
     "fields": [
         {
             "key": "field_class_subtitle",
-            "label": "Subtitle (shown beneath class name)",
+            "label": "Subtitle (deprecated — no longer displayed)",
             "name": "subtitle",
-            "type": "text"
+            "type": "text",
+            "instructions": "Deprecated. The class hero no longer renders a subtitle. Field retained for data compatibility only."
         },
         {
             "key": "field_class_date",
             "label": "Class date",
             "name": "class_date",
             "type": "date_picker",
+            "display_format": "F j, Y",
+            "return_format": "Y-m-d",
+            "first_day": 0
+        },
+        {
+            "key": "field_class_end_date",
+            "label": "Class end date",
+            "name": "class_end_date",
+            "type": "date_picker",
+            "instructions": "Optional. For multi-day classes. If set and after the start date, the panel shows a date range (e.g. \"Apr 28 – 30, 2026\"). The Date display override still wins if set.",
             "display_format": "F j, Y",
             "return_format": "Y-m-d",
             "first_day": 0
@@ -43,7 +54,7 @@
             "label": "Tuition display override",
             "name": "tuition_display",
             "type": "text",
-            "instructions": "Optional. Overrides the formatted price (e.g. \"Request pricing\", \"$795 / seat\")."
+            "instructions": "Optional. Overrides the formatted price (e.g. \"Request pricing\", \"$795 \/ seat\")."
         },
         {
             "key": "field_class_request_class_label",
@@ -59,6 +70,13 @@
             "type": "true_false",
             "ui": 1,
             "default_value": 1
+        },
+        {
+            "key": "field_class_hero_title",
+            "label": "Hero title override",
+            "name": "hero_title",
+            "type": "text",
+            "instructions": "Optional. Title shown in the hero. Falls back to the post title if empty."
         },
         {
             "key": "field_class_hero_image",
@@ -106,7 +124,7 @@
             "label": "Schedule rows",
             "name": "schedule_rows",
             "type": "repeater",
-            "instructions": "Optional. One row per session (e.g. Day 1, Day 2). If empty, a single row is built from Class date / Time.",
+            "instructions": "Optional. One row per session (e.g. Day 1, Day 2). If empty, a single row is built from Class date \/ Time.",
             "layout": "block",
             "button_label": "Add schedule row",
             "sub_fields": [
@@ -119,10 +137,17 @@
                 },
                 {
                     "key": "field_class_schedule_date",
-                    "label": "Date / time line",
+                    "label": "Date \/ date display",
                     "name": "datetime",
                     "type": "text",
-                    "instructions": "e.g. \"April 28, 2026 · 7:30 AM – 6:30 PM\"."
+                    "instructions": "e.g. \"April 28, 2026\". Time can go here or in the separate Time field."
+                },
+                {
+                    "key": "field_class_schedule_time",
+                    "label": "Time",
+                    "name": "time",
+                    "type": "text",
+                    "instructions": "Optional. e.g. \"7:30 - 5:30pm\". Appended to the date line."
                 },
                 {
                     "key": "field_class_schedule_desc",
@@ -130,6 +155,71 @@
                     "name": "description",
                     "type": "textarea",
                     "rows": 2
+                }
+            ]
+        },
+        {
+            "key": "field_class_detail_columns",
+            "label": "Detail columns (icon + title + content)",
+            "name": "detail_columns",
+            "type": "repeater",
+            "instructions": "Optional. Two-column list of class details shown inside the panel (e.g. Topics Covered, What to Bring, Designations, Accommodations). Each column gets its chosen icon prepended to the title. If empty, the legacy Topics \/ Designations \/ What to bring \/ Accommodations fields are used instead.",
+            "layout": "block",
+            "button_label": "Add detail column",
+            "sub_fields": [
+                {
+                    "key": "field_class_detail_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "type": "select",
+                    "instructions": "Icon prepended to the column title.",
+                    "choices": {
+                        "shield": "Shield",
+                        "shield_check": "Shield with check",
+                        "check": "Check",
+                        "check_circle": "Check (in circle)",
+                        "award": "Award",
+                        "building": "Building",
+                        "building_alt": "Building (alt)",
+                        "clock": "Clock",
+                        "plus": "Plus",
+                        "pencil": "Pencil",
+                        "users": "Users",
+                        "tower": "Tower \/ crane",
+                        "layers": "Layers \/ rigging",
+                        "sun": "Sun \/ signal",
+                        "forklift": "Forklift \/ telehandler",
+                        "classroom": "Classroom \/ on-site",
+                        "calendar": "Calendar",
+                        "cube": "Cube \/ impact",
+                        "arrow_right": "Arrow right",
+                        "alert": "Alert \/ info",
+                        "mail": "Mail",
+                        "phone": "Phone",
+                        "document": "Document",
+                        "crane": "Crane"
+                    },
+                    "default_value": "check_circle",
+                    "allow_null": 0,
+                    "ui": 1,
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_class_detail_heading",
+                    "label": "Title",
+                    "name": "heading",
+                    "type": "text",
+                    "instructions": "e.g. \"Topics Covered\"."
+                },
+                {
+                    "key": "field_class_detail_content",
+                    "label": "Content",
+                    "name": "content",
+                    "type": "wysiwyg",
+                    "instructions": "Use a bulleted list or short paragraphs.",
+                    "tabs": "visual",
+                    "media_upload": 0,
+                    "toolbar": "basic"
                 }
             ]
         },
@@ -148,7 +238,7 @@
             "label": "Designations",
             "name": "designations",
             "type": "wysiwyg",
-            "instructions": "Optional. Certifications / designations earned. Falls back to the class categories.",
+            "instructions": "Optional. Certifications \/ designations earned. Falls back to the class categories.",
             "tabs": "visual",
             "media_upload": 0,
             "toolbar": "basic"
@@ -168,7 +258,7 @@
             "label": "Accommodations",
             "name": "accommodations",
             "type": "wysiwyg",
-            "instructions": "Optional. Accessibility / accommodation notes.",
+            "instructions": "Optional. Accessibility \/ accommodation notes.",
             "tabs": "visual",
             "media_upload": 0,
             "toolbar": "basic"
@@ -226,5 +316,5 @@
     "style": "default",
     "label_placement": "top",
     "active": true,
-    "modified": 1780335600
+    "modified": 1780342071
 }

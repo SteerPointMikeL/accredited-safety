@@ -3,12 +3,15 @@
    Loaded only on single `class` CPT posts.
    ========================================================= */
 
-/* ----- Hero ----- */
+/* ----- Hero -----
+   Shares the same dots background image (page-hero.webp) as .page-hero and the
+   other hero sections so class heroes match the rest of the site. */
 .class-hero {
   position: relative;
-  background: var(--color-navy-3);
+  background: var(--color-navy-3) url(../images/page-hero.webp) center / cover;
   color: #ffffff;
   overflow: hidden;
+  text-align: center;
 }
 .class-hero__image {
   position: absolute;
@@ -27,21 +30,14 @@
   position: relative;
   z-index: 1;
   padding-block: clamp(var(--space-12), 7vw, var(--space-24));
-  max-width: 880px;
+  max-width: 760px;
+  margin-inline: auto;
 }
 .class-hero__title {
   font-family: var(--font-display-2);
   font-size: var(--text-3xl);
   font-weight: 600;
   text-transform: uppercase;
-  margin-bottom: var(--space-4);
-}
-.class-hero__subtitle {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-orange);
-  font-weight: 600;
   margin-bottom: var(--space-4);
 }
 .class-hero__intro {
@@ -88,6 +84,25 @@
   margin-inline: auto;
   margin-bottom: var(--space-12);
 }
+.class-panel__title-block {
+  margin-bottom: var(--space-6);
+}
+.class-panel__title-block--has-image {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+.class-panel__image {
+  flex: none;
+  width: clamp(96px, 22vw, 140px);
+}
+.class-panel__image-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
 .class-panel__heading {
   font-size: var(--text-xl);
   color: var(--color-text-heading);
@@ -99,7 +114,6 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   margin-top: var(--space-2);
-  margin-bottom: var(--space-6);
 }
 
 .class-schedule {
@@ -173,18 +187,22 @@
 
 .class-panel__actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--space-3);
   margin-top: var(--space-6);
 }
+.class-panel__actions .btn {
+  width: 100%;
+}
 
-/* ----- Lower two-column info blocks ----- */
+/* ----- Two-column detail blocks (inside the class panel) ----- */
 .class-info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-8);
-  max-width: 880px;
-  margin-inline: auto;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-divider);
 }
 .class-info-block__heading {
   display: flex;
@@ -232,7 +250,7 @@
   margin: var(--space-10) auto 0;
 }
 
-/* ----- Final CTA ----- */
+/* ----- Travel CTA (travel_cta flexible layout) ----- */
 .class-cta {
   position: relative;
   display: grid;
@@ -263,11 +281,23 @@
   max-width: 52ch;
 }
 
+.class-cta--no-image {
+  grid-template-columns: 1fr;
+}
+
 @media (max-width: 720px) {
   .class-info-grid {
     grid-template-columns: 1fr;
   }
   .class-cta {
     grid-template-columns: 1fr;
+  }
+  .class-panel__title-block--has-image {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .class-panel__image {
+    width: clamp(96px, 40vw, 160px);
   }
 }
