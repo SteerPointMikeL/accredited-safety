@@ -90,10 +90,11 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 					<li><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></li>
 					<li><a href="<?php echo esc_attr( $phone_link ); ?>"><?php echo esc_html( $phone_display ); ?></a></li>
 					<li><a href="">Workforce Regulation Statement</a></li>
+				</ul>
 			</div>
 
-			<div>
-				
+			<div class="footer-grid__column" style="margin-top: var(--space-16);">
+				<?php get_template_part( 'template-parts/footer/newsletter' ); ?>
 			</div>
 		</div>
 
@@ -179,6 +180,47 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 					<h3>Request received</h3>
 					<p>Thanks — someone from our team will be in touch within one business day with pricing and availability.</p>
 					<button type="button" class="btn btn--outline" data-modal-close style="margin-top: var(--space-5);">Close</button>
+				</div>
+				<?php
+			}
+			?>
+		</div>
+	</div>
+</div>
+
+<?php
+$newsletter_modal_heading  = get_theme_mod( 'accr_newsletter_modal_heading', 'Sign up for our newsletter' );
+$newsletter_modal_subtitle = get_theme_mod( 'accr_newsletter_modal_subtitle', 'Get NCCCO updates, class schedules, and safety guidance delivered to your inbox.' );
+?>
+<!-- Newsletter sign-up modal. Opened by the dummy footer newsletter card. -->
+<div class="modal-backdrop" id="newsletter-modal" data-modal="newsletter" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="newsletter-modal-title">
+	<div class="modal">
+		<div class="modal__head">
+			<div>
+				<h3 id="newsletter-modal-title"><?php echo esc_html( $newsletter_modal_heading ); ?></h3>
+				<?php if ( $newsletter_modal_subtitle ) : ?>
+					<p><?php echo esc_html( $newsletter_modal_subtitle ); ?></p>
+				<?php endif; ?>
+			</div>
+			<button class="modal__close" data-modal-close aria-label="<?php esc_attr_e( 'Close', 'accr-theme' ); ?>">
+				<?php echo accr_icon( 'close', array( 'width' => '18', 'height' => '18', 'stroke-width' => '2.5' ) ); ?>
+			</button>
+		</div>
+		<div class="modal__body">
+			<?php
+			$newsletter_form_id = (int) get_theme_mod( 'accr_newsletter_form_id', 0 );
+			if ( $newsletter_form_id ) {
+				echo accr_render_gravity_form( $newsletter_form_id );
+			} else {
+				?>
+				<div class="gf-placeholder" style="border:1px dashed var(--color-divider); padding: var(--space-6); border-radius: var(--radius-md); color: var(--color-text-muted);">
+					<?php
+					if ( current_user_can( 'edit_theme_options' ) ) {
+						esc_html_e( 'Set a "Newsletter Gravity Forms ID" in Appearance → Customize → Footer Newsletter to render the sign-up form here.', 'accr-theme' );
+					} else {
+						esc_html_e( 'Our newsletter sign-up form is being set up. Please check back soon.', 'accr-theme' );
+					}
+					?>
 				</div>
 				<?php
 			}

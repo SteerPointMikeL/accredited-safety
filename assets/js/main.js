@@ -1,6 +1,36 @@
 /* Accredited Safety Solutions — main.js */
 
 (function () {
+  // ---------- Shared modal focus helpers ----------
+  const FOCUSABLE =
+    'a[href], button:not([disabled]), textarea, input:not([type="hidden"]), select, [tabindex]:not([tabindex="-1"])';
+
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll(FOCUSABLE)).filter(
+      (el) => el.offsetParent !== null || el === document.activeElement
+    );
+  }
+
+  // Trap Tab focus within a container for a keydown event. Returns true if handled.
+  function trapTab(e, container) {
+    if (e.key !== 'Tab') return false;
+    const focusables = getFocusable(container);
+    if (!focusables.length) {
+      e.preventDefault();
+      return true;
+    }
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+    return true;
+  }
+
   // ---------- Theme toggle ----------
   const root = document.documentElement;
   const toggle = document.querySelector('[data-theme-toggle]');
@@ -189,16 +219,8 @@
     const triggers = Array.from(document.querySelectorAll('.staff-card__trigger[aria-controls]'));
     if (!triggers.length) return;
 
-    const FOCUSABLE =
-      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
     let activeModal = null;
     let lastTrigger = null;
-
-    function getFocusable(container) {
-      return Array.from(container.querySelectorAll(FOCUSABLE)).filter(
-        (el) => el.offsetParent !== null || el === document.activeElement
-      );
-    }
 
     function openStaffModal(trigger) {
       const id = trigger.getAttribute('aria-controls');
@@ -247,22 +269,7 @@
         closeStaffModal();
         return;
       }
-      if (e.key === 'Tab') {
-        const focusables = getFocusable(activeModal);
-        if (!focusables.length) {
-          e.preventDefault();
-          return;
-        }
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
+      trapTab(e, activeModal);
     });
   })();
 
@@ -295,6 +302,63 @@
       });
     });
   });
+
+  // ---------- Footer newsletter modal ----------
+  (function () {
+    const newsletterModal = document.querySelector('[data-modal="newsletter"]');
+    const triggers = Array.from(document.querySelectorAll('[data-newsletter-open]'));
+    if (!newsletterModal || !triggers.length) return;
+
+    let lastTrigger = null;
+
+    function openNewsletter(trigger) {
+      lastTrigger = trigger;
+      trigger.setAttribute('aria-expanded', 'true');
+      newsletterModal.classList.add('is-open');
+      newsletterModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+      window.setTimeout(() => {
+        const focusables = getFocusable(newsletterModal);
+        const target =
+          newsletterModal.querySelector('[data-modal-close]') || focusables[0] || newsletterModal;
+        target.focus();
+      }, 100);
+    }
+
+    function closeNewsletter() {
+      newsletterModal.classList.remove('is-open');
+      newsletterModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+      if (lastTrigger) {
+        lastTrigger.setAttribute('aria-expanded', 'false');
+        lastTrigger.focus();
+        lastTrigger = null;
+      }
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openNewsletter(trigger);
+      });
+    });
+
+    newsletterModal.addEventListener('click', (e) => {
+      if (e.target === newsletterModal || e.target.closest('[data-modal-close]')) {
+        closeNewsletter();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!newsletterModal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeNewsletter();
+        return;
+      }
+      trapTab(e, newsletterModal);
+    });
+  })();
 
   // ---------- Smooth anchor for any #class-schedule link (Classes page) ----------
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
