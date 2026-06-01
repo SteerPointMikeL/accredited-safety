@@ -1592,6 +1592,7 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "layout": "block",
                             "sub_fields": [
                                 {
                                     "key": "f_cg_fb_label",
@@ -1633,8 +1634,7 @@
                                     "prepend": "",
                                     "append": ""
                                 }
-                            ],
-                            "layout": "block"
+                            ]
                         }
                     ],
                     "min": "",
@@ -1883,6 +1883,7 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "layout": "block",
                             "sub_fields": [
                                 {
                                     "key": "f_cq_fb_label",
@@ -1924,8 +1925,7 @@
                                     "prepend": "",
                                     "append": ""
                                 }
-                            ],
-                            "layout": "block"
+                            ]
                         }
                     ],
                     "min": "",
@@ -2433,24 +2433,46 @@
                             "save_options": 0
                         },
                         {
-                            "key": "f_nb_text",
-                            "label": "Text (HTML allowed; wrap headline in <strong>)",
-                            "name": "text",
+                            "key": "field_6a1d9faae74bf",
+                            "label": "Title",
+                            "name": "title",
                             "aria-label": "",
-                            "type": "textarea",
+                            "type": "text",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "rows": 3,
-                            "new_lines": "",
                             "default_value": "",
                             "maxlength": "",
-                            "placeholder": ""
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "f_nb_text",
+                            "label": "Text (HTML allowed)",
+                            "name": "text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 1,
+                            "rows": 3,
+                            "placeholder": "",
+                            "new_lines": "wpautop"
                         }
                     ],
                     "min": "",
@@ -3284,13 +3306,15 @@
                                 "3": "3",
                                 "4": "4"
                             },
-                            "default_value": "3",
+                            "default_value": 3,
                             "return_format": "value",
                             "multiple": 0,
                             "allow_null": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "f_sg_bg",
@@ -3316,7 +3340,9 @@
                             "allow_null": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "f_sg_members",
@@ -3562,5 +3588,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780106550
+    "modified": 1780327338
 }

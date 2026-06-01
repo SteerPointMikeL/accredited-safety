@@ -45,13 +45,13 @@
 
   /* Fonts */
   --font-display: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-display-2: 'Barlow Semi Condensed', 'Oswald', 'Arial Narrow', sans-serif;
   --font-body: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
-/* ========= LIGHT MODE (default) — Industrial Navy + Safety Orange ========= */
-:root,
-[data-theme='light'] {
+/* ========= Color scheme — Industrial Navy + Safety Orange ========= */
+:root {
   /* Brand */
   --color-navy: #0f2a3d;
   --color-navy-2: #143b54;
@@ -95,49 +95,6 @@
   --shadow-md: 0 6px 18px rgb(15 42 61 / 0.1);
   --shadow-lg: 0 20px 48px rgb(15 42 61 / 0.18);
   --shadow-orange: 0 8px 24px rgb(238 106 25 / 0.32);
-}
-
-/* ========= DARK MODE ========= */
-[data-theme='dark'] {
-  --color-navy: #07192a;
-  --color-navy-2: #0c2236;
-  --color-navy-3: #163149;
-
-  --color-bg: #0a1622;
-  --color-surface: #0f2132;
-  --color-surface-2: #152b3f;
-  --color-surface-offset: #1b3550;
-  --color-surface-inverse: #ffffff;
-
-  --color-divider: #203a54;
-  --color-border: #2c4a68;
-
-  --color-text: #e7ecf2;
-  --color-text-heading: #e7ecf2;
-  --color-text-muted: #93a4b8;
-  --color-text-faint: #63758a;
-  --color-text-inverse: #0a1622;
-
-  --color-orange: #ff8040;
-  --color-orange-hover: #ff9358;
-  --color-orange-active: #ffae7f;
-  --color-orange-highlight: #2a1a10;
-
-  --color-primary: var(--color-orange);
-  --color-primary-hover: var(--color-orange-hover);
-  --color-primary-active: var(--color-orange-active);
-  --color-accent: #5a9fd4;
-
-  --color-success: #58b162;
-  --color-success-highlight: #13281a;
-  --color-warning: #ffa93c;
-  --color-warning-highlight: #2a1e0a;
-  --color-error: #f46868;
-
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
-  --shadow-md: 0 6px 18px rgb(0 0 0 / 0.45);
-  --shadow-lg: 0 20px 48px rgb(0 0 0 / 0.55);
-  --shadow-orange: 0 8px 28px rgb(255 128 64 / 0.3);
 }
 
 /* =========================================================

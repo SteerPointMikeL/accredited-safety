@@ -66,7 +66,6 @@
 		<?php endif; ?>
 
 		<div class="nav-actions">
-			<button class="theme-toggle" data-theme-toggle aria-label="Toggle color theme"></button>
 			<a href="<?php echo esc_attr( $phone_link ); ?>" class="btn btn--primary">Call: 844-484-9628</a>
 			<button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
 				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>

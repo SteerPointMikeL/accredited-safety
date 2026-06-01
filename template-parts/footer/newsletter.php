@@ -18,7 +18,6 @@ $description  = get_theme_mod( 'accr_newsletter_description', 'Stay current on N
 	<span class="newsletter-card__desc"><?php echo esc_html( $description ); ?></span>
 	<span class="newsletter-card__field" aria-hidden="true"><?php esc_html_e( 'Your Email Address', 'accr-theme' ); ?></span>
 	<span class="newsletter-card__submit" aria-hidden="true">
-		<?php echo accr_icon( 'mail', array( 'width' => '18', 'height' => '18', 'stroke-width' => '2' ) ); ?>
 		<span><?php esc_html_e( 'Submit', 'accr-theme' ); ?></span>
 	</span>
 	<span class="sr-only"><?php esc_html_e( 'Open the newsletter sign-up form', 'accr-theme' ); ?></span>

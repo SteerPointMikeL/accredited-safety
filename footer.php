@@ -8,8 +8,6 @@
 $phone_display = get_theme_mod( 'accr_phone_display', '844-717-3665' );
 $phone_link    = get_theme_mod( 'accr_phone_link', 'tel:8447173665' );
 $email         = get_theme_mod( 'accr_email', 'info@accredited-safety.com' );
-//$footer_blurb  = get_theme_mod( 'accr_footer_blurb', "Indiana's trusted NCCCO crane operator certification training — hands-on, practical, and built for real operators." );
-//$service_area  = get_theme_mod( 'accr_service_area', 'Serving Indiana & the Midwest' );
 $copyright     = get_theme_mod( 'accr_copyright', '© ' . date_i18n( 'Y' ) . ' Accredited Safety Solutions. All rights reserved.' );
 $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered trademark of the National Commission for the Certification of Crane Operators.' );
 ?>
@@ -27,41 +25,22 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 			<div class="footer-grid__column">
 				<div class="footer-grid__column__inner">
 					<a class="site-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-						<?php /* <svg class="logo__mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-							<rect x="2" y="2" width="44" height="44" rx="4" fill="#0F2A3D" stroke="#EE6A19" stroke-width="2.5"/>
-							<path d="M10 34 L24 12 L38 34 Z" fill="none" stroke="#EE6A19" stroke-width="3" stroke-linejoin="round"/>
-							<circle cx="24" cy="27" r="3.2" fill="#EE6A19"/>
-							<path d="M24 34 L24 40" stroke="#EE6A19" stroke-width="2.5" stroke-linecap="round"/>
-						</svg>
-						<span class="logo__text">
-							<span class="logo__top">Accredited</span>
-							<span class="logo__bot">Safety Solutions</span>
-						</span> */ ?>
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/footer-logo.webp" alt="Accredited Safety Solutions - Crane Certification Training" width="280" height="237" />
 					</a>
-					<?php /* <p style="margin-top: var(--space-4); color: rgb(255 255 255 / 0.6); max-width: 36ch;">
-						<?php echo esc_html( $footer_blurb ); ?>
-					</p> */ ?>
 					<ul class="site-footer__social-media">
 						<li>
 							<a href="https://www.facebook.com/accreditedsafetysolutions/" target="_blank" title="Facebook">
-								<svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M13.0388 19V11.6423H15.5088L15.8783 8.77515H13.0378V6.9445C13.0378 6.1142 13.2687 5.548 14.46 5.548H15.9781V2.983C15.2429 2.90401 14.5039 2.86595 13.7646 2.869C11.5758 2.869 10.0776 4.20565 10.0776 6.6595V8.77515H7.6V11.6423H10.0767V19H1.0488C0.4693 19 0 18.5307 0 17.9512V1.0488C0 0.4693 0.4693 0 1.0488 0H17.9512C18.5307 0 19 0.4693 19 1.0488V17.9512C19 18.5307 18.5307 19 17.9512 19H13.0388Z" fill="white"/>
-								</svg>
+								<?php echo accr_icon( 'facebook', array( 'stroke' => 'none', 'fill' => 'currentColor' ) ); ?>
 							</a>
 						</li>
 						<li>
 							<a href="https://www.instagram.com/accreditedsafetysolutions/" target="_blank" title="Instagram">
-								<svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M4.28607 0C3.14962 -8.37989e-08 2.05969 0.45134 1.25594 1.25478C0.452195 2.05822 0.000436425 3.14797 0 4.28442V15.7139C0 16.8507 0.451566 17.9408 1.25536 18.7446C2.05915 19.5484 3.14933 20 4.28607 20H15.7156C16.852 19.9996 17.9418 19.5478 18.7452 18.7441C19.5487 17.9403 20 16.8504 20 15.7139V4.28442C19.9996 3.14826 19.548 2.05875 18.7446 1.25536C17.9412 0.451969 16.8517 0.000436232 15.7156 0H4.28607ZM16.9484 4.29101C16.9484 4.61841 16.8183 4.9324 16.5868 5.1639C16.3553 5.39541 16.0413 5.52547 15.7139 5.52547C15.3865 5.52547 15.0725 5.39541 14.841 5.1639C14.6095 4.9324 14.4795 4.61841 14.4795 4.29101C14.4795 3.9636 14.6095 3.64961 14.841 3.41811C15.0725 3.1866 15.3865 3.05654 15.7139 3.05654C16.0413 3.05654 16.3553 3.1866 16.5868 3.41811C16.8183 3.64961 16.9484 3.9636 16.9484 4.29101ZM10.0025 6.57559C9.09448 6.57559 8.22368 6.93629 7.58163 7.57834C6.93958 8.22038 6.57888 9.09119 6.57888 9.99918C6.57888 10.9072 6.93958 11.778 7.58163 12.42C8.22368 13.0621 9.09448 13.4228 10.0025 13.4228C10.9105 13.4228 11.7813 13.0621 12.4233 12.42C13.0654 11.778 13.4261 10.9072 13.4261 9.99918C13.4261 9.09119 13.0654 8.22038 12.4233 7.57834C11.7813 6.93629 10.9105 6.57559 10.0025 6.57559ZM4.93128 9.99918C4.93128 8.65465 5.46539 7.36519 6.41612 6.41447C7.36684 5.46375 8.6563 4.92964 10.0008 4.92964C11.3453 4.92964 12.6348 5.46375 13.5855 6.41447C14.5363 7.36519 15.0704 8.65465 15.0704 9.99918C15.0704 11.3437 14.5363 12.6332 13.5855 13.5839C12.6348 14.5346 11.3453 15.0687 10.0008 15.0687C8.6563 15.0687 7.36684 14.5346 6.41612 13.5839C5.46539 12.6332 4.93128 11.3437 4.93128 9.99918Z" fill="white"/>
-								</svg>
+								<?php echo accr_icon( 'instagram', array( 'stroke' => 'none', 'fill' => 'currentColor' ) ); ?>
 							</a>
 						</li>
 						<li>
 							<a href="https://www.linkedin.com/company/accredited-safety-solutions-inc" target="_blank" title="LinkedIn">
-								<svg width="19" height="19" viewBox="0 0 19 19" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-									<path d="M16.8889 0C17.4488 0 17.9858 0.22242 18.3817 0.61833C18.7776 1.01424 19 1.55121 19 2.11111V16.8889C19 17.4488 18.7776 17.9858 18.3817 18.3817C17.9858 18.7776 17.4488 19 16.8889 19H2.11111C1.55121 19 1.01424 18.7776 0.61833 18.3817C0.22242 17.9858 0 17.4488 0 16.8889V2.11111C0 1.55121 0.22242 1.01424 0.61833 0.61833C1.01424 0.22242 1.55121 0 2.11111 0H16.8889ZM16.3611 16.3611V10.7667C16.3611 9.85403 15.9986 8.97877 15.3532 8.33343C14.7079 7.6881 13.8326 7.32556 12.92 7.32556C12.0228 7.32556 10.9778 7.87444 10.4711 8.69778V7.52611H7.52611V16.3611H10.4711V11.1572C10.4711 10.3444 11.1256 9.67944 11.9383 9.67944C12.3303 9.67944 12.7061 9.83514 12.9833 10.1123C13.2604 10.3894 13.4161 10.7653 13.4161 11.1572V16.3611H16.3611ZM4.09556 5.86889C4.56587 5.86889 5.01693 5.68206 5.34949 5.34949C5.68206 5.01693 5.86889 4.56587 5.86889 4.09556C5.86889 3.11389 5.07722 2.31167 4.09556 2.31167C3.62244 2.31167 3.1687 2.49961 2.83416 2.83416C2.49961 3.1687 2.31167 3.62244 2.31167 4.09556C2.31167 5.07722 3.11389 5.86889 4.09556 5.86889ZM5.56278 16.3611V7.52611H2.63889V16.3611H5.56278Z" fill="white"/>
-								</svg>
+								<?php echo accr_icon( 'linkedin', array( 'stroke' => 'none', 'fill' => 'currentColor' ) ); ?>
 							</a>
 						</li>
 					</ul>
@@ -93,7 +72,7 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 				</ul>
 			</div>
 
-			<div class="footer-grid__column" style="margin-top: var(--space-16);">
+			<div class="footer-grid__column">
 				<?php get_template_part( 'template-parts/footer/newsletter' ); ?>
 			</div>
 		</div>
@@ -197,17 +176,17 @@ $newsletter_modal_subtitle = get_theme_mod( 'accr_newsletter_modal_subtitle', 'G
 	<div class="modal">
 		<div class="modal__head">
 			<div>
-				<h3 id="newsletter-modal-title"><?php echo esc_html( $newsletter_modal_heading ); ?></h3>
+				<?php /* <h3 id="newsletter-modal-title"><?php echo esc_html( $newsletter_modal_heading ); ?></h3>
 				<?php if ( $newsletter_modal_subtitle ) : ?>
 					<p><?php echo esc_html( $newsletter_modal_subtitle ); ?></p>
-				<?php endif; ?>
+				<?php endif; ?> */ ?>
 			</div>
 			<button class="modal__close" data-modal-close aria-label="<?php esc_attr_e( 'Close', 'accr-theme' ); ?>">
 				<?php echo accr_icon( 'close', array( 'width' => '18', 'height' => '18', 'stroke-width' => '2.5' ) ); ?>
 			</button>
 		</div>
 		<div class="modal__body">
-			<?php
+			<?php /*
 			$newsletter_form_id = (int) get_theme_mod( 'accr_newsletter_form_id', 0 );
 			if ( $newsletter_form_id ) {
 				echo accr_render_gravity_form( $newsletter_form_id );
@@ -224,11 +203,21 @@ $newsletter_modal_subtitle = get_theme_mod( 'accr_newsletter_modal_subtitle', 'G
 				</div>
 				<?php
 			}
-			?>
+			*/ ?>
+			<!-- Begin Constant Contact Inline Form Code -->
+			<div class="ctct-inline-form" data-form-id="b5fb3f51-4966-4a12-95a0-f3b9578a0dd0"></div>
+			<!-- End Constant Contact Inline Form Code -->
+
+			<!-- Begin Constant Contact Active Forms -->
+			<script> var _ctct_m = "bb2fd9489bb6631de231d808467dfae5"; </script>
+			<script id="signupScript" src="//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js" async defer></script>
+			<!-- End Constant Contact Active Forms -->
 		</div>
 	</div>
 </div>
 
+<!-- wp_footer() -->
 <?php wp_footer(); ?>
+<!-- end wp_footer() -->
 </body>
 </html>
