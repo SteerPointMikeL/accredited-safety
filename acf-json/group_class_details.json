@@ -59,6 +59,157 @@
             "type": "true_false",
             "ui": 1,
             "default_value": 1
+        },
+        {
+            "key": "field_class_hero_image",
+            "label": "Hero image",
+            "name": "hero_image",
+            "type": "image",
+            "instructions": "Optional. Background image for the navy hero. Falls back to the featured image, then the default page hero background.",
+            "return_format": "array",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_class_hero_intro",
+            "label": "Hero intro paragraphs",
+            "name": "hero_intro",
+            "type": "wysiwyg",
+            "instructions": "Optional. One or two short paragraphs shown in white under the class title. Falls back to the post excerpt or content.",
+            "tabs": "visual",
+            "media_upload": 0,
+            "toolbar": "basic"
+        },
+        {
+            "key": "field_class_pricing_label",
+            "label": "Pricing alert label",
+            "name": "pricing_label",
+            "type": "text",
+            "instructions": "Optional. Orange uppercase label in the pricing band. Defaults to \"Pricing available on request.\""
+        },
+        {
+            "key": "field_class_pricing_note",
+            "label": "Pricing alert supporting text",
+            "name": "pricing_note",
+            "type": "textarea",
+            "rows": 2,
+            "instructions": "Optional. Dark supporting text under the pricing label. Has a sensible default if empty."
+        },
+        {
+            "key": "field_class_info_heading",
+            "label": "Class info panel heading",
+            "name": "info_heading",
+            "type": "text",
+            "instructions": "Optional. Uppercase navy heading for the schedule panel. Falls back to the post title."
+        },
+        {
+            "key": "field_class_schedule_rows",
+            "label": "Schedule rows",
+            "name": "schedule_rows",
+            "type": "repeater",
+            "instructions": "Optional. One row per session (e.g. Day 1, Day 2). If empty, a single row is built from Class date / Time.",
+            "layout": "block",
+            "button_label": "Add schedule row",
+            "sub_fields": [
+                {
+                    "key": "field_class_schedule_badge",
+                    "label": "Badge",
+                    "name": "badge",
+                    "type": "text",
+                    "instructions": "e.g. \"Day 1\"."
+                },
+                {
+                    "key": "field_class_schedule_date",
+                    "label": "Date / time line",
+                    "name": "datetime",
+                    "type": "text",
+                    "instructions": "e.g. \"April 28, 2026 · 7:30 AM – 6:30 PM\"."
+                },
+                {
+                    "key": "field_class_schedule_desc",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "rows": 2
+                }
+            ]
+        },
+        {
+            "key": "field_class_topics",
+            "label": "Topics covered",
+            "name": "topics_covered",
+            "type": "wysiwyg",
+            "instructions": "Optional. Use a bulleted list. Shown in the lower-left info block.",
+            "tabs": "visual",
+            "media_upload": 0,
+            "toolbar": "basic"
+        },
+        {
+            "key": "field_class_designations",
+            "label": "Designations",
+            "name": "designations",
+            "type": "wysiwyg",
+            "instructions": "Optional. Certifications / designations earned. Falls back to the class categories.",
+            "tabs": "visual",
+            "media_upload": 0,
+            "toolbar": "basic"
+        },
+        {
+            "key": "field_class_what_to_bring",
+            "label": "What to bring",
+            "name": "what_to_bring",
+            "type": "wysiwyg",
+            "instructions": "Optional. Use a bulleted list.",
+            "tabs": "visual",
+            "media_upload": 0,
+            "toolbar": "basic"
+        },
+        {
+            "key": "field_class_accommodations",
+            "label": "Accommodations",
+            "name": "accommodations",
+            "type": "wysiwyg",
+            "instructions": "Optional. Accessibility / accommodation notes.",
+            "tabs": "visual",
+            "media_upload": 0,
+            "toolbar": "basic"
+        },
+        {
+            "key": "field_class_cta_heading",
+            "label": "Final CTA heading",
+            "name": "cta_heading",
+            "type": "text",
+            "instructions": "Optional. Defaults to \"We will travel to you!\""
+        },
+        {
+            "key": "field_class_cta_text",
+            "label": "Final CTA text",
+            "name": "cta_text",
+            "type": "textarea",
+            "rows": 3,
+            "instructions": "Optional. Paragraph in the closing CTA. Has a default if empty."
+        },
+        {
+            "key": "field_class_cta_button_label",
+            "label": "Final CTA button label",
+            "name": "cta_button_label",
+            "type": "text",
+            "instructions": "Optional. Defaults to \"Contact Us\"."
+        },
+        {
+            "key": "field_class_cta_button_url",
+            "label": "Final CTA button URL",
+            "name": "cta_button_url",
+            "type": "url",
+            "instructions": "Optional. Defaults to the site Contact page."
+        },
+        {
+            "key": "field_class_cta_image",
+            "label": "Final CTA image",
+            "name": "cta_image",
+            "type": "image",
+            "instructions": "Optional. Image for the closing CTA section.",
+            "return_format": "array",
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -75,5 +226,5 @@
     "style": "default",
     "label_placement": "top",
     "active": true,
-    "modified": 1779990410
+    "modified": 1780335600
 }

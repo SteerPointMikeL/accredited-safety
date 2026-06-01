@@ -1,0 +1,273 @@
+/* =========================================================
+   Accredited Safety Solutions — Single Class template
+   Loaded only on single `class` CPT posts.
+   ========================================================= */
+
+/* ----- Hero ----- */
+.class-hero {
+  position: relative;
+  background: var(--color-navy-3);
+  color: #ffffff;
+  overflow: hidden;
+}
+.class-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+}
+.class-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(29 80 112 / 0.65), rgb(15 42 61 / 0.85));
+}
+.class-hero__content {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(var(--space-12), 7vw, var(--space-24));
+  max-width: 880px;
+}
+.class-hero__title {
+  font-family: var(--font-display-2);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+}
+.class-hero__subtitle {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-orange);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+.class-hero__intro {
+  color: rgb(255 255 255 / 0.85);
+  font-size: var(--text-lg);
+}
+.class-hero__intro p + p {
+  margin-top: var(--space-4);
+}
+
+/* ----- Pricing alert band ----- */
+.class-pricing-band {
+  background: var(--color-warning-highlight);
+  padding-block: var(--space-5);
+}
+.class-pricing-band__inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.class-pricing-band__inner > svg {
+  color: var(--color-orange);
+  flex: none;
+}
+.class-pricing-band__label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-orange);
+}
+.class-pricing-band__note {
+  color: var(--color-text);
+  font-size: var(--text-sm);
+}
+
+/* ----- Class info panel (schedule) ----- */
+.class-panel {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  max-width: 880px;
+  margin-inline: auto;
+  margin-bottom: var(--space-12);
+}
+.class-panel__heading {
+  font-size: var(--text-xl);
+  color: var(--color-text-heading);
+  text-transform: uppercase;
+}
+.class-panel__date {
+  color: var(--color-orange);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.class-schedule {
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+.class-schedule__row {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--color-divider);
+}
+.class-schedule__row:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+.class-schedule__badge {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+}
+.class-schedule__badge--orange {
+  background: var(--color-orange);
+}
+.class-schedule__badge--navy {
+  background: var(--color-navy-3);
+}
+.class-schedule__datetime {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+.class-schedule__desc {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  margin-top: var(--space-1);
+}
+
+.class-panel__tuition {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-divider);
+}
+.class-panel__tuition-label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+.class-panel__tuition-value {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+.class-panel__tuition-value em {
+  font-style: normal;
+  color: var(--color-orange);
+}
+
+.class-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* ----- Lower two-column info blocks ----- */
+.class-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-8);
+  max-width: 880px;
+  margin-inline: auto;
+}
+.class-info-block__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-3);
+}
+.class-info-block__heading svg {
+  color: var(--color-orange);
+  flex: none;
+}
+.class-info-block__body {
+  color: var(--color-text);
+}
+.class-info-block__body ul {
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+.class-info-block__body li {
+  position: relative;
+  padding-left: var(--space-6);
+}
+.class-info-block__body li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-orange);
+}
+.class-info-block__body p + p,
+.class-info-block__body p + ul {
+  margin-top: var(--space-3);
+}
+
+.class-content {
+  max-width: 880px;
+  margin: var(--space-10) auto 0;
+}
+
+/* ----- Final CTA ----- */
+.class-cta {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-8);
+  background: linear-gradient(135deg, var(--color-navy-3), var(--color-navy));
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-8), 4vw, var(--space-16));
+  overflow: hidden;
+  color: #ffffff;
+}
+.class-cta__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+.class-cta__title {
+  font-size: var(--text-2xl);
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: var(--space-3);
+}
+.class-cta__text {
+  color: rgb(255 255 255 / 0.85);
+  margin-bottom: var(--space-6);
+  max-width: 52ch;
+}
+
+@media (max-width: 720px) {
+  .class-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .class-cta {
+    grid-template-columns: 1fr;
+  }
+}
