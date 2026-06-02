@@ -3,76 +3,8 @@
    Loaded only on single `class` CPT posts.
    ========================================================= */
 
-/* ----- Hero -----
-   Shares the same dots background image (page-hero.webp) as .page-hero and the
-   other hero sections so class heroes match the rest of the site. */
-.class-hero {
-  position: relative;
-  background: var(--color-navy-3) url(../images/page-hero.webp) center / cover;
-  color: #ffffff;
-  overflow: hidden;
-  text-align: center;
-}
-.class-hero__image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.28;
-}
-.class-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgb(29 80 112 / 0.65), rgb(15 42 61 / 0.85));
-}
-.class-hero__content {
-  position: relative;
-  z-index: 1;
-  padding-block: clamp(var(--space-12), 7vw, var(--space-24));
-  max-width: 760px;
-  margin-inline: auto;
-}
-.class-hero__title {
-  font-family: var(--font-display-2);
-  font-size: var(--text-3xl);
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: var(--space-4);
-}
-.class-hero__intro {
-  color: rgb(255 255 255 / 0.85);
-  font-size: var(--text-lg);
-}
-.class-hero__intro p + p {
-  margin-top: var(--space-4);
-}
-
-/* ----- Pricing alert band ----- */
-.class-pricing-band {
-  background: var(--color-warning-highlight);
-  padding-block: var(--space-5);
-}
-.class-pricing-band__inner {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-.class-pricing-band__inner > svg {
-  color: var(--color-orange);
-  flex: none;
-}
-.class-pricing-band__label {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-orange);
-}
-.class-pricing-band__note {
-  color: var(--color-text);
-  font-size: var(--text-sm);
+.class-detail {
+  padding-block: var(--space-16);
 }
 
 /* ----- Class info panel (schedule) ----- */
@@ -82,7 +14,6 @@
   padding: clamp(var(--space-6), 4vw, var(--space-12));
   max-width: 880px;
   margin-inline: auto;
-  margin-bottom: var(--space-12);
 }
 .class-panel__title-block {
   margin-bottom: var(--space-6);
@@ -90,11 +21,10 @@
 .class-panel__title-block--has-image {
   display: flex;
   align-items: center;
-  gap: var(--space-5);
+  gap: var(--space-8);
 }
 .class-panel__image {
-  flex: none;
-  width: clamp(96px, 22vw, 140px);
+  width: min(230px, 50%);
 }
 .class-panel__image-img {
   display: block;
@@ -110,10 +40,12 @@
 }
 .class-panel__date {
   color: var(--color-orange);
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 700;
   margin-top: var(--space-2);
+}
+.class-panel__location {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
 }
 
 .class-schedule {
@@ -124,107 +56,75 @@
 }
 .class-schedule__row {
   display: flex;
-  gap: var(--space-4);
-  align-items: flex-start;
-  padding-block: var(--space-4);
-  border-top: 1px solid var(--color-divider);
-}
-.class-schedule__row:first-child {
-  border-top: none;
-  padding-top: 0;
+  gap: var(--space-3);
+  align-items: center;
 }
 .class-schedule__badge {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-display);
+  flex-shrink: 0;
   text-transform: uppercase;
   font-weight: 700;
   font-size: var(--text-sm);
-  letter-spacing: 0.05em;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-sm);
+  line-height: 0.9;
+  padding: var(--space-1);
   color: #ffffff;
-}
-.class-schedule__badge--orange {
   background: var(--color-orange);
 }
-.class-schedule__badge--navy {
-  background: var(--color-navy-3);
+.class-schedule__body {
+  font-size: var(--text-sm);
 }
 .class-schedule__datetime {
-  font-weight: 600;
-  color: var(--color-text-heading);
-}
-.class-schedule__desc {
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
-  margin-top: var(--space-1);
-}
-
-.class-panel__tuition {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-divider);
-}
-.class-panel__tuition-label {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-}
-.class-panel__tuition-value {
-  font-size: var(--text-lg);
   font-weight: 700;
+  font-size: var(--text-base);
   color: var(--color-text-heading);
-}
-.class-panel__tuition-value em {
-  font-style: normal;
-  color: var(--color-orange);
 }
 
 .class-panel__actions {
   display: flex;
-  flex-direction: column;
   gap: var(--space-3);
   margin-top: var(--space-6);
 }
 .class-panel__actions .btn {
-  width: 100%;
+  width: 50%;
 }
 
 /* ----- Two-column detail blocks (inside the class panel) ----- */
 .class-info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  column-count: 2;
   gap: var(--space-8);
   margin-top: var(--space-8);
   padding-top: var(--space-6);
+  font-size: var(--text-sm);
   border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+.class-info-block {
+  break-inside: avoid;
+  margin-bottom: var(--space-8);
 }
 .class-info-block__heading {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   font-family: var(--font-display);
   font-size: var(--text-lg);
   text-transform: uppercase;
-  color: var(--color-text-heading);
+  color: var(--color-text);
   margin-bottom: var(--space-3);
 }
 .class-info-block__heading svg {
-  color: var(--color-orange);
-  flex: none;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  color: #ffffff;
+  background-color: var(--color-navy-3);
+  border-radius: var(--radius-sm);
 }
 .class-info-block__body {
   color: var(--color-text);
 }
 .class-info-block__body ul {
   list-style: none;
-  display: grid;
-  gap: var(--space-2);
 }
 .class-info-block__body li {
   position: relative;
@@ -235,10 +135,10 @@
   position: absolute;
   left: 0;
   top: 0.55em;
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-full);
-  background: var(--color-orange);
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--color-navy-3);
 }
 .class-info-block__body p + p,
 .class-info-block__body p + ul {
@@ -250,54 +150,18 @@
   margin: var(--space-10) auto 0;
 }
 
-/* ----- Travel CTA (travel_cta flexible layout) ----- */
-.class-cta {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: var(--space-8);
-  background: linear-gradient(135deg, var(--color-navy-3), var(--color-navy));
-  border-radius: var(--radius-lg);
-  padding: clamp(var(--space-8), 4vw, var(--space-16));
-  overflow: hidden;
-  color: #ffffff;
-}
-.class-cta__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-}
-.class-cta__title {
-  font-size: var(--text-2xl);
-  text-transform: uppercase;
-  color: #ffffff;
-  margin-bottom: var(--space-3);
-}
-.class-cta__text {
-  color: rgb(255 255 255 / 0.85);
-  margin-bottom: var(--space-6);
-  max-width: 52ch;
-}
-
-.class-cta--no-image {
-  grid-template-columns: 1fr;
-}
-
 @media (max-width: 720px) {
   .class-info-grid {
-    grid-template-columns: 1fr;
+    column-count: 1;
   }
-  .class-cta {
-    grid-template-columns: 1fr;
-  }
-  .class-panel__title-block--has-image {
+}
+
+@media (max-width: 560px) {
+  .class-panel__actions {
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
   }
-  .class-panel__image {
-    width: clamp(96px, 40vw, 160px);
+  
+  .class-panel__actions .btn {
+    width: auto;
   }
 }

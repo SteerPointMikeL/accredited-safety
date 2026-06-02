@@ -3617,17 +3617,20 @@
                             "label": "Button URL",
                             "name": "button_url",
                             "aria-label": "",
-                            "type": "url",
+                            "type": "text",
                             "instructions": "Optional. Defaults to the site Contact page.",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": "",
-                            "placeholder": ""
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         },
                         {
                             "key": "f_tcta_image",
@@ -3700,5 +3703,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780342071
+    "modified": 1780343148
 }

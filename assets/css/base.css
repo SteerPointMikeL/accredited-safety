@@ -45,7 +45,7 @@
 
   /* Fonts */
   --font-display: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
-  --font-display-2: 'Barlow Semi Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-display-2: 'Barlow Semi Condensed', var(--font-display);
   --font-body: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
@@ -86,7 +86,6 @@
 
   --color-success: #2e7d32;
   --color-success-highlight: #e5f2e6;
-  /* --color-warning: #c77500; */
   --color-warning: #ee6a19;
   --color-warning-highlight: #fff6e9;
   --color-error: #c02828;
@@ -169,7 +168,6 @@ p,
 li,
 figcaption {
   text-wrap: pretty;
-  /* max-width: 72ch; */
 }
 
 a {

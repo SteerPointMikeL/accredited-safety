@@ -35,10 +35,11 @@ $img_src = is_array( $image ) && ! empty( $image['url'] ) ? $image['url'] : '';
 			<?php endif; ?>
 			<div class="class-cta__content">
 				<h2 class="class-cta__title"><?php echo esc_html( $heading ); ?></h2>
-				<p class="class-cta__text"><?php echo wp_kses_post( $text ); ?></p>
+
+				<?php echo wp_kses_post( $text ); ?>
+
 				<a class="btn btn--primary btn--lg" href="<?php echo esc_url( $button_url ); ?>">
 					<?php echo esc_html( $button_label ); ?>
-					<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16' ) ); ?>
 				</a>
 			</div>
 		</div>
