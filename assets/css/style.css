@@ -1534,6 +1534,9 @@ body.no-scroll {
     justify-content: center;
     color: rgb(255 255 255 / 0.85);
     background: transparent;
+    /* Sit above the parent link (which has z-index:1) so taps on the
+       chevron hit the button, not the overlapping <a>. */
+    z-index: 2;
   }
   .nav-submenu-toggle__icon {
     display: block;
