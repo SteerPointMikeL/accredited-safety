@@ -3,62 +3,442 @@
     "title": "Class details",
     "fields": [
         {
-            "key": "field_class_subtitle",
-            "label": "Subtitle (shown beneath class name)",
-            "name": "subtitle",
-            "type": "text"
+            "key": "field_class_hero_title",
+            "label": "Hero title override",
+            "name": "hero_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Title shown in the hero. Falls back to the post title if empty.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_class_hero_intro",
+            "label": "Hero intro paragraphs",
+            "name": "hero_intro",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Optional. One or two short paragraphs shown in white under the class title. Falls back to the post excerpt or content.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 1,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_class_date",
             "label": "Class date",
             "name": "class_date",
+            "aria-label": "",
             "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "display_format": "F j, Y",
             "return_format": "Y-m-d",
-            "first_day": 0
+            "first_day": 0,
+            "default_to_current_date": 0,
+            "allow_in_bindings": 1
         },
         {
-            "key": "field_class_date_display",
-            "label": "Date display override",
-            "name": "class_date_display",
-            "type": "text",
-            "instructions": "Optional. If set, used verbatim in the schedule table instead of the formatted Class date (e.g. \"Apr 28, 2026\")."
+            "key": "field_class_end_date",
+            "label": "Class end date",
+            "name": "class_end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Optional. For multi-day classes. If set and after the start date, the panel shows a date range (e.g. \"Apr 28 – 30, 2026\"). The Date display override still wins if set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "F j, Y",
+            "return_format": "Y-m-d",
+            "first_day": 0,
+            "default_to_current_date": 0,
+            "allow_in_bindings": 1
         },
         {
-            "key": "field_class_time",
-            "label": "Time (display string)",
-            "name": "class_time",
-            "type": "text",
-            "instructions": "Free-form time, e.g. \"7:30 AM – 6:30 PM\"."
-        },
-        {
-            "key": "field_class_price",
-            "label": "Tuition price (numeric)",
-            "name": "price",
-            "type": "number",
-            "instructions": "Optional. If empty, \"Request pricing\" is shown."
-        },
-        {
-            "key": "field_class_tuition_display",
-            "label": "Tuition display override",
-            "name": "tuition_display",
-            "type": "text",
-            "instructions": "Optional. Overrides the formatted price (e.g. \"Request pricing\", \"$795 / seat\")."
-        },
-        {
-            "key": "field_class_request_class_label",
-            "label": "Request-pricing modal class label",
-            "name": "request_class_label",
-            "type": "text",
-            "instructions": "Optional. Falls back to the post title. Used as data-class on the table button."
+            "key": "field_6a1df5f9ff807",
+            "label": "Location",
+            "name": "location",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": "br"
         },
         {
             "key": "field_class_show_in_schedule",
             "label": "Show in schedule table",
             "name": "show_in_schedule",
+            "aria-label": "",
             "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "ui": 1,
-            "default_value": 1
+            "default_value": 1,
+            "message": "",
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_class_pricing_label",
+            "label": "Pricing alert label",
+            "name": "pricing_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Orange uppercase label in the pricing band. Defaults to \"Pricing available on request.\"",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_class_pricing_note",
+            "label": "Pricing alert supporting text",
+            "name": "pricing_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Optional. Dark supporting text under the pricing label. Has a sensible default if empty.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_class_info_heading",
+            "label": "Class info panel heading",
+            "name": "info_heading",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Uppercase navy heading for the schedule panel. Falls back to the post title.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_class_schedule_rows",
+            "label": "Schedule rows",
+            "name": "schedule_rows",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Optional. One row per session (e.g. Day 1, Day 2). If empty, a single row is built from Class date \/ Time.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add schedule row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_class_schedule_badge",
+                    "label": "Badge",
+                    "name": "badge",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g. \"Day 1\".",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "34",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_class_schedule_rows"
+                },
+                {
+                    "key": "field_class_schedule_date",
+                    "label": "Date \/ date display",
+                    "name": "datetime",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g. \"April 28, 2026\". Time can go here or in the separate Time field.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_class_schedule_rows"
+                },
+                {
+                    "key": "field_class_schedule_time",
+                    "label": "Time",
+                    "name": "time",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Optional. e.g. \"7:30 - 5:30pm\". Appended to the date line.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_class_schedule_rows"
+                },
+                {
+                    "key": "field_class_schedule_desc",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 2,
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_class_schedule_rows"
+                }
+            ]
+        },
+        {
+            "key": "field_class_detail_columns",
+            "label": "Detail columns (icon + title + content)",
+            "name": "detail_columns",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Optional. Two-column list of class details shown inside the panel (e.g. Topics Covered, What to Bring, Designations, Accommodations). Each column gets its chosen icon prepended to the title. If empty, the legacy Topics \/ Designations \/ What to bring \/ Accommodations fields are used instead.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add detail column",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_class_detail_icon",
+                    "label": "Icon",
+                    "name": "icon",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Icon prepended to the column title.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "shield": "Shield",
+                        "shield_check": "Shield with check",
+                        "check": "Check",
+                        "check_circle": "Check (in circle)",
+                        "award": "Award",
+                        "building_alt": "Building (Alt)",
+                        "building_alt2": "Building (Alt) (2)",
+                        "clock": "Clock",
+                        "plus": "Plus",
+                        "pencil": "Pencil",
+                        "users": "Users",
+                        "tower": "Tower \/ crane",
+                        "layers": "Layers \/ rigging",
+                        "sun": "Sun \/ signal",
+                        "forklift": "Forklift \/ telehandler",
+                        "classroom": "Classroom \/ on-site",
+                        "calendar": "Calendar",
+                        "cube": "Cube \/ impact",
+                        "arrow_right": "Arrow right",
+                        "alert": "Alert \/ info",
+                        "mail": "Mail",
+                        "phone": "Phone",
+                        "document": "Document",
+                        "document_alt": "Document (Alt)",
+                        "crane": "Crane",
+                        "star": "Star",
+                        "hard_hat": "Hard Hat",
+                        "facebook": "Facebook",
+                        "instagram": "Instagram",
+                        "linkedin": "LinkedIn"
+                    },
+                    "default_value": "check_circle",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "allow_in_bindings": 1,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_class_detail_columns"
+                },
+                {
+                    "key": "field_class_detail_heading",
+                    "label": "Title",
+                    "name": "heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g. \"Topics Covered\".",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "67",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_class_detail_columns"
+                },
+                {
+                    "key": "field_class_detail_content",
+                    "label": "Content",
+                    "name": "content",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "Use a bulleted list or short paragraphs.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 1,
+                    "tabs": "all",
+                    "toolbar": "basic",
+                    "media_upload": 0,
+                    "delay": 0,
+                    "parent_repeater": "field_class_detail_columns"
+                }
+            ]
+        },
+        {
+            "key": "field_class_request_class_label",
+            "label": "Request-pricing modal class label",
+            "name": "request_class_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. Falls back to the post title. Used as data-class on the table button.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -71,9 +451,16 @@
         ]
     ],
     "menu_order": -10,
-    "position": "side",
+    "position": "normal",
     "style": "default",
     "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
     "active": true,
-    "modified": 1779990410
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1780412896
 }

@@ -19,7 +19,9 @@ $lead    = get_sub_field( 'lead' );
 			<h1 class="page-hero__title"><?php echo wp_kses_post( $title ); ?></h1>
 		<?php endif; ?>
 		<?php if ( $lead ) : ?>
-			<p class="page-hero__lead"><?php echo wp_kses_post( $lead ); ?></p>
+			<div class="page-hero__lead">
+				<?php echo wp_kses_post( $lead ); ?>
+			</div>
 		<?php endif; ?>
 	</div>
 </section>

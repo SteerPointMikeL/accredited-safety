@@ -146,13 +146,19 @@ Slug: `/certifications/{slug}/`. Supports the same `Page Sections` field — so 
 ### Classes (`class`)
 Slug: `/class/{slug}/`. Side-panel "Class details" fields:
 
-- `subtitle` (e.g. "Indiana — Classroom + practical")
+- `hero_title` (override for the hero heading; falls back to the post title)
+- `subtitle` (deprecated — no longer displayed; retained for data compatibility)
 - `class_date` (date picker; stored `YYYY-MM-DD`)
-- `class_date_display` (override, e.g. `Apr&nbsp;28, 2026`)
+- `class_end_date` (optional date picker; multi-day classes render a range, e.g. `Apr 28 – 30, 2026`)
+- `class_date_display` (override, e.g. `Apr&nbsp;28, 2026`; wins over the derived range)
 - `class_time` (free-form, e.g. `7:30 AM – 6:30 PM`)
 - `price` (numeric) and/or `tuition_display` (string override, e.g. `Request pricing`)
 - `show_in_schedule` toggle
 - `request_class_label` (override for the modal's `data-class` attribute)
+- `schedule_rows` repeater (badge / day label, date display, time, description)
+- `detail_columns` repeater (icon + title + content) — two-column detail list inside the panel; falls back to the legacy `topics_covered` / `designations` / `what_to_bring` / `accommodations` fields
+
+The single-class template renders the post featured image beside the panel title when set, and the "We Will Travel to You" CTA is authored via the `travel_cta` flexible **Page Sections** layout (no longer hardcoded).
 
 Categorize each class with one or more **Class Categories** terms (`Mobile`, `Articulating`, `Rigger`, `Signal Person`, `Telehandler`, …). The schedule table's filter buttons are auto-populated from the terms that have classes attached, and `assets/js/main.js` filters visible rows client-side using each row's `data-class-categories` value.
 
