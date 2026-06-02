@@ -88,12 +88,12 @@ accr_section_open( array( 'background' => $bg ) );
 							<?php endforeach; ?>
 						</dl>
 					<?php endif; ?>
-					<?php if ( $has_modal ) : ?>
+					<?php /* if ( $has_modal ) : ?>
 						<span class="staff-card__more">
 							<?php esc_html_e( 'View bio', 'accr-theme' ); ?>
 							<?php echo accr_icon( 'arrow_right', array( 'width' => '15', 'height' => '15', 'stroke-width' => '2.5' ) ); ?>
 						</span>
-					<?php endif; ?>
+					<?php endif; */ ?>
 				</div>
 				<?php
 				$inner = ob_get_clean();

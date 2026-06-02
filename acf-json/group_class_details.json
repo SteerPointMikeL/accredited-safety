@@ -23,6 +23,27 @@
             "append": ""
         },
         {
+            "key": "field_6a1ef595fa583",
+            "label": "Subtitle",
+            "name": "subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Displays below title in Classes table.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_class_hero_intro",
             "label": "Hero intro paragraphs",
             "name": "hero_intro",
@@ -462,5 +483,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780412896
+    "modified": 1780413948
 }

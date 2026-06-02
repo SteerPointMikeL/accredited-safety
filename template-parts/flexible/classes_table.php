@@ -97,9 +97,7 @@ if ( $show_filters ) {
 					<tr>
 						<th style="width: 40%;">Class</th>
 						<th>Date</th>
-						<?php /* <th>Time</th> */ ?>
 						<th>Details</th>
-						<?php /* <th style="text-align:right;">&nbsp;</th> */ ?>
 					</tr>
 				</thead>
 				<tbody>
@@ -107,9 +105,10 @@ if ( $show_filters ) {
 						while ( $q->have_posts() ) :
 							$q->the_post();
 							$pid       = get_the_ID();
-							$subtitle  = function_exists( 'get_field' ) ? get_field( 'subtitle', $pid ) : '';
-							$date_disp = accr_format_class_date( $pid );
-							$time      = function_exists( 'get_field' ) ? get_field( 'class_time', $pid ) : '';
+							$subtitle  = get_field( 'subtitle', $pid );
+							//$date_disp = accr_format_class_date( $pid );
+							$date_disp = accr_format_class_date_range( $pid );
+							$time      = get_field( 'class_time', $pid );
 							$tuition   = accr_format_class_tuition( $pid );
 							$req_label = accr_class_request_label( $pid );
 							$terms     = get_the_terms( $pid, 'class_category' );
@@ -128,10 +127,9 @@ if ( $show_filters ) {
 									<?php endif; ?>
 								</td>
 								<td class="class-date"><?php echo wp_kses_post( $date_disp ); ?></td>
-								<?php /* <td><?php echo esc_html( $time ); ?></td> */ ?>
-								<?php /* <td class="class-price"><?php echo wp_kses_post( $tuition ); ?></td> */ ?>
 								<td class="class-actions">
 									<button class="btn btn--primary" data-request-pricing data-class="<?php echo esc_attr( $req_label ); ?>" data-date="<?php echo esc_attr( wp_strip_all_tags( $date_disp ) ); ?>">Request pricing</button>
+									<a class="btn btn--secondary" href="<?php the_permalink(); ?>"><?php  _e( 'Get More Info', 'accr-theme' ); ?></a>
 								</td>
 							</tr>
 							<?php

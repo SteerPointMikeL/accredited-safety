@@ -1228,8 +1228,8 @@
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -1237,15 +1237,17 @@
                             },
                             "choices": {
                                 "default": "Default",
-                                "surface_2": "Tinted (surface 2)"
+                                "surface_2": "Tinted (surface 2)",
+                                "navy": "Navy"
                             },
                             "default_value": "default",
+                            "return_format": "value",
                             "multiple": 0,
                             "allow_null": 0,
+                            "allow_in_bindings": 1,
                             "ui": 0,
                             "ajax": 0,
                             "placeholder": "",
-                            "return_format": "value",
                             "create_options": 0,
                             "save_options": 0
                         },
@@ -3703,5 +3705,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780343148
+    "modified": 1780431755
 }

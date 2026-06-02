@@ -34,7 +34,7 @@ accr_section_open( array( 'background' => $bg ) );
 					$anchor = ! empty( $card['anchor'] ) ? ' id="' . esc_attr( $card['anchor'] ) . '"' : '';
 					switch ( $variant ) :
 						/* ----------------------- CERT CARD ---------------------- */
-						case 'cert': ?>
+						/* case 'cert': ?>
 							<article<?php echo $anchor; ?> class="cert-card">
 								<?php if ( ! empty( $card['image'] ) && is_array( $card['image'] ) ) : ?>
 									<div class="cert-card__media">
@@ -59,7 +59,7 @@ accr_section_open( array( 'background' => $bg ) );
 									<?php endif; ?>
 								</div>
 							</article>
-							<?php break;
+							<?php break; */
 
 						/* ----------------------- TESTIMONIAL ---------------------- */
 						case 'testimonial': ?>

@@ -238,11 +238,11 @@ function accr_format_class_date_range( $post_id = null ) {
 	// Same month + year: "April 28 – 30, 2026"; otherwise full both ends.
 	if ( date( 'Y', $start_ts ) === date( 'Y', $end_ts ) ) {
 		if ( date( 'n', $start_ts ) === date( 'n', $end_ts ) ) {
-			return date_i18n( 'l, M j', $start_ts ) . ' &ndash; ' . date_i18n( 'l, j, Y', $end_ts );
+			return date_i18n( 'l, M j', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
 		}
 		return date_i18n( 'l, M j', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
 	}
-	return date_i18n( 'l, M j, Y', $start_ts ) . ' &ndash; ' . date_i18n( 'l,M j, Y', $end_ts );
+	return date_i18n( 'l, M j, Y', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
 }
 
 /**
@@ -290,9 +290,15 @@ function accr_section_open( $args = array() ) {
 	) );
 
 	$style = $args['style'];
-	if ( 'surface_2' === $args['background'] ) {
-		//$style .= 'background: var(--color-surface-2); border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);';
-		$style .= 'background: var(--color-surface-2);';
+	switch ( $args['background'] ) {
+		case 'surface_2' :
+			$args['class'] .= ' section--surface-2';
+			
+			break;
+		case 'navy' :
+			$args['class'] .= ' section--navy';
+			
+			break;
 	}
 
 	$attrs = '';

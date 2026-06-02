@@ -183,6 +183,13 @@ button {
   font-family: inherit;
 }
 
+hr {
+  height: 1px;
+  margin-block: var(--space-3);
+  background: var(--color-border);
+  border: none;
+}
+
 ::selection {
   background: var(--color-orange);
   color: #ffffff;

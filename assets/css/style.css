@@ -25,6 +25,13 @@
 .section--tight {
   padding-block: clamp(var(--space-8), 4vw, var(--space-12));
 }
+.section--surface_2 {
+  background: var(--color-surface-2);
+}
+.section--navy {
+  color: var(--color-text-inverse);
+  background: var(--color-navy);
+}
 
 .eyebrow {
   display: inline-flex;
@@ -58,6 +65,9 @@
   font-size: var(--text-base);
   color: var(--color-text-muted);
   max-width: 60ch;
+}
+.section--navy .section-title {
+  color: inherit;
 }
 
 /* ----- Announcement Bar ----- */
@@ -519,13 +529,29 @@
   gap: var(--space-6);
 }
 .card-grid--2 {
-  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
 }
 .card-grid--3 {
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
 }
 .card-grid--4 {
-  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 880px) {
+  .card-grid--3,
+  .card-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .card-grid--1,
+  .card-grid--2 {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cert-card {
@@ -561,20 +587,6 @@
 .cert-card:hover .cert-card__media img {
   transform: scale(1.05);
 }
-/* .cert-card__badge {
-  position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
-  background: var(--color-orange);
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: var(--text-xs);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-sm);
-  font-weight: 700;
-} */
 .cert-card__badge {
   position: absolute;
   top: var(--space-3);
@@ -600,22 +612,6 @@
   margin-bottom: var(--space-5);
   flex: 1;
 }
-/* .cert-card__link {
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-orange);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-top: auto;
-}
-.cert-card__link:hover {
-  color: var(--color-orange-hover);
-  gap: var(--space-3);
-} */
 
 /* Simple spotlight / feature card (no image) */
 .feature-card {
@@ -688,7 +684,7 @@
 }
 @media (max-width: 880px) {
   .split {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
   .split--reverse .split__text {
     order: 0;
@@ -801,10 +797,21 @@
     margin: 0;
     aspect-ratio: 4 / 3;
   }
+}
+@media (max-width: 560px) {
   .split__features {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }
+  .split__feature {
+    padding: 0 0 var(--space-3) !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .split__feature:last-child {
+  padding: 0 !important;
+  border-bottom: none !important;
+}
 }
 
 /* ----- Class Schedule Table ----- */
@@ -853,11 +860,7 @@
   margin-top: 2px;
 }
 .classes-table .class-date {
-  font-family: var(--font-display);
-  color: var(--color-text);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-weight: 700;
 }
 .classes-table .class-price {
   color: var(--color-text-muted);
@@ -880,8 +883,8 @@
   background: var(--color-orange);
 }
 .classes-table .class-actions {
-  /* text-align: right; */
-  white-space: nowrap;
+  display: flex;
+  gap: var(--space-3);
 }
 .classes-table__filled {
   opacity: 0.5;
@@ -960,7 +963,7 @@
 }
 
 /* ----- Client logos strip ----- */
-.logos {
+/* .logos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: var(--space-4);
@@ -982,7 +985,7 @@
   font-size: var(--text-sm);
   text-align: center;
   line-height: 1.2;
-}
+} */
 
 /* ----- CTA Banner ----- */
 .cta-banner {
@@ -1382,11 +1385,6 @@ body.no-scroll {
   gap: var(--space-8);
   align-items: center;
 }
-@media (max-width: 720px) {
-  .trust-bar__inner {
-    grid-template-columns: 1fr;
-  }
-}
 .trust-bar__label {
   font-family: var(--font-display);
   font-weight: 700;
@@ -1394,13 +1392,11 @@ body.no-scroll {
   letter-spacing: 0.1em;
   font-size: var(--text-sm);
   color: var(--color-text-heading);
-  max-width: 200px;
-  line-height: 1.3;
+  line-height: 1.1;
 }
 .trust-bar__list {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-8);
+  gap: var(--space-4) var(--space-8);
   align-items: center;
   justify-content: space-between;
 }
@@ -1414,12 +1410,27 @@ body.no-scroll {
   letter-spacing: 0.08em;
   font-weight: 700;
   font-size: var(--text-sm);
+  line-height: 1.1;
 }
 .trust-bar__item svg {
   width: 32px;
   height: 32px;
   color: var(--color-orange);
   flex-shrink: 0;
+}
+@media (max-width: 960px) {
+  .trust-bar__inner {
+    grid-template-columns: 1fr;
+  }
+  .trust-bar__label {
+    text-align: center;
+  }
+}
+@media (max-width: 640px) {
+  .trust-bar__list {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 /* ----- Prose ----- */
@@ -1783,25 +1794,29 @@ a.contact-split__row-value:focus {
 
 /* ----- Grid ----- */
 .staff-grid {
-  display: grid;
-  gap: var(--space-8);
-  grid-template-columns: repeat(var(--staff-cols, 3), 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--staff-cols-gap);
+  --staff-cols-gap: var(--space-8);
+  --staff-cols-gap-allocation: var(--staff-cols-gap) * (var(--staff-cols) - 1) / var(--staff-cols); /* column gap multiplied by a - 1 / a (where a = column count) */;
 }
 .staff-grid--2 { --staff-cols: 2; }
 .staff-grid--3 { --staff-cols: 3; }
 .staff-grid--4 { --staff-cols: 4; }
 
 @media (max-width: 980px) {
-  .staff-grid { grid-template-columns: repeat(2, 1fr); }
+  .staff-grid { --staff-cols: 2; }
 }
 @media (max-width: 620px) {
-  .staff-grid { grid-template-columns: 1fr; }
+  .staff-grid { --staff-cols: 1; }
 }
 
 /* ----- Card ----- */
 .staff-card {
   display: flex;
   flex-direction: column;
+  width: calc(100% / var(--staff-cols) - var(--staff-cols-gap-allocation));
   background: var(--color-surface);
   border: 1px solid var(--color-divider);
   border-radius: var(--radius-lg);
@@ -1847,10 +1862,9 @@ a.contact-split__row-value:focus {
 }
 .staff-card__noimg {
   font-family: var(--font-display);
-  font-size: var(--text-base);
+  font-size: var(--text-xl);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
   color: var(--color-orange);
   text-align: center;
   padding: var(--space-4);
@@ -1915,6 +1929,7 @@ a.contact-split__row-value:focus {
 
 /* ----- Email button (shared .btn fallback below) ----- */
 .staff-card__email {
+  width: calc(100% - var(--space-10));
   margin: auto var(--space-5) var(--space-5);
   word-break: break-word;
 }
@@ -2003,6 +2018,7 @@ a.contact-split__row-value:focus {
 .staff-modal__body > p {
   margin: 0 0 var(--space-4);
   color: var(--color-text);
+  font-size: var(--text-xs);
 }
 .staff-modal__details {
   margin: var(--space-2) 0 var(--space-4);
