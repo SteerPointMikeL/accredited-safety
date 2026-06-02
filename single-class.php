@@ -154,7 +154,9 @@ while ( have_posts() ) :
 									<?php echo accr_icon( $block['icon'], array( 'viewBox' => '0 0 20 20', 'fill' => 'none', 'stroke' => 'none' ) ); ?>
 									<?php echo esc_html( $block['heading'] ); ?>
 								</h3>
-								<div class="class-info-block__body"><?php echo wp_kses_post( $block['content'] ); ?></div>
+								<div class="class-info-block__body">
+									<?php echo wp_kses_post( $block['content'] ); ?>
+								</div>
 							</div>
 						<?php endforeach; ?>
 					</div>
@@ -171,7 +173,7 @@ while ( have_posts() ) :
 			</div>
 
 			<?php
-			$has_sections = function_exists( 'have_rows' ) && have_rows( 'page_sections' );
+			$has_sections = have_rows( 'page_sections' );
 			if ( ! $has_sections ) {
 				$content = get_the_content();
 				if ( trim( wp_strip_all_tags( $content ) ) ) {

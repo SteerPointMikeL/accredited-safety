@@ -119,6 +119,7 @@ html {
 }
 
 body {
+  min-width: 320px;
   min-height: 100dvh;
   line-height: 1.6;
   font-family: var(--font-body);

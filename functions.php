@@ -58,11 +58,6 @@ function accr_theme_enqueue() {
 	// Theme stylesheet (mostly for WordPress validation; design lives in base+style).
 	wp_enqueue_style( 'accr-theme', get_stylesheet_uri(), array( 'accr-style' ), ACCR_THEME_VERSION );
 
-	// Single Class template styles — only where they're used.
-	if ( is_singular( 'class' ) ) {
-		wp_enqueue_style( 'accr-single-class', ACCR_THEME_URI . '/assets/css/single-class.css', array( 'accr-style' ), ACCR_THEME_VERSION );
-	}
-
 	wp_enqueue_script( 'accr-main', ACCR_THEME_URI . '/assets/js/main.js', array(), ACCR_THEME_VERSION, true );
 }
 
