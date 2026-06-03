@@ -79,7 +79,6 @@ accr_section_open( array( 'background' => $bg ) );
 					$certifications->the_post();
 					$cert_id    = get_the_ID();
 					$image      = function_exists( 'get_field' ) ? get_field( 'card_image', $cert_id ) : null;
-					$badge      = function_exists( 'get_field' ) ? get_field( 'badge', $cert_id ) : '';
 					$short_name = function_exists( 'get_field' ) ? get_field( 'short_name', $cert_id ) : '';
 					$heading    = $short_name ? $short_name : get_the_title();
 					$summary    = has_excerpt() ? get_the_excerpt() : wp_trim_words( wp_strip_all_tags( get_the_content() ), 28 );
@@ -89,9 +88,6 @@ accr_section_open( array( 'background' => $bg ) );
 						<?php if ( is_array( $image ) && ! empty( $image['url'] ) ) : ?>
 							<div class="cert-card__media">
 								<img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>" />
-								<?php /* <?php if ( $badge ) : ?>
-									<span class="cert-card__badge"><?php echo esc_html( $badge ); ?></span>
-								<?php endif; ?> */ ?>
 								<img src="<?php echo get_template_directory_uri(); ?>/assets/images/cert-card__badge.webp" alt="CCO" width="75" height=="75" class="cert-card__badge" />
 							</div>
 						<?php endif; ?>
@@ -100,10 +96,6 @@ accr_section_open( array( 'background' => $bg ) );
 							<?php if ( $summary ) : ?>
 								<p class="cert-card__text"><?php echo wp_kses_post( $summary ); ?></p>
 							<?php endif; ?>
-							<?php /* <a class="cert-card__link" href="<?php the_permalink(); ?>">
-								<?php echo esc_html( $link_label ); ?>
-								<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
-							</a> */ ?>
 							<a class="btn btn--primary" href="<?php the_permalink(); ?>" style="align-self:flex-start; padding-left:var(--space-4);">
 								<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
 								<?php echo esc_html( $link_label ); ?>

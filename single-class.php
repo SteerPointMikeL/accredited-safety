@@ -38,7 +38,7 @@ while ( have_posts() ) :
 	if ( ! $info_heading ) {
 		$info_heading = get_the_title();
 	}
-	$date      = accr_format_class_date_range();
+	$date      = accr_format_class_date_range( null, array( 'show_weekday' => true) );
 	$location  = get_field( 'location' );
 	$req_label = get_field( 'request_class_label' ) ?: get_the_title();
 
@@ -100,7 +100,8 @@ while ( have_posts() ) :
 				<div class="class-panel__title-block<?php echo $panel_image_id ? ' class-panel__title-block--has-image' : ''; ?>">
 					<?php if ( $panel_image_id ) : ?>
 						<div class="class-panel__image">
-							<?php echo wp_get_attachment_image( $panel_image_id, 'accr-card', false, array( 'class' => 'class-panel__image-img', 'alt' => '' ) ); ?>
+							<?php echo wp_get_attachment_image( $panel_image_id, 'accr-card', false, array( 'class' => 'class-panel__image__img', 'alt' => '' ) ); ?>
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/cert-card__badge.webp" alt="CCO" width="75" height=="75" class="class-panel__image__badge" />
 						</div>
 					<?php endif; ?>
 					<div class="class-panel__title-text">
@@ -171,18 +172,6 @@ while ( have_posts() ) :
 					</a>
 				</div>
 			</div>
-
-			<?php
-			$has_sections = have_rows( 'page_sections' );
-			if ( ! $has_sections ) {
-				$content = get_the_content();
-				if ( trim( wp_strip_all_tags( $content ) ) ) {
-					echo '<div class="class-content rich-content">';
-					the_content();
-					echo '</div>';
-				}
-			}
-			?>
 		</div>
 	</section>
 
@@ -190,7 +179,7 @@ while ( have_posts() ) :
 	// Optional flexible page sections render below the class panel. The
 	// "We Will Travel to You" CTA is authored here via the travel_cta layout
 	// instead of being hardcoded into this template.
-	if ( $has_sections ) {
+	if ( have_rows( 'page_sections' ) ) {
 		accr_render_page_sections( get_the_ID() );
 	}
 endwhile;

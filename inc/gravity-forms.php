@@ -63,7 +63,8 @@ function accr_gform_form_tag( $form_tag, $form ) {
 
 /**
  * Inject .field / .form-row compatible classes on Gravity Forms fields so the
- * existing CSS in assets/css/style.css renders them correctly.
+ * existing CSS in assets/css/style.css renders them correctly. Additionally,
+ * add dynamically populatable parameter name for targeting via JavaScript.
  */
 add_filter( 'gform_field_container', 'accr_gform_field_container', 10, 6 );
 function accr_gform_field_container( $container, $field, $form, $css_class, $style, $field_content ) {
@@ -71,7 +72,13 @@ function accr_gform_field_container( $container, $field, $form, $css_class, $sty
 	if ( false === strpos( $container, 'class="' ) ) {
 		return $container;
 	}
-	return preg_replace( '/class="([^"]*)"/', 'class="$1 field"', $container, 1 );
+	
+	$additional_css_classes = 'field';
+	if ( ! empty( $field->inputName ) ) {
+		$additional_css_classes .= ' gfield--input-name-'. $field->inputName . '"';
+	}
+	
+	return preg_replace( '/class="([^"]*)"/', 'class="$1 '. $additional_css_classes .'"', $container, 1 );
 }
 
 /**

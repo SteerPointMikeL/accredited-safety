@@ -107,9 +107,9 @@ accr_section_open( array( 'background' => $bg ) );
 
 		<?php if ( ! empty( $footer['label'] ) ) : ?>
 			<div style="text-align:center; margin-top: var(--space-12);">
-				<a href="<?php echo esc_url( $footer['url'] ?? '#' ); ?>" class="btn btn--outline btn--lg">
-					<?php echo esc_html( $footer['label'] ); ?>
+				<a href="<?php echo esc_url( $footer['url'] ?? '#' ); ?>" class="btn btn--secondary btn--lg">
 					<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
+					<?php echo esc_html( $footer['label'] ); ?>
 				</a>
 			</div>
 		<?php endif; ?>

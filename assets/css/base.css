@@ -52,21 +52,21 @@
 
 /* ========= Color scheme — Industrial Navy + Safety Orange ========= */
 :root {
-  /* Brand */
+  /* Color Palette */
+  --color-orange: #ee6a19;
+  --color-orange-2: #d25610;
+  --color-orange-3: #ac4308;
+  --color-tan: #fff6e9;
+  --color-green: #2e7d32;
+  --color-green-2: #e5f2e6;
   --color-navy: #0f2a3d;
   --color-navy-2: #143b54;
   --color-navy-3: #1d5070;
-  --color-orange: #ee6a19;
-  --color-orange-hover: #d25610;
-  --color-orange-active: #ac4308;
-  --color-orange-highlight: #fff1e7;
 
   /* Surfaces */
   --color-bg: #ffffff;
   --color-surface: #f7f8fa;
   --color-surface-2: #f2f4f7;
-  --color-surface-offset: #e6eaf0;
-  --color-surface-inverse: #0f2a3d;
 
   --color-divider: #e1e5eb;
   --color-border: #cbd2db;
@@ -80,20 +80,23 @@
 
   /* Semantic */
   --color-primary: var(--color-orange);
-  --color-primary-hover: var(--color-orange-hover);
-  --color-primary-active: var(--color-orange-active);
+  --color-primary-hover: var(--color-orange-2);
+  --color-primary-active: var(--color-orange-3);
+  --color-secondary: var(--color-navy-3);
+  --color-secondary-hover: var(--color-navy-2);
+  --color-secondary-active: var(--color-navy);
   --color-accent: var(--color-navy);
 
-  --color-success: #2e7d32;
-  --color-success-highlight: #e5f2e6;
-  --color-warning: #ee6a19;
-  --color-warning-highlight: #fff6e9;
-  --color-error: #c02828;
+  --color-success: var(--color-green);
+  --color-success-highlight: var(--color-green);
+  --color-warning: var(--color-orange);
+  --color-warning-highlight: var(--color-tan);
+  --color-error: var(--color-orange-3);
 
-  --shadow-sm: 0 1px 2px rgb(15 42 61 / 0.08);
-  --shadow-md: 0 6px 18px rgb(15 42 61 / 0.1);
-  --shadow-lg: 0 20px 48px rgb(15 42 61 / 0.18);
-  --shadow-orange: 0 8px 24px rgb(238 106 25 / 0.32);
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--color-navy), transparent 92%);
+  --shadow-md: 0 6px 18px color-mix(in srgb, var(--color-navy), transparent 90%);
+  --shadow-lg: 0 20px 48px color-mix(in srgb, var(--color-navy), transparent 82%);
+  --shadow-orange: 0 8px 24px color-mix(in srgb, var(--color-orange), transparent 68%);
 }
 
 /* =========================================================

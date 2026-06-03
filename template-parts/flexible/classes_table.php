@@ -14,7 +14,7 @@ if ( $limit < 1 ) {
 	$limit = 50;
 }
 $only_future = get_sub_field( 'only_future' );
-$footnote    = get_sub_field( 'footnote' );
+$footer      = get_sub_field( 'footer_button' );
 
 $meta_query = array(
 	array(
@@ -42,22 +42,6 @@ $q = new WP_Query(
 		'meta_query'     => $meta_query,
 	)
 );
-
-// If meta_query for show_in_schedule prevents finding ANY classes (because field hasn't been set),
-// re-run without the show_in_schedule filter so the table isn't empty in early dev.
-if ( ! $q->have_posts() ) {
-	$mq = $only_future ? array( array(
-		'key' => 'class_date', 'value' => date( 'Y-m-d' ), 'compare' => '>=', 'type' => 'DATE',
-	) ) : array();
-	$q = new WP_Query( array(
-		'post_type' => 'class',
-		'posts_per_page' => $limit,
-		'orderby' => 'meta_value',
-		'meta_key' => 'class_date',
-		'order' => 'ASC',
-		'meta_query' => $mq,
-	) );
-}
 
 // Build category filter list from terms attached to classes in this result set.
 $cat_terms = array();
@@ -97,21 +81,19 @@ if ( $show_filters ) {
 					<tr>
 						<th style="width: 40%;">Class</th>
 						<th>Date</th>
-						<th>Details</th>
+						<th style="width: 33%;">Details</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php if ( $q->have_posts() ) :
 						while ( $q->have_posts() ) :
 							$q->the_post();
-							$pid       = get_the_ID();
-							$subtitle  = get_field( 'subtitle', $pid );
-							//$date_disp = accr_format_class_date( $pid );
-							$date_disp = accr_format_class_date_range( $pid );
-							$time      = get_field( 'class_time', $pid );
-							$tuition   = accr_format_class_tuition( $pid );
-							$req_label = accr_class_request_label( $pid );
-							$terms     = get_the_terms( $pid, 'class_category' );
+							$subtitle  = get_field( 'subtitle' );
+							$date_disp = accr_format_class_date_range();
+							$time      = get_field( 'class_time' );
+							$tuition   = accr_format_class_tuition();
+							$req_label = accr_class_request_label();
+							$terms     = get_the_terms( get_the_ID(), 'class_category' );
 							$slugs     = array();
 							if ( $terms && ! is_wp_error( $terms ) ) {
 								foreach ( $terms as $t ) {
@@ -127,9 +109,11 @@ if ( $show_filters ) {
 									<?php endif; ?>
 								</td>
 								<td class="class-date"><?php echo wp_kses_post( $date_disp ); ?></td>
-								<td class="class-actions">
-									<button class="btn btn--primary" data-request-pricing data-class="<?php echo esc_attr( $req_label ); ?>" data-date="<?php echo esc_attr( wp_strip_all_tags( $date_disp ) ); ?>">Request pricing</button>
-									<a class="btn btn--secondary" href="<?php the_permalink(); ?>"><?php  _e( 'Get More Info', 'accr-theme' ); ?></a>
+								<td>
+									<div class="class-actions">
+										<button class="btn btn--primary" data-request-pricing data-class="<?php echo esc_attr( $req_label ); ?>" data-date="<?php echo esc_attr( wp_strip_all_tags( $date_disp ) ); ?>">Request pricing</button>
+										<a class="btn btn--secondary" href="<?php the_permalink(); ?>"><?php  _e( 'Get More Info', 'accr-theme' ); ?></a>
+									</div>
 								</td>
 							</tr>
 							<?php
@@ -142,8 +126,13 @@ if ( $show_filters ) {
 			</table>
 		</div>
 
-		<?php if ( $footnote ) : ?>
-			<p style="margin-top: var(--space-6); color: var(--color-text-muted); font-size: var(--text-sm);"><?php echo wp_kses_post( $footnote ); ?></p>
+		<?php if ( ! empty( $footer['label'] ) ) : ?>
+			<div style="text-align:center; margin-top: var(--space-12);">
+				<a href="<?php echo esc_url( $footer['url'] ?? '#' ); ?>" class="btn btn--secondary btn--lg">
+					<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
+					<?php echo esc_html( $footer['label'] ); ?>
+				</a>
+			</div>
 		<?php endif; ?>
 	</div>
 </section>

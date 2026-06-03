@@ -211,10 +211,13 @@ function accr_format_class_date( $post_id = null ) {
  * @param int $post_id
  * @return string
  */
-function accr_format_class_date_range( $post_id = null ) {
+function accr_format_class_date_range( $post_id = null, $args = array() ) {
 	if ( ! function_exists( 'get_field' ) ) {
 		return '';
 	}
+	$args = wp_parse_args( $args, array(
+		'show_weekday' => false,
+	) );
 	if ( empty( $post_id ) ) {
 		$post_id = get_the_ID();
 	}
@@ -235,14 +238,23 @@ function accr_format_class_date_range( $post_id = null ) {
 	if ( ! $end_ts || $end_ts <= $start_ts ) {
 		return date_i18n( 'M j, Y', $start_ts );
 	}
+	
+	if ( $args['show_weekday'] ) {
+		// Same month + year: "Tuesday, April 28 – Thursday, April 30, 2026"; otherwise full both ends.
+		if ( date( 'Y', $start_ts ) === date( 'Y', $end_ts ) ) {
+			return date_i18n( 'l, M j', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
+		}
+		return date_i18n( 'l, M j, Y', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
+	}
+	
 	// Same month + year: "April 28 – 30, 2026"; otherwise full both ends.
 	if ( date( 'Y', $start_ts ) === date( 'Y', $end_ts ) ) {
 		if ( date( 'n', $start_ts ) === date( 'n', $end_ts ) ) {
-			return date_i18n( 'l, M j', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
+			return date_i18n( 'M j', $start_ts ) . ' &ndash; ' . date_i18n( 'j, Y', $end_ts );
 		}
-		return date_i18n( 'l, M j', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
+		return date_i18n( 'M j', $start_ts ) . ' &ndash; ' . date_i18n( 'M j, Y', $end_ts );
 	}
-	return date_i18n( 'l, M j, Y', $start_ts ) . ' &ndash; ' . date_i18n( 'l, M j, Y', $end_ts );
+	return date_i18n( 'M j, Y', $start_ts ) . ' &ndash; ' . date_i18n( 'M j, Y', $end_ts );
 }
 
 /**
