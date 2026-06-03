@@ -74,6 +74,12 @@
   const isMobileViewport = () => window.matchMedia('(max-width: 980px)').matches;
   const isCoarsePointer = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
+  // The chevron toggle is rendered (display:none -> inline-flex) by the mobile
+  // media query. Treat "toggle is visible" as the signal that we're in the
+  // accordion/mobile mode, rather than trusting only the viewport width — the
+  // two should agree, but offsetParent is what actually reflects the DOM state.
+  const toggleIsActive = (toggle) => !!toggle && toggle.offsetParent !== null;
+
   dropdownParents.forEach((parent) => {
     const toggle = parent.querySelector(':scope > .nav-submenu-toggle');
     const trigger = parent.querySelector(':scope > a');
@@ -89,12 +95,27 @@
       });
     }
 
-    // Touch / coarse-pointer: first tap on parent link opens the dropdown
-    // instead of navigating; second tap follows the link. On desktop this is
-    // a no-op (CSS hover/focus-within handles it).
+    // Parent link behavior:
+    //  - Mobile accordion (toggle visible): tapping the label toggles the
+    //    submenu instead of following the placeholder "#" link, so the parent
+    //    is expandable even if the tap misses the chevron. Submenu links stay
+    //    reachable once expanded.
+    //  - Touch on wider/desktop layouts (coarse pointer, no toggle shown):
+    //    first tap opens, second tap follows the link.
+    //  - Mouse/desktop: no-op; CSS hover/focus-within handles it.
     if (trigger) {
       trigger.addEventListener('click', (e) => {
-        if (isMobileViewport()) return; // handled by toggle button
+        if (isMobileViewport() || toggleIsActive(toggle)) {
+          // Only intercept placeholder parents; real destination links still
+          // navigate (their submenu opens via the chevron).
+          const href = trigger.getAttribute('href');
+          if (!href || href === '#') {
+            e.preventDefault();
+            if (parent.classList.contains('is-open')) closeDropdown(parent);
+            else openDropdown(parent);
+          }
+          return;
+        }
         if (!isCoarsePointer()) return;
         if (!parent.classList.contains('is-open')) {
           e.preventDefault();
