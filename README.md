@@ -101,7 +101,7 @@ WooCommerce is **not** supported by this theme and no WC hooks are present.
    - Create a "Request Pricing" form (first name / last name / email / phone / company / operator count / notes).
    - Create a "Contact" form (first name / last name / email / phone / topic / message).
    - In the Customizer, set:
-     - **Request-Pricing form ID** (powers the legacy modal) under *Appearance → Customize → Site Identity* (we expose it via `get_theme_mod('accr_pricing_form_id')`; until the Customizer is wired up, this is settable via a one-line `set_theme_mod` snippet, see "Customizer keys" below).
+     - **Request-Pricing form ID** (powers the legacy modal) under *Appearance → Customize → Forms* (exposed via `get_theme_mod('accr_pricing_form_id')`; see "Customizer keys" below).
    - On the **Contact** page, edit the "Contact info + form split" section and set "Gravity Form ID" to your contact form's ID.
 
 9. **Verify**
@@ -177,18 +177,23 @@ Categorize each class with one or more **Class Categories** terms (`Mobile`, `Ar
 
 ## Customizer keys (theme_mods)
 
-Until a custom-tailored Customizer panel is built, these `theme_mod` keys are read by the templates and can be set in `wp-admin/customize.php`'s "Additional CSS" preview or via a small mu-plugin:
+These `theme_mod` keys are read by the templates and are now editable in *Appearance → Customize* (sections: **Contact Info**, **Footer**, **Forms**, **Footer Newsletter**). Each key can also still be set programmatically via `set_theme_mod()`:
 
-| Key | Default | Used by |
-|---|---|---|
-| `accr_phone_display` | `844-717-3665` | Header / footer / announcement bar |
-| `accr_phone_link` | `tel:8447173665` | Header / footer / announcement bar |
-| `accr_email` | `info@accredited-safety.com` | Header / footer |
-| `accr_footer_blurb` | Indiana's trusted NCCCO… | Footer left column |
-| `accr_service_area` | Serving Indiana & the Midwest | Footer |
-| `accr_copyright` | © {year} Accredited Safety Solutions… | Footer bottom |
-| `accr_legal_line` | NCCCO is a registered trademark… | Footer bottom |
-| `accr_pricing_form_id` | `0` | Replaces the legacy Request-Pricing modal form with a Gravity Form |
+| Key | Default | Customizer section | Used by |
+|---|---|---|---|
+| `accr_phone_display` | `844-717-3665` | Contact Info | Header / footer / class pages |
+| `accr_phone_link` | `tel:8447173665` | Contact Info | Header / footer / class pages |
+| `accr_email` | `info@accredited-safety.com` | Contact Info | Header / footer |
+| `accr_copyright` | © {year} Accredited Safety Solutions… | Footer | Footer bottom |
+| `accr_legal_line` | NCCCO is a registered trademark… | Footer | Footer bottom |
+| `accr_pricing_form_id` | `0` | Forms | Replaces the legacy Request-Pricing modal form with a Gravity Form |
+| `accr_newsletter_form_id` | `0` | Footer Newsletter | Newsletter modal Gravity Form |
+| `accr_newsletter_heading` | Sign up for our newsletter | Footer Newsletter | Newsletter card heading |
+| `accr_newsletter_description` | Stay current on NCCCO… | Footer Newsletter | Newsletter card description |
+| `accr_newsletter_modal_heading` | Sign up for our newsletter | Footer Newsletter | Newsletter modal heading |
+| `accr_newsletter_modal_subtitle` | Get NCCCO updates… | Footer Newsletter | Newsletter modal subtitle |
+
+> **Note:** `accr_footer_blurb` and `accr_service_area` appeared in earlier docs but are **not** read by any template, so no Customizer controls were added for them.
 
 ---
 
