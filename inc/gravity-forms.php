@@ -75,10 +75,10 @@ function accr_gform_field_container( $container, $field, $form, $css_class, $sty
 	
 	$additional_css_classes = 'field';
 	if ( ! empty( $field->inputName ) ) {
-		$additional_css_classes .= ' gfield--input-name-'. $field->inputName . '"';
+		$additional_css_classes .= ' gfield--input-name-' . sanitize_html_class( $field->inputName );
 	}
-	
-	return preg_replace( '/class="([^"]*)"/', 'class="$1 '. $additional_css_classes .'"', $container, 1 );
+
+	return preg_replace( '/class="([^"]*)"/', 'class="$1 ' . $additional_css_classes . '"', $container, 1 );
 }
 
 /**
