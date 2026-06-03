@@ -2,6 +2,78 @@
    Accredited Safety Solutions — Components
    ========================================================= */
 
+/* ----- Buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.btn svg {
+  width: 16px;
+  height: 16px;
+}
+.btn--primary {
+  background: var(--color-orange);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover {
+  background: var(--color-orange-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-orange);
+}
+.btn--secondary {
+  background: var(--color-navy-3);
+  color: #ffffff;
+  border-color: var(--color-navy-3);
+  box-shadow: var(--shadow-sm);
+}
+.btn--secondary:hover {
+  background: var(--color-navy-2);
+  border-color: var(--color-navy-2);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.btn--secondary:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+.btn--ghost {
+  background: rgba(242 244 247 / 0.3);
+  border-color: rgb(255 255 255 / 0.3);
+  color: #ffffff;
+}
+.btn--ghost:hover {
+  border-color: #ffffff;
+}
+.btn--outline {
+  background: transparent;
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+.btn--outline:hover {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+.btn--lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-base);
+}
+.btn--block {
+  width: 100%;
+}
+
 /* ----- Layout helpers ----- */
 .container {
   width: 100%;
@@ -116,7 +188,7 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  gap: var(--space-6);
+  gap: var(--space-2);
   min-height: 90px;
   padding-block: 0 var(--space-4) 0;
 }
@@ -303,76 +375,130 @@
   background: rgb(255 255 255 / 0.06);
 }
 
-/* ----- Buttons ----- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-radius: var(--radius-sm);
-  border: 2px solid transparent;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-.btn svg {
-  width: 16px;
-  height: 16px;
-}
-.btn--primary {
-  background: var(--color-orange);
-  color: #ffffff;
-  box-shadow: var(--shadow-sm);
-}
-.btn--primary:hover {
-  background: var(--color-orange-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-orange);
-}
-.btn--secondary {
-  background: var(--color-navy-3);
-  color: #ffffff;
-  border-color: var(--color-navy-3);
-  box-shadow: var(--shadow-sm);
-}
-.btn--secondary:hover {
-  background: var(--color-navy-2);
-  border-color: var(--color-navy-2);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-.btn--secondary:focus-visible {
-  outline: 2px solid var(--color-orange);
-  outline-offset: 2px;
-}
-.btn--ghost {
-  background: rgba(242 244 247 / 0.3);
-  border-color: rgb(255 255 255 / 0.3);
-  color: #ffffff;
-}
-.btn--ghost:hover {
-  border-color: #ffffff;
-}
-.btn--outline {
-  background: transparent;
-  border-color: var(--color-navy);
-  color: var(--color-navy);
-}
-.btn--outline:hover {
-  background: var(--color-navy);
-  color: #ffffff;
-}
-.btn--lg {
-  padding: var(--space-4) var(--space-8);
-  font-size: var(--text-base);
-}
-.btn--block {
-  width: 100%;
+/* ----- Responsive nav ----- */
+@media (max-width: 980px) {
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--color-navy);
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+    padding: var(--space-3) var(--space-4);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+  }
+  .nav-links.is-open {
+    display: flex;
+  }
+  .nav-links a {
+    padding: var(--space-3) var(--space-4);
+  }
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-actions .btn--primary {
+    display: none;
+  }
+
+  /* Mobile dropdown: inline accordion-style expansion */
+  .nav-links > li {
+    position: relative;
+  }
+  .nav-links .has-dropdown > a {
+    padding-right: 48px;
+  }
+  .nav-links .has-dropdown > a::after {
+    display: none;
+  }
+  .nav-submenu-toggle {
+    display: inline-flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255 255 255 / 0.85);
+    background: transparent;
+    /* Sit above the parent link (which has z-index:1) so taps on the
+       chevron hit the button, not the overlapping <a>. */
+    z-index: 2;
+  }
+  .nav-submenu-toggle__icon {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform var(--transition-interactive);
+  }
+  .nav-links .has-dropdown.is-open > .nav-submenu-toggle .nav-submenu-toggle__icon {
+    transform: translateY(2px) rotate(-135deg);
+  }
+  .nav-links .nav-submenu {
+    position: static;
+    width: 100%;
+    max-width: none;
+    transform: none;
+    padding: 0;
+    gap: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+    transition: none;
+    transform: none !important;
+  }
+  .nav-links .has-dropdown.is-open > .nav-submenu {
+    visibility: visible;
+    pointer-events: auto;
+    height: auto;
+    padding-top: var(--space-2);
+  }
+  /* Disable hover/focus-within open on mobile — JS controls is-open. */
+  .nav-links .has-dropdown:hover > .nav-submenu,
+  .nav-links .has-dropdown:focus-within > .nav-submenu {
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+  }
+  .nav-links .has-dropdown.is-open:hover > .nav-submenu,
+  .nav-links .has-dropdown.is-open:focus-within > .nav-submenu {
+    visibility: visible;
+    pointer-events: auto;
+    height: auto;
+  }
+  .nav-links .nav-submenu a {
+    min-height: auto;
+    padding-left: var(--space-6);
+    color: var(--color-text-inverse);
+    text-transform: none;
+    font-weight: 400;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    letter-spacing: 0;
+    background: none;
+  }
+  .nav-links .nav-submenu a:hover {
+    background: rgb(255 255 255 / 0.08);
+  }
+  .nav-links .nav-submenu a::before {
+    display: none;
+  }
 }
 
 /* ----- Hero ----- */
@@ -885,6 +1011,9 @@
 .classes-table .class-actions {
   display: flex;
   gap: var(--space-3);
+}
+.classes-table .class-actions .btn {
+  width: 50%;
 }
 .classes-table__filled {
   opacity: 0.5;
@@ -1478,117 +1607,6 @@ body.no-scroll {
 }
 .hidden {
   display: none !important;
-}
-
-/* ----- Responsive nav ----- */
-@media (max-width: 980px) {
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    background: var(--color-navy);
-    border-top: 1px solid rgb(255 255 255 / 0.08);
-    padding: var(--space-3) var(--space-4);
-    box-shadow: var(--shadow-lg);
-    display: none;
-    max-height: calc(100vh - 100%);
-    overflow-y: auto;
-  }
-  .nav-links.is-open {
-    display: flex;
-  }
-  .nav-links a {
-    padding: var(--space-3) var(--space-4);
-  }
-  .nav-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .nav-actions .btn--primary {
-    display: none;
-  }
-
-  /* Mobile dropdown: inline accordion-style expansion */
-  .nav-links > li {
-    position: relative;
-  }
-  .nav-links .has-dropdown > a {
-    padding-right: 48px;
-  }
-  .nav-links .has-dropdown > a::after {
-    display: none;
-  }
-  .nav-submenu-toggle {
-    display: inline-flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 44px;
-    height: 44px;
-    align-items: center;
-    justify-content: center;
-    color: rgb(255 255 255 / 0.85);
-    background: transparent;
-    /* Sit above the parent link (which has z-index:1) so taps on the
-       chevron hit the button, not the overlapping <a>. */
-    z-index: 2;
-  }
-  .nav-submenu-toggle__icon {
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: translateY(-2px) rotate(45deg);
-    transition: transform var(--transition-interactive);
-  }
-  .nav-links .has-dropdown.is-open > .nav-submenu-toggle .nav-submenu-toggle__icon {
-    transform: translateY(2px) rotate(-135deg);
-  }
-  .nav-links .nav-submenu {
-    position: static;
-    width: 100%;
-    max-width: none;
-    transform: none;
-    padding: var(--space-3) var(--space-2) var(--space-3) var(--space-4);
-    gap: var(--space-2);
-    background: rgb(255 255 255 / 0.04);
-    border-radius: 0;
-    box-shadow: none;
-    opacity: 1;
-    visibility: hidden;
-    pointer-events: none;
-    height: 0;
-    overflow: hidden;
-    transition: none;
-  }
-  .nav-links .has-dropdown.is-open > .nav-submenu {
-    visibility: visible;
-    pointer-events: auto;
-    height: auto;
-  }
-  /* Disable hover/focus-within open on mobile — JS controls is-open. */
-  .nav-links .has-dropdown:hover > .nav-submenu,
-  .nav-links .has-dropdown:focus-within > .nav-submenu {
-    visibility: hidden;
-    pointer-events: none;
-    height: 0;
-  }
-  .nav-links .has-dropdown.is-open:hover > .nav-submenu,
-  .nav-links .has-dropdown.is-open:focus-within > .nav-submenu {
-    visibility: visible;
-    pointer-events: auto;
-    height: auto;
-  }
-  .nav-links .nav-submenu a {
-    font-size: 16px;
-    min-height: 44px;
-  }
 }
 
 /* ----- Contact split (Figma "Contact Us" 187:998) ----- */
