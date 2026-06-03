@@ -290,15 +290,16 @@ function accr_section_open( $args = array() ) {
 	) );
 
 	$style = $args['style'];
-	switch ( $args['background'] ) {
-		case 'surface_2' :
-			$args['class'] .= ' section--surface-2';
-			
-			break;
-		case 'navy' :
-			$args['class'] .= ' section--navy';
-			
-			break;
+	
+	$valid_backgrounds = array(
+		'default',
+		'surface_2',
+		'navy',
+		'navy-gradient',
+	);
+	
+	if ( in_array( $args['background'], $valid_backgrounds ) ) {
+		$args['class'] .= ' section--' . $args['background'];
 	}
 
 	$attrs = '';

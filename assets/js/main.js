@@ -195,7 +195,7 @@
 
   if (modal) {
     modal.addEventListener('click', (e) => {
-      if (e.target === modal || e.target.hasAttribute('data-modal-close')) closeModal();
+      if (e.target === modal || (e.target.closest && e.target.closest('[data-modal-close]'))) closeModal();
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();

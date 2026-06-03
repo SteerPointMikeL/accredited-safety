@@ -12,37 +12,31 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$eyebrow         = get_sub_field( 'eyebrow' );
-$title           = get_sub_field( 'title' );
-$body            = get_sub_field( 'body' );
-$bullets_heading = get_sub_field( 'bullets_heading' );
-$bullets         = get_sub_field( 'bullets' );
-$bullet_style    = get_sub_field( 'bullet_style' ) ?: 'check';
-$features        = get_sub_field( 'features' );
-$buttons         = get_sub_field( 'buttons' );
-$image           = get_sub_field( 'image' );
-$reverse         = get_sub_field( 'reverse' );
-$bg              = get_sub_field( 'background' ) ?: 'default';
-$anchor          = get_sub_field( 'anchor' );
-
-$is_navy = ( 'navy_band' === $bg );
+$eyebrow           = get_sub_field( 'eyebrow' );
+$title             = get_sub_field( 'title' );
+$body              = get_sub_field( 'body' );
+$bullets_heading   = get_sub_field( 'bullets_heading' );
+$bullets           = get_sub_field( 'bullets' );
+$bullet_style      = get_sub_field( 'bullet_style' ) ?: 'check';
+$features          = get_sub_field( 'features' );
+$buttons           = get_sub_field( 'buttons' );
+$image             = get_sub_field( 'image' );
+$reverse           = get_sub_field( 'reverse' );
+$overflowing_image = get_sub_field( 'overflowing_image' );
+$bg                = get_sub_field( 'background' ) ?: 'default';
+$anchor            = get_sub_field( 'anchor' );
 
 $split_class = 'split';
 if ( $reverse ) {
 	$split_class .= ' split--reverse';
 }
-if ( $is_navy ) {
-	$split_class .= ' split--navy-band';
+if ( $overflowing_image ) {
+	$split_class .= ' split--overflowing-image';
 }
 
-// The navy variant draws its own background band, so don't double up via
-// accr_section_open's surface_2 styling.
-$section_bg = $is_navy ? 'default' : $bg;
-
 accr_section_open( array(
-	'background' => $section_bg,
+	'background' => $bg,
 	'id'         => $anchor,
-	'class'      => $is_navy ? 'section section--navy-band' : 'section',
 ) );
 ?>
 	<div class="container">
@@ -77,35 +71,35 @@ accr_section_open( array(
 				<?php endif; ?>
 
 				<?php if ( $body ) : ?>
-					<div class="split__body" style="color: <?php echo $is_navy ? '#cfdde9' : 'var(--color-text-muted)'; ?>; font-size: var(--text-base);">
+					<div class="split__body">
 						<?php echo wp_kses_post( $body ); ?>
 					</div>
 				<?php endif; ?>
 
 				<?php if ( $bullets_heading ) : ?>
-					<h3 style="font-size: var(--text-base); margin-bottom: var(--space-3); text-transform:uppercase; letter-spacing:0.08em; color: <?php echo $is_navy ? '#fff' : 'var(--color-text)'; ?>;"><?php echo esc_html( $bullets_heading ); ?></h3>
+					<h3 class="split__bullets--heading"><?php echo esc_html( $bullets_heading ); ?></h3>
 				<?php endif; ?>
 
 				<?php if ( $bullets ) :
-					$ul_style = 'list-style: none; display: grid; gap: var(--space-3); margin: var(--space-4) 0 var(--space-6);font-size: var(--text-sm);';
-					if ( 'arrow_2col' === $bullet_style ) {
-						$ul_style = 'display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin: var(--space-4) 0 var(--space-6); list-style:none;font-size: var(--text-sm);';
-					} elseif ( 'arrow' === $bullet_style ) {
-						$ul_style = 'display:grid; gap: var(--space-2); margin: var(--space-4) 0 var(--space-6); list-style:none;font-size: var(--text-sm);';
+					$bullets_class = 'split__bullets';
+					if ( 'arrow' === $bullet_style ) {
+						$bullets_class .= ' .split__bullets--arrow';
+					} elseif ( 'arrow_2col' === $bullet_style ) {
+						$bullets_class .= ' .split__bullets--arrow-2-column';
+					} elseif ( 'check' === $bullet_style ) {
+						$bullets_class .= ' .split__bullets--check';
 					}
 					?>
-					<ul style="<?php echo esc_attr( $ul_style ); ?>">
+					<ul class="<?php echo $bullets_class; ?>">
 						<?php foreach ( $bullets as $b ) :
-							if ( empty( $b['text'] ) ) continue;
-							if ( 'check' === $bullet_style ) : ?>
-								<li style="display:flex; gap: var(--space-3); align-items:flex-start;">
+							if ( empty( $b['text'] ) ) continue; ?>
+								<li>
+								<?php if ( 'check' === $bullet_style ) : ?>
 									<?php echo accr_icon( 'check', array( 'width' => '20', 'height' => '20', 'stroke-width' => '2.5', 'style' => 'flex-shrink:0; margin-top:4px; color: var(--color-orange);' ) ); ?>
 									<span><?php echo esc_html( $b['text'] ); ?></span>
+								<?php endif; ?>
 								</li>
-							<?php else : ?>
-								<li style="display:flex; gap: var(--space-2);"><span style="color: var(--color-orange)">▸</span> <?php echo esc_html( $b['text'] ); ?></li>
-							<?php endif;
-						endforeach; ?>
+						<?php endforeach; ?>
 					</ul>
 				<?php endif; ?>
 
