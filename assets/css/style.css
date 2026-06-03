@@ -520,6 +520,11 @@
   }
 }
 
+/* ----- Basic text content ----- */
+.basic-text-content {
+  text-align: center;
+}
+
 /* ----- Hero ----- */
 .hero {
   position: relative;

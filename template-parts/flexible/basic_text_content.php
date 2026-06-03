@@ -13,7 +13,7 @@ $bg      = get_sub_field( 'background' ) ?: 'default';
 
 accr_section_open( array( 'background' => $bg ) );
 ?>
-	<div class="container">
+	<div class="container basic-text-content">
 		<?php if ( $eyebrow ) : ?>
 			<span class="eyebrow"><?php echo esc_html( $eyebrow ); ?></span>
 		<?php endif; ?>
@@ -21,7 +21,9 @@ accr_section_open( array( 'background' => $bg ) );
 			<h2 class="section-title"><?php echo wp_kses_post( $title ); ?></h2>
 		<?php endif; ?>
 		<?php if ( $content ) : ?>
-			<div class="rich-content"><?php echo wp_kses_post( $content ); ?></div>
+			<div class="content">
+				<?php echo $content; ?>
+			</div>
 		<?php endif; ?>
 	</div>
 <?php
