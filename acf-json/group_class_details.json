@@ -105,6 +105,27 @@
             "allow_in_bindings": 1
         },
         {
+            "key": "field_6a21ce9c6f0b1",
+            "label": "Date display override",
+            "name": "class_date_display",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional. If set, used verbatim in the schedule table instead of the formatted Class date (e.g. \"Apr 28, 2026\").",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6a1df5f9ff807",
             "label": "Location",
             "name": "location",
@@ -485,5 +506,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780502176
+    "modified": 1780601719
 }

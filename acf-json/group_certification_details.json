@@ -48,26 +48,6 @@
             "mime_types": ""
         },
         {
-            "key": "field_cert_badge",
-            "label": "Card badge (e.g. NCCCO, NEW)",
-            "name": "badge",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_cert_featured",
             "label": "Featured certification",
             "name": "featured_certification",
@@ -169,5 +149,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780542064
+    "modified": 1780586983
 }

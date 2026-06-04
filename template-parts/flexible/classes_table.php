@@ -48,7 +48,7 @@ $cat_terms = array();
 if ( $show_filters ) {
 	$cat_terms = get_terms( array(
 		'taxonomy'   => 'class_category',
-		//'hide_empty' => true,
+		'hide_empty' => false,
 	) );
 	if ( is_wp_error( $cat_terms ) ) {
 		$cat_terms = array();

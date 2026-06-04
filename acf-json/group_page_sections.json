@@ -17,76 +17,6 @@
                 "id": ""
             },
             "layouts": {
-                "layout_page_hero": {
-                    "key": "layout_page_hero",
-                    "name": "page_hero",
-                    "label": "Page hero (eyebrow + title + lead)",
-                    "display": "block",
-                    "sub_fields": [
-                        {
-                            "key": "f_ph_eyebrow",
-                            "label": "Eyebrow",
-                            "name": "eyebrow",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
-                        },
-                        {
-                            "key": "f_ph_title",
-                            "label": "Title (HTML allowed, e.g. <br\/>, <em>)",
-                            "name": "title",
-                            "aria-label": "",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "rows": 2,
-                            "new_lines": "",
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "f_ph_lead",
-                            "label": "Lead paragraph",
-                            "name": "lead",
-                            "aria-label": "",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "rows": 4,
-                            "new_lines": "wpautop",
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": ""
-                        }
-                    ],
-                    "min": "",
-                    "max": ""
-                },
                 "layout_hero_image": {
                     "key": "layout_hero_image",
                     "name": "hero_image",
@@ -145,18 +75,19 @@
                             "aria-label": "",
                             "type": "textarea",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "rows": 2,
-                            "new_lines": "",
                             "default_value": "",
                             "maxlength": "",
-                            "placeholder": ""
+                            "allow_in_bindings": 1,
+                            "rows": 2,
+                            "placeholder": "",
+                            "new_lines": "br"
                         },
                         {
                             "key": "f_hi_lead",
@@ -451,6 +382,77 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_page_hero": {
+                    "key": "layout_page_hero",
+                    "name": "page_hero",
+                    "label": "Page hero (eyebrow + title + lead)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "f_ph_eyebrow",
+                            "label": "Eyebrow",
+                            "name": "eyebrow",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "f_ph_title",
+                            "label": "Title (HTML allowed)",
+                            "name": "title",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 1,
+                            "rows": 2,
+                            "placeholder": "",
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "f_ph_lead",
+                            "label": "Lead paragraph",
+                            "name": "lead",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "rows": 4,
+                            "new_lines": "wpautop",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_section_intro": {
                     "key": "layout_section_intro",
                     "name": "section_intro",
@@ -484,18 +486,19 @@
                             "aria-label": "",
                             "type": "textarea",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "rows": 2,
-                            "new_lines": "",
                             "default_value": "",
                             "maxlength": "",
-                            "placeholder": ""
+                            "allow_in_bindings": 1,
+                            "rows": 2,
+                            "placeholder": "",
+                            "new_lines": "br"
                         },
                         {
                             "key": "f_si_lead",
@@ -3732,5 +3735,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780540572
+    "modified": 1780615290
 }

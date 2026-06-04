@@ -38,7 +38,7 @@ while ( have_posts() ) :
 	if ( ! $info_heading ) {
 		$info_heading = get_the_title();
 	}
-	$date      = accr_format_class_date_range( null, array( 'show_weekday' => true) );
+	$date      = accr_format_class_date_range( null, array( 'show_weekday' => true ) );
 	$location  = get_field( 'location' );
 	$req_label = get_field( 'request_class_label' ) ?: get_the_title();
 
@@ -136,7 +136,7 @@ while ( have_posts() ) :
 								<?php endif; ?>
 								<div class="class-schedule__body">
 									<?php if ( $dt ) : ?>
-										<span class="class-schedule__datetime"><?php echo esc_html( $dt ); ?></span>
+										<span class="class-schedule__datetime"><?php echo esc_html( $dt ); ?>:</span>
 									<?php endif; ?>
 									<?php if ( $desc ) : ?>
 										<span class="class-schedule__desc"><?php echo esc_html( $desc ); ?></span>
