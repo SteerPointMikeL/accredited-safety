@@ -306,6 +306,14 @@
   margin: 0;
 }
 
+/* Sub-label above field while main label is hidden (mimic appearance of main label) */
+.gform_wrapper .hidden_label .ginput_complex label:first-child,
+.gform_wrapper .hidden_label .ginput_complex .gform-field-label--type-sub:first-child {
+	text-transform: uppercase;
+	font-weight: 700;
+	color: var(--color-text-heading);
+}
+
 /* Address: full-row for street/city, narrower for state/zip */
 .gform_wrapper .ginput_complex.ginput_container_address {
   grid-template-columns: repeat(2, 1fr);

@@ -6,12 +6,16 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$eyebrow = get_sub_field( 'eyebrow' );
-$title   = get_sub_field( 'title' );
-$content = get_sub_field( 'content' );
-$bg      = get_sub_field( 'background' ) ?: 'default';
+$section_padding = get_sub_field( 'section_padding' ) ?: 'default';
+$eyebrow         = get_sub_field( 'eyebrow' );
+$title           = get_sub_field( 'title' );
+$content         = get_sub_field( 'content' );
+$bg              = get_sub_field( 'background' ) ?: 'default';
 
-accr_section_open( array( 'background' => $bg ) );
+accr_section_open( array(
+	'background' => $bg,
+	'class'      => 'section section--' . $section_padding,
+) );
 ?>
 	<div class="container basic-text-content">
 		<?php if ( $eyebrow ) : ?>

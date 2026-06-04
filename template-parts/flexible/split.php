@@ -12,21 +12,26 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$eyebrow           = get_sub_field( 'eyebrow' );
-$title             = get_sub_field( 'title' );
-$body              = get_sub_field( 'body' );
-$bullets_heading   = get_sub_field( 'bullets_heading' );
-$bullets           = get_sub_field( 'bullets' );
-$bullet_style      = get_sub_field( 'bullet_style' ) ?: 'check';
-$features          = get_sub_field( 'features' );
-$buttons           = get_sub_field( 'buttons' );
-$image             = get_sub_field( 'image' );
-$reverse           = get_sub_field( 'reverse' );
-$overflowing_image = get_sub_field( 'overflowing_image' );
-$bg                = get_sub_field( 'background' ) ?: 'default';
-$anchor            = get_sub_field( 'anchor' );
+$section_padding           = get_sub_field( 'section_padding' ) ?: 'default';
+$column_space_distribution = get_sub_field( 'column_space_distribution' );
+$eyebrow                   = get_sub_field( 'eyebrow' );
+$title                     = get_sub_field( 'title' );
+$body                      = get_sub_field( 'body' );
+$bullets_heading           = get_sub_field( 'bullets_heading' );
+$bullets                   = get_sub_field( 'bullets' );
+$bullet_style              = get_sub_field( 'bullet_style' ) ?: 'check';
+$features                  = get_sub_field( 'features' );
+$buttons                   = get_sub_field( 'buttons' );
+$image                     = get_sub_field( 'image' );
+$reverse                   = get_sub_field( 'reverse' );
+$overflowing_image         = get_sub_field( 'overflowing_image' );
+$bg                        = get_sub_field( 'background' ) ?: 'default';
+$anchor                    = get_sub_field( 'anchor' );
 
 $split_class = 'split';
+if ( $column_space_distribution ) {
+	$split_class .= ' split--' . $column_space_distribution;
+}
 if ( $reverse ) {
 	$split_class .= ' split--reverse';
 }
@@ -37,6 +42,7 @@ if ( $overflowing_image ) {
 accr_section_open( array(
 	'background' => $bg,
 	'id'         => $anchor,
+	'class'      => 'section section--' . $section_padding,
 ) );
 ?>
 	<div class="container">

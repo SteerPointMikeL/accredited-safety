@@ -52,13 +52,10 @@
 
 /* ========= Color scheme — Industrial Navy + Safety Orange ========= */
 :root {
-  /* Color Palette */
+  /* Base Color Palette */
   --color-orange: #ee6a19;
   --color-orange-2: #d25610;
   --color-orange-3: #ac4308;
-  --color-tan: #fff6e9;
-  --color-green: #2e7d32;
-  --color-green-2: #e5f2e6;
   --color-navy: #0f2a3d;
   --color-navy-2: #143b54;
   --color-navy-3: #1d5070;
@@ -87,10 +84,10 @@
   --color-secondary-active: var(--color-navy);
   --color-accent: var(--color-navy);
 
-  --color-success: var(--color-green);
-  --color-success-highlight: var(--color-green);
+  --color-success: #2e7d32;
+  --color-success-highlight: #e5f2e6;
   --color-warning: var(--color-orange);
-  --color-warning-highlight: var(--color-tan);
+  --color-warning-highlight: #fff6e9;
   --color-error: var(--color-orange-3);
 
   --shadow-sm: 0 1px 2px color-mix(in srgb, var(--color-navy), transparent 92%);

@@ -143,7 +143,7 @@ function accr_render_button( $btn, $extra = '' ) {
 
 	if ( $modal ) {
 		return sprintf(
-			'<button class="%1$s" data-request-pricing data-class="%2$s">%3$s</button>',
+			'<button class="%1$s" data-request-pricing data-class="%2$s" data-operators="5-9 (group pricing)">%3$s</button>',
 			esc_attr( $classes ),
 			esc_attr( $label ),
 			esc_html( $label )
@@ -303,16 +303,7 @@ function accr_section_open( $args = array() ) {
 
 	$style = $args['style'];
 	
-	$valid_backgrounds = array(
-		'default',
-		'surface_2',
-		'navy',
-		'navy-gradient',
-	);
-	
-	if ( in_array( $args['background'], $valid_backgrounds ) ) {
-		$args['class'] .= ' section--' . $args['background'];
-	}
+	$args['class'] .= ' section--' . $args['background'];
 
 	$attrs = '';
 	if ( $args['id'] ) {

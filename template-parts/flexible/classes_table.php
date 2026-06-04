@@ -48,7 +48,7 @@ $cat_terms = array();
 if ( $show_filters ) {
 	$cat_terms = get_terms( array(
 		'taxonomy'   => 'class_category',
-		'hide_empty' => true,
+		//'hide_empty' => true,
 	) );
 	if ( is_wp_error( $cat_terms ) ) {
 		$cat_terms = array();
@@ -65,13 +65,11 @@ if ( $show_filters ) {
 		<?php endif; ?>
 
 		<?php if ( $show_filters ) : ?>
-			<div style="display:flex; justify-content: center; align-items:flex-end; margin-bottom: var(--space-8); gap: var(--space-4); flex-wrap: wrap;">
-				<div data-classes-filter style="display:flex; gap: var(--space-2); flex-wrap: wrap;">
-					<button class="btn btn--outline is-active" data-filter="" style="font-size: var(--text-xs); padding: var(--space-2) var(--space-4);">All classes</button>
-					<?php foreach ( $cat_terms as $term ) : ?>
-						<button class="btn btn--outline" data-filter="<?php echo esc_attr( $term->slug ); ?>" style="font-size: var(--text-xs); padding: var(--space-2) var(--space-4);"><?php echo esc_html( $term->name ); ?></button>
-					<?php endforeach; ?>
-				</div>
+			<div class="classes-table-filter" data-classes-filter>
+				<button class="btn btn--outline is-active" data-filter="">All classes</button>
+				<?php foreach ( $cat_terms as $term ) : ?>
+					<button class="btn btn--outline" data-filter="<?php echo esc_attr( $term->slug ); ?>"><?php echo esc_html( $term->name ); ?></button>
+				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
 
@@ -112,7 +110,7 @@ if ( $show_filters ) {
 								<td>
 									<div class="class-actions">
 										<button class="btn btn--primary" data-request-pricing data-class="<?php echo esc_attr( $req_label ); ?>" data-date="<?php echo esc_attr( wp_strip_all_tags( $date_disp ) ); ?>">Request pricing</button>
-										<a class="btn btn--secondary" href="<?php the_permalink(); ?>"><?php  _e( 'Get More Info', 'accr-theme' ); ?></a>
+										<a class="btn btn--secondary" href="<?php the_permalink(); ?>"><?php _e( 'Get More Info', 'accr-theme' ); ?></a>
 									</div>
 								</td>
 							</tr>

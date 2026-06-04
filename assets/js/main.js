@@ -161,15 +161,69 @@
   const modalSuccess = modal && modal.querySelector('.modal__success');
   const classHidden = modal && modal.querySelector('input[name="class_name"]');
 
+  // Holds the values from the trigger that opened the modal, so a deferred /
+  // AJAX Gravity Forms render can be re-filled with the correct data.
+  let pricingPrefill = { name: '', date: '', operators: '' };
+
+  // Set the underlying control's value for a Gravity Forms field container and
+  // dispatch input/change so GF's conditional logic and validation see it.
+  function setGfFieldValue(container, value) {
+    if (!container) return;
+    const control = container.querySelector('input, textarea, select');
+    if (!control) return;
+    control.value = value;
+    control.dispatchEvent(new Event('input', { bubbles: true }));
+    control.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
+  // Fill the GF hidden fields inside the modal from the stored prefill values.
+  // Always writes (even empty strings) so stale values from a prior open are
+  // cleared. Returns true if at least one target field was found.
+  function fillPricingFields() {
+    if (!modal) return false;
+    const nameField = modal.querySelector('.gfield--input-name-class_name');
+    const dateField = modal.querySelector('.gfield--input-name-class_date');
+    const operatorsField = modal.querySelector('.gfield--input-name-operators');
+    setGfFieldValue(nameField, pricingPrefill.name);
+    setGfFieldValue(dateField, pricingPrefill.date);
+    setGfFieldValue(operatorsField, pricingPrefill.operators);
+    return !!(nameField || dateField || operatorsField);
+  }
+
   function openModal(trigger) {
     if (!modal) return;
     const className = trigger?.dataset.class || '';
     const classDate = trigger?.dataset.date || '';
-    if (className && modalTitle) modalTitle.textContent = 'Request pricing · ' + className;
-    if (classDate && modalSubtitle)
-      modalSubtitle.textContent =
-        'Class date: ' + classDate + ' — we’ll reply within one business day with pricing and availability.';
+    const classOperators = trigger?.dataset.operators || 'Just me';
+    pricingPrefill = { name: className, date: classDate, operators: classOperators };
+
+    if (modalTitle)
+      modalTitle.textContent = className ? 'Request pricing · ' + className : 'Request Pricing';
+    if (modalSubtitle) {
+      if (classDate) {
+        modalSubtitle.textContent =
+          'Class date: ' + classDate + ' — we’ll reply within one business day with pricing and availability.';
+      } else {
+         modalSubtitle.textContent =
+          'We’ll reply within one business day with pricing and availability.';
+      }
+    }
+
+    // Legacy static-fallback hidden input.
     if (classHidden) classHidden.value = className + (classDate ? ' — ' + classDate : '');
+
+    // Gravity Forms hidden fields. If GF hasn't rendered yet (deferred / AJAX),
+    // retry briefly so the values land once the fields appear.
+    if (!fillPricingFields()) {
+      let attempts = 0;
+      const retry = window.setInterval(() => {
+        attempts += 1;
+        if (fillPricingFields() || attempts >= 20) {
+          window.clearInterval(retry);
+        }
+      }, 100);
+    }
+
     modalForm && (modalForm.style.display = '');
     modalSuccess && (modalSuccess.style.display = 'none');
     modal.classList.add('is-open');
@@ -202,14 +256,19 @@
     });
   }
 
-  if (modalForm) {
-    modalForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // In production this POSTs to the CRM webhook (GoHighLevel / Pipedrive).
-      // For the static demo we just show the success state.
-      modalForm.style.display = 'none';
-      if (modalSuccess) modalSuccess.style.display = 'block';
-    });
+  // Re-apply the prefill whenever Gravity Forms (re)renders its form — covers
+  // AJAX submit/validation redraws that replace the field markup. Only acts
+  // while the pricing modal is open so we don't clobber other forms.
+  if (modal) {
+    const reapplyOnGfRender = () => {
+      if (modal.classList.contains('is-open')) fillPricingFields();
+    };
+    // Newer GF native event.
+    document.addEventListener('gform/postRender', reapplyOnGfRender);
+    // Legacy jQuery-triggered event, when jQuery is present.
+    if (window.jQuery) {
+      window.jQuery(document).on('gform_post_render', reapplyOnGfRender);
+    }
   }
 
   // ---------- Staff detail modals ----------

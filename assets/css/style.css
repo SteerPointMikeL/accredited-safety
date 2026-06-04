@@ -93,7 +93,7 @@
 .section--tight {
   padding-block: clamp(var(--space-8), 4vw, var(--space-12));
 }
-.section--surface_2 {
+.section--light-grey {
   background: var(--color-surface-2);
 }
 .section--navy {
@@ -107,7 +107,7 @@
   padding-top: var(--space-16);
   padding-bottom: var(--space-16);
   color: var(--color-text-inverse);
-  background: linear-gradient(90deg, #0f2a3d 0%, #2870a3 100%);
+  background: linear-gradient(90deg, var(--color-navy) 0%, #2870a3 100%);
 }
 
 .eyebrow {
@@ -798,14 +798,29 @@
   gap: clamp(var(--space-8), 5vw, var(--space-16));
   align-items: center;
 }
+/* .split--reverse {
+  direction: rtl;
+  
+} */
 .split--reverse .split__text {
   order: 2;
+}
+.split--40-60 {
+  grid-template-columns: 2fr 3fr;
+}
+.split--45-55 {
+  grid-template-columns: 9fr 11fr;
+}
+.split--60-40 {
+  grid-template-columns: 3fr 2fr;
+}
+.split--55-45 {
+  grid-template-columns: 11fr 9fr;
 }
 .split__image {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4 / 3;
   box-shadow: var(--shadow-lg);
 }
 .split__image img {
@@ -911,9 +926,11 @@
   .split--reverse .split__text {
     order: 0;
   }
+  .split__image {
+    aspect-ratio: 4 / 3;
+  }
   .split--overflowing-image .split__image {
     margin: 0;
-    aspect-ratio: 4 / 3;
   }
 }
 @media (max-width: 560px) {
@@ -933,6 +950,24 @@
 }
 
 /* ----- Class Schedule Table ----- */
+.classes-table-filter {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-8);
+  gap: var(--space-2);
+}
+
+.classes-table-filter .btn {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+}
+.classes-table-filter .btn--outline.is-active {
+  color: #ffffff;
+  background: var(--color-navy);
+}
+
 .classes-table-wrap {
   background: var(--color-surface);
   border: 1px solid var(--color-divider);
@@ -1038,8 +1073,7 @@
 
 /* ----- CTA Banner ----- */
 .cta-banner {
-  background: linear-gradient(135deg, var(--color-navy-3), var(--color-navy));
-  color: #ffffff;
+  background: var(--color-surface-2);
   border-radius: var(--radius-lg);
   padding: clamp(var(--space-8), 3vw, var(--space-16));
   position: relative;
@@ -1055,12 +1089,20 @@
 .cta-banner h2 {
   font-size: var(--text-2xl);
   margin-bottom: var(--space-3);
-  color: #ffffff;
 }
 .cta-banner p {
-  color: rgb(255 255 255 / 0.8);
   max-width: 52ch;
 }
+
+/* ----- Navy Background ----- */
+.cta-banner--navy {
+  background: linear-gradient(135deg, var(--color-navy-3), var(--color-navy));
+  color: #ffffff;
+}
+.cta-banner--navy h2 {
+  color: inherit;
+}
+
 @media (max-width: 720px) {
   .cta-banner__inner {
     grid-template-columns: 1fr;
@@ -1249,7 +1291,7 @@
   gap: var(--space-2);
   min-height: 53px;
   padding: var(--space-3) 24px;
-  background: var(--color-orange);
+  background: var(--color-primary);
   border-radius: var(--radius-sm);
   font-family: var(--font-display);
   font-weight: 700;
@@ -1259,7 +1301,7 @@
   color: #fff;
 }
 .newsletter-card:hover .newsletter-card__submit {
-  background: var(--color-orange-hover);
+  background: var(--color-primary-hover);
 }
 .newsletter-card__submit svg {
   flex: 0 0 auto;
@@ -1699,18 +1741,6 @@ a.contact-split__row-value:focus {
   background: rgb(255 255 255 / 0.5);
 }
 
-/* Scoped Gravity Forms styling inside the contact split panel only,
-   so global GF appearance elsewhere is unaffected. */
-.contact-split__form .gform_wrapper .ginput_complex label,
-.contact-split__form .gform_wrapper .ginput_complex .gform-field-label--type-sub {
-	display: block;
-	font-family: var(--font-body);
-	font-size: var(--text-xs);
-	text-transform: uppercase;
-	font-weight: 700;
-	color: var(--color-text-heading);
-}
-
 /* ----- Staff grid + detail modal ----- */
 
 /* ----- Section heading ----- */
@@ -1758,28 +1788,28 @@ a.contact-split__row-value:focus {
   display: flex;
   flex-direction: column;
   width: calc(100% / var(--staff-cols) - var(--staff-cols-gap-allocation));
+  padding: var(--space-5) var(--space-5) var(--space-4);
   background: var(--color-surface);
   border: 1px solid var(--color-divider);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-interactive);
 }
 
 /* The interactive variant: whole card content is one button. */
 .staff-card__trigger,
 .staff-card__static {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
   width: 100%;
   text-align: left;
-  background: none;
-  border: 0;
-  padding: 0;
-  color: inherit;
 }
 .staff-card__trigger {
   cursor: pointer;
 }
-.staff-card--has-modal .staff-card__trigger:hover {
+.staff-card--has-modal:hover {
   background: var(--color-surface-2);
 }
 .staff-card__trigger:focus-visible {
@@ -1812,9 +1842,6 @@ a.contact-split__row-value:focus {
 }
 
 /* ----- Body ----- */
-.staff-card__body {
-  padding: var(--space-5) var(--space-5) var(--space-4);
-}
 .staff-card__name {
   font-family: var(--font-display);
   font-size: var(--text-lg);
@@ -1870,8 +1897,8 @@ a.contact-split__row-value:focus {
 
 /* ----- Email button (shared .btn fallback below) ----- */
 .staff-card__email {
-  width: calc(100% - var(--space-10));
-  margin: auto var(--space-5) var(--space-5);
+  width: 100%;
+  margin-top: auto;
   word-break: break-word;
 }
 
@@ -1988,11 +2015,11 @@ body.staff-modal-open {
   grid-template-columns: 1fr 2fr;
   align-items: center;
   gap: var(--space-12);
-  background: linear-gradient(135deg, var(--color-navy-3), var(--color-navy));
+  background: var(--color-surface-2);
   border-radius: var(--radius-lg);
   padding: clamp(var(--space-8), 4vw, var(--space-16));
   overflow: hidden;
-  color: #ffffff;
+  
 }
 .class-cta__image {
   width: 100%;
@@ -2007,6 +2034,7 @@ body.staff-modal-open {
   font-size: var(--text-2xl);
   text-transform: uppercase;
   margin-bottom: var(--space-3);
+  color: var(--color-navy-3);
 }
 .class-cta__text {
   color: rgb(255 255 255 / 0.85);
@@ -2015,6 +2043,15 @@ body.staff-modal-open {
 }
 .class-cta__actions {
   margin-top: var(--space-6);
+}
+
+/* ----- Navy Background ----- */
+.class-cta--navy {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-navy-3), var(--color-navy));
+}
+.class-cta--navy .class-cta__title {
+  color: inherit;
 }
 
 .class-cta--no-image {

@@ -68,17 +68,16 @@ function accr_gform_form_tag( $form_tag, $form ) {
  */
 add_filter( 'gform_field_container', 'accr_gform_field_container', 10, 6 );
 function accr_gform_field_container( $container, $field, $form, $css_class, $style, $field_content ) {
-	// $container already contains the wrapper <li> / <div>. Just add an extra "field" class so styles cascade.
 	if ( false === strpos( $container, 'class="' ) ) {
 		return $container;
 	}
 	
 	$additional_css_classes = 'field';
 	if ( ! empty( $field->inputName ) ) {
-		$additional_css_classes .= ' gfield--input-name-'. $field->inputName . '"';
+		$additional_css_classes .= ' gfield--input-name-' . sanitize_html_class( $field->inputName );
 	}
-	
-	return preg_replace( '/class="([^"]*)"/', 'class="$1 '. $additional_css_classes .'"', $container, 1 );
+
+	return preg_replace( '/class="([^"]*)"/', 'class="$1 ' . $additional_css_classes . '"', $container, 1 );
 }
 
 /**

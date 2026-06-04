@@ -15,7 +15,6 @@ $selected   = get_sub_field( 'selected_certifications' );
 $limit      = (int) get_sub_field( 'limit' );
 $cols       = get_sub_field( 'columns' ) ?: '3';
 $bg         = get_sub_field( 'background' ) ?: 'default';
-$link_label = get_sub_field( 'link_label' ) ?: __( 'Get details', 'accr-theme' );
 $footer     = get_sub_field( 'footer_button' );
 
 $per_page = $limit > 0 ? $limit : -1;
@@ -78,11 +77,12 @@ accr_section_open( array( 'background' => $bg ) );
 				while ( $certifications->have_posts() ) :
 					$certifications->the_post();
 					$cert_id    = get_the_ID();
-					$image      = function_exists( 'get_field' ) ? get_field( 'card_image', $cert_id ) : null;
-					$short_name = function_exists( 'get_field' ) ? get_field( 'short_name', $cert_id ) : '';
+					$image      = get_field( 'card_image', $cert_id );
+					$short_name = get_field( 'short_name', $cert_id );
 					$heading    = $short_name ? $short_name : get_the_title();
 					$summary    = has_excerpt() ? get_the_excerpt() : wp_trim_words( wp_strip_all_tags( get_the_content() ), 28 );
 					$anchor     = get_post_field( 'post_name', $cert_id );
+					$button     = get_field( 'button', $cert_id );
 					?>
 					<article id="<?php echo esc_attr( $anchor ); ?>" class="cert-card">
 						<?php if ( is_array( $image ) && ! empty( $image['url'] ) ) : ?>
@@ -96,10 +96,12 @@ accr_section_open( array( 'background' => $bg ) );
 							<?php if ( $summary ) : ?>
 								<p class="cert-card__text"><?php echo wp_kses_post( $summary ); ?></p>
 							<?php endif; ?>
-							<a class="btn btn--primary" href="<?php the_permalink(); ?>" style="align-self:flex-start; padding-left:var(--space-4);">
-								<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
-								<?php echo esc_html( $link_label ); ?>
-							</a>
+							<?php if ( ! empty( $button['url'] ) ) : ?>
+								<a class="btn btn--primary" href="<?php echo esc_attr( $button['url'] ?: '#' ); ?>" style="align-self:flex-start; padding-left:var(--space-4);">
+									<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
+									<?php echo esc_html( $button['label'] ?: __( 'Get Details', 'accr-theme' ) ); ?>
+								</a>
+							<?php endif; ?>
 						</div>
 					</article>
 				<?php endwhile; ?>

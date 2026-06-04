@@ -12,12 +12,14 @@ $text         = get_sub_field( 'text' ) ?: '';
 $button_label = get_sub_field( 'button_label' ) ?: __( 'Contact Us', 'accr-theme' );
 $button_url   = get_sub_field( 'button_url' );
 $image        = get_sub_field( 'image' );
+$bg           = get_sub_field( 'background' ) ?: 'light_grey';
 
 $img_src = is_array( $image ) && ! empty( $image['url'] ) ? $image['url'] : '';
+
+accr_section_open( array( 'class' => 'section section--tight' ) );
 ?>
-<section class="section section--tight">
 	<div class="container">
-		<div class="class-cta<?php echo $img_src ? '' : ' class-cta--no-image'; ?>">
+		<div class="class-cta<?php echo ! $img_src ?? ' class-cta--no-image'; ?> class-cta--<?php echo esc_attr( $bg ); ?>">
 			<?php if ( $img_src ) : ?>
 				<img class="class-cta__image" src="<?php echo esc_url( $img_src ); ?>" alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>" />
 			<?php endif; ?>
@@ -38,4 +40,5 @@ $img_src = is_array( $image ) && ! empty( $image['url'] ) ? $image['url'] : '';
 			</div>
 		</div>
 	</div>
-</section>
+<?php
+accr_section_close();

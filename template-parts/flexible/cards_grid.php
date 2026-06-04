@@ -31,77 +31,26 @@ accr_section_open( array( 'background' => $bg ) );
 		<?php if ( $cards ) : ?>
 			<div class="<?php echo esc_attr( $grid_class ); ?>">
 				<?php foreach ( $cards as $card ) :
-					$anchor = ! empty( $card['anchor'] ) ? ' id="' . esc_attr( $card['anchor'] ) . '"' : '';
-					switch ( $variant ) :
-						/* ----------------------- CERT CARD ---------------------- */
-						/* case 'cert': ?>
-							<article<?php echo $anchor; ?> class="cert-card">
-								<?php if ( ! empty( $card['image'] ) && is_array( $card['image'] ) ) : ?>
-									<div class="cert-card__media">
-										<img src="<?php echo esc_url( $card['image']['url'] ); ?>" alt="<?php echo esc_attr( $card['image']['alt'] ?? '' ); ?>" />
-										<?php if ( ! empty( $card['badge'] ) ) : ?>
-											<span class="cert-card__badge"><?php echo esc_html( $card['badge'] ); ?></span>
-										<?php endif; ?>
-									</div>
-								<?php endif; ?>
-								<div class="cert-card__body">
-									<?php if ( ! empty( $card['title'] ) ) : ?>
-										<h3 class="cert-card__title"><?php echo esc_html( $card['title'] ); ?></h3>
-									<?php endif; ?>
-									<?php if ( ! empty( $card['body'] ) ) : ?>
-										<p class="cert-card__text"><?php echo wp_kses_post( $card['body'] ); ?></p>
-									<?php endif; ?>
-									<?php if ( ! empty( $card['link_label'] ) ) : ?>
-										<a class="cert-card__link" href="<?php echo esc_url( $card['link_url'] ?? '#' ); ?>">
-											<?php echo esc_html( $card['link_label'] ); ?>
-											<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
-										</a>
-									<?php endif; ?>
+					$anchor = ! empty( $card['anchor'] ) ? ' id="' . esc_attr( $card['anchor'] ) . '"' : ''; ?>
+						<article<?php echo $anchor; ?> class="feature-card">
+							<div class="feature-card__icon">
+								<?php
+								if ( 'feature_num' === $variant && ! empty( $card['number'] ) ) {
+									echo '<strong style="font-family: var(--font-display); font-size: var(--text-lg);">' . esc_html( $card['number'] ) . '</strong>';
+								} elseif ( ! empty( $card['icon'] ) ) {
+									echo accr_icon( $card['icon'] );
+								}
+								?>
+							</div>
+							<?php if ( ! empty( $card['title'] ) ) : ?><h3><?php echo esc_html( $card['title'] ); ?></h3><?php endif; ?>
+							<?php if ( ! empty( $card['body'] ) ) : ?><p><?php echo wp_kses_post( $card['body'] ); ?></p><?php endif; ?>
+							<?php if ( ! empty( $card['link_label'] ) ) : ?>
+								<div style="margin-top: var(--space-5);">
+									<a class="btn btn--outline" href="<?php echo esc_url( $card['link_url'] ?? '#' ); ?>" style="font-size: var(--text-xs); padding: var(--space-2) var(--space-4);"><?php echo esc_html( $card['link_label'] ); ?></a>
 								</div>
-							</article>
-							<?php break; */
-
-						/* ----------------------- TESTIMONIAL ---------------------- */
-						case 'testimonial': ?>
-							<blockquote<?php echo $anchor; ?> class="testimonial">
-								<?php if ( ! empty( $card['quote'] ) ) : ?>
-									<p class="testimonial__quote"><?php echo wp_kses_post( $card['quote'] ); ?></p>
-								<?php endif; ?>
-								<div class="testimonial__who">
-									<div class="testimonial__avatar"><?php echo esc_html( $card['avatar'] ?? '' ); ?></div>
-									<div>
-										<div class="testimonial__name"><?php echo esc_html( $card['author'] ?? '' ); ?></div>
-										<div class="testimonial__role"><?php echo esc_html( $card['role'] ?? '' ); ?></div>
-									</div>
-								</div>
-							</blockquote>
-							<?php break;
-
-						/* ----------------------- FEATURE / NUM CARD ---------------------- */
-						case 'feature_num':
-						case 'feature':
-						default: ?>
-							<article<?php echo $anchor; ?> class="feature-card">
-								<div class="feature-card__icon">
-									<?php
-									if ( 'feature_num' === $variant && ! empty( $card['number'] ) ) {
-										echo '<strong style="font-family: var(--font-display); font-size: var(--text-lg);">' . esc_html( $card['number'] ) . '</strong>';
-									} elseif ( ! empty( $card['icon'] ) ) {
-										echo accr_icon( $card['icon'] );
-									}
-									?>
-								</div>
-								<?php if ( ! empty( $card['title'] ) ) : ?><h3><?php echo esc_html( $card['title'] ); ?></h3><?php endif; ?>
-								<?php if ( ! empty( $card['body'] ) ) : ?><p><?php echo wp_kses_post( $card['body'] ); ?></p><?php endif; ?>
-								<?php if ( ! empty( $card['link_label'] ) ) : ?>
-									<div style="margin-top: var(--space-5);">
-										<a class="btn btn--outline" href="<?php echo esc_url( $card['link_url'] ?? '#' ); ?>" style="font-size: var(--text-xs); padding: var(--space-2) var(--space-4);"><?php echo esc_html( $card['link_label'] ); ?></a>
-									</div>
-								<?php endif; ?>
-							</article>
-							<?php break;
-					endswitch;
-				endforeach; ?>
+							<?php endif; ?>
+						</article>
+				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
 
