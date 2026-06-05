@@ -331,6 +331,16 @@
   })();
 
   // ---------- Classes table category filters ----------
+  // Normalize an arbitrary value into a category slug: lowercase, trim, and
+  // keep only [a-z0-9-] so query-string input maps to the same slugs the
+  // server emits in data-filter / data-class-categories.
+  function normalizeCategorySlug(value) {
+    return String(value == null ? '' : value)
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, '');
+  }
+
   document.querySelectorAll('[data-classes-filter]').forEach((filterBar) => {
     const section = filterBar.closest('section');
     const rows = section ? Array.from(section.querySelectorAll('tr[data-class-categories]')) : [];
@@ -338,26 +348,43 @@
 
     if (!rows.length || !buttons.length) return;
 
+    // Apply a filter as if `button` were clicked. Scoped to this filter bar's
+    // own buttons and rows so multiple class tables on a page stay independent.
+    function applyFilter(button) {
+      const activeFilter = button.dataset.filter || '';
+
+      buttons.forEach((btn) => {
+        const isActive = btn === button;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      rows.forEach((row) => {
+        const categories = (row.dataset.classCategories || '').split(/\s+/).filter(Boolean);
+        const shouldShow = !activeFilter || categories.includes(activeFilter);
+        row.hidden = !shouldShow;
+      });
+    }
+
     buttons.forEach((button) => {
       button.setAttribute('type', 'button');
       button.setAttribute('aria-pressed', button.classList.contains('is-active') ? 'true' : 'false');
-
-      button.addEventListener('click', () => {
-        const activeFilter = button.dataset.filter || '';
-
-        buttons.forEach((btn) => {
-          const isActive = btn === button;
-          btn.classList.toggle('is-active', isActive);
-          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        });
-
-        rows.forEach((row) => {
-          const categories = (row.dataset.classCategories || '').split(/\s+/).filter(Boolean);
-          const shouldShow = !activeFilter || categories.includes(activeFilter);
-          row.hidden = !shouldShow;
-        });
-      });
+      button.addEventListener('click', () => applyFilter(button));
     });
+
+    // Preselect a category from the URL (e.g. ?class_category_filter=mobile).
+    // Only acts when the value matches a real filter button in this bar;
+    // otherwise the default (All classes) state is left untouched. Does not
+    // scroll or change focus, so existing browser navigation behavior wins.
+    const requested = normalizeCategorySlug(
+      new URLSearchParams(window.location.search).get('class_category_filter')
+    );
+    if (requested) {
+      const match = buttons.find((btn) => (btn.dataset.filter || '') === requested);
+      if (match) {
+        applyFilter(match);
+      }
+    }
   });
 
   // ---------- Footer newsletter modal ----------
