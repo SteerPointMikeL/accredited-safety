@@ -1021,7 +1021,10 @@
 }
 
 /* When forced into modal context, the JS toggles this class so the calendar
-   is positioned with our recalculated coordinates and pinned above the modal. */
+   is positioned with our recalculated coordinates and pinned above the modal.
+   position:fixed matches the fixed modal overlay so the inline viewport
+   top/left written by the JS stays aligned with the field as the page scrolls. */
 #ui-datepicker-div.accr-datepicker--in-modal {
+  position: fixed !important;
   z-index: 1001 !important;
 }

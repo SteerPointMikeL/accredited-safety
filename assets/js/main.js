@@ -277,8 +277,11 @@
   // top/left computed from the input's document offset. When the Date field
   // lives inside the Request Pricing modal — a fixed, centered, internally
   // scrolling overlay — jQuery UI's offset math can place the calendar far
-  // below the viewport. We re-pin it under the focused input using
-  // getBoundingClientRect() + scroll offsets, then clamp it into the viewport.
+  // below the viewport. We re-pin it under the focused input with
+  // position:fixed using the field's getBoundingClientRect() (viewport)
+  // coordinates, then clamp it into the viewport. Because the popup is fixed
+  // and the field lives in a fixed overlay, no page-scroll offset is added —
+  // doing so would push the calendar away from the field as the page scrolls.
   // Only date fields inside [data-modal] containers are touched, so site-wide
   // datepickers keep their native behavior.
   (function () {
@@ -322,8 +325,6 @@
         return;
       }
       const rect = activeModalInput.getBoundingClientRect();
-      const scrollX = window.scrollX || window.pageXOffset || 0;
-      const scrollY = window.scrollY || window.pageYOffset || 0;
       const margin = 8;
 
       dp.classList.add('accr-datepicker--in-modal');
@@ -351,9 +352,12 @@
       }
       if (leftVp < margin) leftVp = margin;
 
-      dp.style.position = 'absolute';
-      dp.style.top = Math.round(topVp + scrollY) + 'px';
-      dp.style.left = Math.round(leftVp + scrollX) + 'px';
+      // Fixed positioning with raw viewport coordinates: the popup tracks the
+      // field exactly regardless of page scroll. (jQuery UI defaults to
+      // position:absolute with document offsets, which drifts here.)
+      dp.style.position = 'fixed';
+      dp.style.top = Math.round(topVp) + 'px';
+      dp.style.left = Math.round(leftVp) + 'px';
     }
 
     // jQuery UI shows the calendar by setting inline `display:block` and
