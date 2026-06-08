@@ -1045,6 +1045,14 @@
 .classes-table__filled {
   opacity: 0.5;
 }
+.classes-table__no-results td {
+  padding: var(--space-8);
+  text-align: center;
+  background: var(--color-surface-2);
+}
+.classes-table__no-results--hidden {
+  display: none;
+}
 
 @media (max-width: 820px) {
   .classes-table thead {
@@ -1396,7 +1404,7 @@
   background: var(--color-surface);
   color: var(--color-text);
   border-radius: var(--radius-lg);
-  width: min(560px, 100%);
+  width: min(720px, 100%);
   max-height: 92vh;
   overflow: auto;
   box-shadow: var(--shadow-lg);

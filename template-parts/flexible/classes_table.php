@@ -117,7 +117,13 @@ if ( $show_filters ) {
 							<?php
 						endwhile;
 						wp_reset_postdata();
-					else : ?>
+					?>
+						<tr class="classes-table__no-results classes-table__no-results--hidden">
+							<td colspan="3">
+								<?php _e( 'No classes are available for the selected category at this time.', 'accr-theme' ); ?>
+							</td>
+						</tr>
+					<?php else : ?>
 						<tr><td colspan="5" style="text-align:center; padding: var(--space-8); color: var(--color-text-muted);">No upcoming classes scheduled. <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact us</a> for custom scheduling.</td></tr>
 					<?php endif; ?>
 				</tbody>
