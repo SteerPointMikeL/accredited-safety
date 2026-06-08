@@ -651,7 +651,8 @@
 }
 .gform_wrapper .gform_button:disabled,
 .gform_wrapper button[type='submit']:disabled {
-  opacity: 0.6;
+  display: inline-flex !important;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;

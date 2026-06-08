@@ -18,9 +18,9 @@ if ( ! $blog_title ) {
 	$blog_title = __( 'Industry News', 'accr-theme' );
 }
 ?>
-<section class="blog-hero" aria-labelledby="blog-hero-title">
+<section class="page-hero" aria-labelledby="page-hero-title">
 	<div class="container">
-		<h1 id="blog-hero-title" class="blog-hero__title"><?php echo esc_html( $blog_title ); ?></h1>
+		<h1 id="page-hero-title" class="page-hero__title"><?php echo esc_html( $blog_title ); ?></h1>
 	</div>
 </section>
 

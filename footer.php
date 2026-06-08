@@ -68,7 +68,7 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 					<li>Indianapolis, Indiana</li>
 					<li><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></li>
 					<li><a href="<?php echo esc_attr( $phone_link ); ?>"><?php echo esc_html( $phone_display ); ?></a></li>
-					<li><a href="">Workforce Regulation Statement</a></li>
+					<li><a href="/wp-content/uploads/2026/06/Regulation-Statement.pdf" target="_blank">Workforce Regulation Statement</a></li>
 				</ul>
 			</div>
 
