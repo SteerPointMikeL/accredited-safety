@@ -271,6 +271,138 @@
     }
   }
 
+  // ---------- Gravity Forms date picker positioning (modal context) ----------
+  // Gravity Forms renders Date fields with the jQuery UI datepicker, which
+  // appends a single #ui-datepicker-div to <body> and positions it with inline
+  // top/left computed from the input's document offset. When the Date field
+  // lives inside the Request Pricing modal — a fixed, centered, internally
+  // scrolling overlay — jQuery UI's offset math can place the calendar far
+  // below the viewport. We re-pin it under the focused input using
+  // getBoundingClientRect() + scroll offsets, then clamp it into the viewport.
+  // Only date fields inside [data-modal] containers are touched, so site-wide
+  // datepickers keep their native behavior.
+  (function () {
+    if (!modal) return;
+
+    // The input that most recently received focus/click inside any modal.
+    let activeModalInput = null;
+
+    // True when the given node is a GF date input rendered inside a modal.
+    function isModalDateInput(el) {
+      return !!(
+        el &&
+        el.matches &&
+        el.matches('input[class*="datepicker"]') &&
+        el.closest('[data-modal]')
+      );
+    }
+
+    document.addEventListener(
+      'focusin',
+      (e) => {
+        activeModalInput = isModalDateInput(e.target) ? e.target : null;
+      },
+      true
+    );
+    // Touch/click can open the calendar without a focusin in some browsers.
+    document.addEventListener(
+      'click',
+      (e) => {
+        if (isModalDateInput(e.target)) activeModalInput = e.target;
+      },
+      true
+    );
+
+    // Reposition #ui-datepicker-div directly beneath activeModalInput, flipping
+    // above the field if there isn't room below, and clamping horizontally so
+    // it stays within the viewport.
+    function repositionDatepicker(dp) {
+      if (!activeModalInput || !document.body.contains(activeModalInput)) {
+        dp.classList.remove('accr-datepicker--in-modal');
+        return;
+      }
+      const rect = activeModalInput.getBoundingClientRect();
+      const scrollX = window.scrollX || window.pageXOffset || 0;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const margin = 8;
+
+      dp.classList.add('accr-datepicker--in-modal');
+      // Measure after the class is applied so width reflects final styling.
+      const dpWidth = dp.offsetWidth || 0;
+      const dpHeight = dp.offsetHeight || 0;
+      const viewportW = document.documentElement.clientWidth;
+      const viewportH = document.documentElement.clientHeight;
+
+      // Vertical: prefer below the field; flip above if it would overflow and
+      // there's more room above.
+      const spaceBelow = viewportH - rect.bottom;
+      const spaceAbove = rect.top;
+      let topVp;
+      if (spaceBelow >= dpHeight + margin || spaceBelow >= spaceAbove) {
+        topVp = rect.bottom + margin;
+      } else {
+        topVp = Math.max(margin, rect.top - dpHeight - margin);
+      }
+
+      // Horizontal: align to the field's left edge, clamped to the viewport.
+      let leftVp = rect.left;
+      if (leftVp + dpWidth + margin > viewportW) {
+        leftVp = Math.max(margin, viewportW - dpWidth - margin);
+      }
+      if (leftVp < margin) leftVp = margin;
+
+      dp.style.position = 'absolute';
+      dp.style.top = Math.round(topVp + scrollY) + 'px';
+      dp.style.left = Math.round(leftVp + scrollX) + 'px';
+    }
+
+    // jQuery UI shows the calendar by setting inline `display:block` and
+    // writing top/left after our handlers run, so we observe the div for those
+    // mutations and re-pin on the next frame (after jQuery UI finishes).
+    let rafId = 0;
+    function scheduleReposition(dp) {
+      if (dp.style.display === 'none' || !dp.offsetParent) return;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => repositionDatepicker(dp));
+    }
+
+    function watch(dp) {
+      const observer = new MutationObserver(() => scheduleReposition(dp));
+      observer.observe(dp, {
+        attributes: true,
+        attributeFilter: ['style', 'class'],
+      });
+      // Initial pass in case it is already visible.
+      scheduleReposition(dp);
+    }
+
+    // #ui-datepicker-div is created lazily the first time a datepicker opens, so
+    // watch the body for it, then attach the per-div observer once.
+    const existing = document.getElementById('ui-datepicker-div');
+    if (existing) {
+      watch(existing);
+    } else {
+      const bodyObserver = new MutationObserver(() => {
+        const dp = document.getElementById('ui-datepicker-div');
+        if (dp) {
+          bodyObserver.disconnect();
+          watch(dp);
+        }
+      });
+      bodyObserver.observe(document.body, { childList: true });
+    }
+
+    // Keep it pinned while the user scrolls inside the modal or resizes.
+    const onReflow = () => {
+      const dp = document.getElementById('ui-datepicker-div');
+      if (dp && dp.style.display !== 'none' && dp.offsetParent) {
+        scheduleReposition(dp);
+      }
+    };
+    window.addEventListener('resize', onReflow, { passive: true });
+    document.addEventListener('scroll', onReflow, { passive: true, capture: true });
+  })();
+
   // ---------- Staff detail modals ----------
   (function () {
     const triggers = Array.from(document.querySelectorAll('.staff-card__trigger[aria-controls]'));
