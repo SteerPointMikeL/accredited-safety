@@ -343,8 +343,15 @@
 
   document.querySelectorAll('[data-classes-filter]').forEach((filterBar) => {
     const section = filterBar.closest('section');
-    const rows = section ? Array.from(section.querySelectorAll('tr[data-class-categories]')) : [];
+    // Only true class rows count as results; the no-results row carries the
+    // message and must never be treated as one.
+    const rows = section
+      ? Array.from(section.querySelectorAll('tr[data-class-categories]')).filter(
+          (row) => !row.classList.contains('classes-table__no-results')
+        )
+      : [];
     const buttons = Array.from(filterBar.querySelectorAll('[data-filter]'));
+    const noResults = section ? section.querySelector('.classes-table__no-results') : null;
 
     if (!rows.length || !buttons.length) return;
 
@@ -352,6 +359,7 @@
     // own buttons and rows so multiple class tables on a page stay independent.
     function applyFilter(button) {
       const activeFilter = button.dataset.filter || '';
+      let visibleCount = 0;
 
       buttons.forEach((btn) => {
         const isActive = btn === button;
@@ -363,7 +371,18 @@
         const categories = (row.dataset.classCategories || '').split(/\s+/).filter(Boolean);
         const shouldShow = !activeFilter || categories.includes(activeFilter);
         row.hidden = !shouldShow;
+        if (shouldShow) {
+          visibleCount += 1;
+        }
       });
+
+      // Show the no-results message only when an active filter hides every row.
+      // The default/all state always hides it.
+      if (noResults) {
+        const showNoResults = Boolean(activeFilter) && visibleCount === 0;
+        noResults.classList.toggle('classes-table__no-results--hidden', !showNoResults);
+        noResults.hidden = !showNoResults;
+      }
     }
 
     buttons.forEach((button) => {
