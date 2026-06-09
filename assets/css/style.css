@@ -1382,6 +1382,28 @@
   }
 }
 
+/* ----- Mobile footer ----- */
+.mobile-footer {
+  position: sticky;
+  bottom: 0;
+  display: none;
+  padding: var(--space-4);
+  background: var(--color-navy);
+}
+.mobile-footer__actions {
+  display: flex;
+  gap: var(--space-4);
+}
+.mobile-footer__actions .btn {
+  width: 50%;
+  padding: var(--space-2) var(--space-3);
+}
+@media (max-width: 980px) {
+  .mobile-footer {
+    display: block;
+  }
+}
+
 /* ----- Modal ----- */
 .modal-backdrop {
   position: fixed;
