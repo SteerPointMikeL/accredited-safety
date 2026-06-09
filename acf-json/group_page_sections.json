@@ -234,23 +234,24 @@
                                 },
                                 {
                                     "key": "f_hi_button_open_modal",
-                                    "label": "Triggers pricing modal (legacy)",
+                                    "label": "Triggers pricing modal",
                                     "name": "open_modal",
                                     "aria-label": "",
                                     "type": "true_false",
-                                    "instructions": "Optional. If checked, this button opens the legacy Request-Pricing modal. Leave off if you use Gravity Forms.",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "instructions": "Optional. If checked, this button opens the Request-Pricing modal window.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "ui": 1,
-                                    "default_value": 0,
                                     "message": "",
+                                    "default_value": 0,
+                                    "allow_in_bindings": 1,
                                     "ui_on_text": "",
                                     "ui_off_text": "",
+                                    "ui": 1,
                                     "parent_repeater": "f_hi_buttons"
                                 }
                             ]
@@ -1251,23 +1252,24 @@
                                 },
                                 {
                                     "key": "f_sp_button_open_modal",
-                                    "label": "Triggers pricing modal (legacy)",
+                                    "label": "Triggers pricing modal",
                                     "name": "open_modal",
                                     "aria-label": "",
                                     "type": "true_false",
-                                    "instructions": "Optional. If checked, this button opens the legacy Request-Pricing modal. Leave off if you use Gravity Forms.",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "instructions": "Optional. If checked, this button opens the legacy Request-Pricing modal window.",
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "ui": 1,
-                                    "default_value": 0,
                                     "message": "",
+                                    "default_value": 0,
+                                    "allow_in_bindings": 1,
                                     "ui_on_text": "",
                                     "ui_off_text": "",
+                                    "ui": 1,
                                     "parent_repeater": "f_sp_buttons"
                                 }
                             ]
@@ -3735,5 +3737,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780615290
+    "modified": 1781031999
 }

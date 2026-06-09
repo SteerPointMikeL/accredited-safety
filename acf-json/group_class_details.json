@@ -343,20 +343,21 @@
             "name": "detail_columns",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "Optional. Two-column list of class details shown inside the panel (e.g. Topics Covered, What to Bring, Designations, Accommodations). Each column gets its chosen icon prepended to the title. If empty, the legacy Topics \/ Designations \/ What to bring \/ Accommodations fields are used instead.",
-            "required": false,
-            "conditional_logic": false,
+            "instructions": "Optional. Two-column list of class details shown inside the panel (e.g. Topics Covered, What to Bring, Designations, Accommodations). Each column gets its chosen icon prepended to the title.",
+            "required": 0,
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add detail column",
+            "pagination": 0,
             "min": 0,
             "max": 0,
-            "rows_per_page": 20,
             "collapsed": "",
+            "button_label": "Add detail column",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_class_detail_icon",
@@ -506,5 +507,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780601719
+    "modified": 1781031908
 }

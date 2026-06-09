@@ -48,8 +48,6 @@ while ( have_posts() ) :
 	$schedule_rows = get_field( 'schedule_rows' );
 
 	/* ----- Lower two-column detail blocks ----- */
-	// Preferred: the reusable detail_columns repeater (icon + heading + content).
-	// Fallback: the legacy single-purpose fields, preserved for existing content.
 	$info_blocks = array();
 	$detail_rows = get_field( 'detail_columns' );
 	if ( ! empty( $detail_rows ) && is_array( $detail_rows ) ) {

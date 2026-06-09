@@ -97,7 +97,7 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 	</div>
 </footer>
 
-<!-- Request Pricing modal (legacy — keep so static buttons with data-request-pricing still work). -->
+<!-- Request Pricing modal -->
 <div class="modal-backdrop" data-modal="pricing" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pricing-modal-title">
 	<div class="modal">
 		<div class="modal__head">
@@ -117,63 +117,6 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 			$pricing_form_id = (int) get_theme_mod( 'accr_pricing_form_id', 0 );
 			if ( $pricing_form_id && function_exists( 'gravity_form' ) ) {
 				echo accr_render_gravity_form( $pricing_form_id );
-			} else {
-				/* Static-form fallback so the modal still functions out-of-the-box.
-				 * Once Gravity Forms is configured, set "Request Pricing form ID" in the
-				 * Customizer and this block will be replaced automatically. */
-				?>
-				<form novalidate>
-					<input type="hidden" name="class_name" value="" />
-					<div class="form-row">
-						<div class="field">
-							<label for="pf-first">First name <span class="req">*</span></label>
-							<input id="pf-first" name="first_name" type="text" required autocomplete="given-name" />
-						</div>
-						<div class="field">
-							<label for="pf-last">Last name <span class="req">*</span></label>
-							<input id="pf-last" name="last_name" type="text" required autocomplete="family-name" />
-						</div>
-					</div>
-					<div class="field">
-						<label for="pf-email">Email <span class="req">*</span></label>
-						<input id="pf-email" name="email" type="email" required autocomplete="email" />
-					</div>
-					<div class="field">
-						<label for="pf-phone">Phone <span class="req">*</span></label>
-						<input id="pf-phone" name="phone" type="tel" required autocomplete="tel" />
-					</div>
-					<div class="field">
-						<label for="pf-company">Company</label>
-						<input id="pf-company" name="company" type="text" autocomplete="organization" />
-					</div>
-					<div class="field">
-						<label for="pf-count">How many operators?</label>
-						<select id="pf-count" name="operator_count">
-							<option value="1">Just me</option>
-							<option value="2-4">2–4</option>
-							<option value="5-9">5–9</option>
-							<option value="10+">10+ (group pricing)</option>
-						</select>
-					</div>
-					<div class="field">
-						<label for="pf-notes">Anything we should know?</label>
-						<textarea id="pf-notes" name="notes" placeholder="Preferred dates, on-site request, specific certifications…"></textarea>
-					</div>
-					<button type="submit" class="btn btn--primary btn--lg btn--block">
-						Send request
-						<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
-					</button>
-					<p style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: var(--space-3); text-align:center;">
-						We'll never share your info. You'll hear back within 1 business day.
-					</p>
-				</form>
-				<div class="modal__success">
-					<?php echo accr_icon( 'check_circle', array( 'stroke-width' => '2.5' ) ); ?>
-					<h3>Request received</h3>
-					<p>Thanks — someone from our team will be in touch within one business day with pricing and availability.</p>
-					<button type="button" class="btn btn--outline" data-modal-close style="margin-top: var(--space-5);">Close</button>
-				</div>
-				<?php
 			}
 			?>
 		</div>

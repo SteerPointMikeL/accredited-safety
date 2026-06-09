@@ -59,7 +59,7 @@ function accr_customize_register( $wp_customize ) {
 		'accr_phone_link',
 		array(
 			'label'       => __( 'Phone number (tel: link)', 'accr-theme' ),
-			'description' => __( 'The href used for click-to-call links, e.g. tel:8447173665.', 'accr-theme' ),
+			'description' => __( 'The href used for click-to-call links, e.g. tel:8005551234.', 'accr-theme' ),
 			'section'     => 'accr_contact',
 			'type'        => 'text',
 		)
@@ -150,7 +150,7 @@ function accr_customize_register( $wp_customize ) {
 		'accr_pricing_form_id',
 		array(
 			'label'       => __( 'Request-Pricing Gravity Forms ID', 'accr-theme' ),
-			'description' => __( 'The Gravity Forms form that replaces the legacy Request-Pricing modal. Leave at 0 to show the built-in fallback form.', 'accr-theme' ),
+			'description' => __( 'The Gravity Forms form for the Request-Pricing modal.', 'accr-theme' ),
 			'section'     => 'accr_forms',
 			'type'        => 'number',
 			'input_attrs' => array( 'min' => 0, 'step' => 1 ),
@@ -162,24 +162,6 @@ function accr_customize_register( $wp_customize ) {
 		array(
 			'title'    => __( 'Footer Newsletter', 'accr-theme' ),
 			'priority' => 160,
-		)
-	);
-
-	$wp_customize->add_setting(
-		'accr_newsletter_form_id',
-		array(
-			'default'           => 0,
-			'sanitize_callback' => 'absint',
-		)
-	);
-	$wp_customize->add_control(
-		'accr_newsletter_form_id',
-		array(
-			'label'       => __( 'Newsletter Gravity Forms ID', 'accr-theme' ),
-			'description' => __( 'The Gravity Forms form shown in the newsletter modal. Leave at 0 to show a placeholder until a form is configured.', 'accr-theme' ),
-			'section'     => 'accr_newsletter',
-			'type'        => 'number',
-			'input_attrs' => array( 'min' => 0, 'step' => 1 ),
 		)
 	);
 
