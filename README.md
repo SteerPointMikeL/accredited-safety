@@ -101,7 +101,7 @@ WooCommerce is **not** supported by this theme and no WC hooks are present.
    - Create a "Request Pricing" form (first name / last name / email / phone / company / operator count / notes).
    - Create a "Contact" form (first name / last name / email / phone / topic / message).
    - In the Customizer, set:
-     - **Request-Pricing form ID** (powers the legacy modal) under *Appearance → Customize → Forms* (exposed via `get_theme_mod('accr_pricing_form_id')`; see "Customizer keys" below).
+     - **Request-Pricing form ID** (appears in the modal window) under *Appearance → Customize → Forms* (exposed via `get_theme_mod('accr_pricing_form_id')`; see "Customizer keys" below).
    - On the **Contact** page, edit the "Contact info + form split" section and set "Gravity Form ID" to your contact form's ID.
 
 9. **Verify**
@@ -156,7 +156,7 @@ Slug: `/class/{slug}/`. Side-panel "Class details" fields:
 - `show_in_schedule` toggle
 - `request_class_label` (override for the modal's `data-class` attribute)
 - `schedule_rows` repeater (badge / day label, date display, time, description)
-- `detail_columns` repeater (icon + title + content) — two-column detail list inside the panel; falls back to the legacy `topics_covered` / `designations` / `what_to_bring` / `accommodations` fields
+- `detail_columns` repeater (icon + title + content) — two-column detail list inside the panel
 
 The single-class template renders the post featured image beside the panel title when set, and the "We Will Travel to You" CTA is authored via the `travel_cta` flexible **Page Sections** layout (no longer hardcoded).
 
@@ -171,7 +171,7 @@ Categorize each class with one or more **Class Categories** terms (`Mobile`, `Ar
 - Submit buttons get `btn btn--primary btn--lg btn--block`.
 - `class_exists('GFForms')` adds `has-gravityforms` to `<body>` so CSS can target it.
 - A `accr_render_gravity_form( $form_id )` helper renders a form with a graceful "Gravity Forms is not active" fallback box. The flexible layouts `contact_split` and `gravity_form` use it.
-- **No hard-coded forms** appear in templates except the legacy "Request Pricing" modal in `footer.php`, which is shown only when no Gravity Form ID has been set in the Customizer (`accr_pricing_form_id`). Replace it by setting that ID and the modal will render the Gravity Form instead.
+- **No hard-coded forms** appear in templates.
 
 ---
 
@@ -186,7 +186,7 @@ These `theme_mod` keys are read by the templates and are now editable in *Appear
 | `accr_email` | `info@accredited-safety.com` | Contact Info | Header / footer |
 | `accr_copyright` | © {year} Accredited Safety Solutions… | Footer | Footer bottom |
 | `accr_legal_line` | NCCCO is a registered trademark… | Footer | Footer bottom |
-| `accr_pricing_form_id` | `0` | Forms | Replaces the legacy Request-Pricing modal form with a Gravity Form |
+| `accr_pricing_form_id` | `0` | Forms | Pricing modal Gravity Form |
 | `accr_newsletter_form_id` | `0` | Footer Newsletter | Newsletter modal Gravity Form |
 | `accr_newsletter_heading` | Sign up for our newsletter | Footer Newsletter | Newsletter card heading |
 | `accr_newsletter_description` | Stay current on NCCCO… | Footer Newsletter | Newsletter card description |
@@ -200,7 +200,7 @@ These `theme_mod` keys are read by the templates and are now editable in *Appear
 ## Assumptions & limitations
 
 1. **Image attachments are referenced by URL, not WP attachment ID.** The WXR doesn't ship attachment posts; it embeds image URLs pointing at `/wp-content/themes/accredited-safety-solutions/assets/images/…`. A small filter on `acf/format_value/type=image` (in `inc/helpers.php`) reads companion `__url` / `__alt` meta and synthesizes the array shape ACF would return, so templates render unchanged. **Side effect:** these images aren't selectable via the Media Library until an admin uploads them. To "promote" them, upload the same four files in *Media → Add New* and re-select them on each image field.
-2. **No hardcoded copy in PHP templates.** All headlines, paragraphs, eyebrows, buttons, stats, testimonials, and class names live in the WXR file → postmeta. Templates are pure presentation. The exception is the **legacy Request-Pricing modal in `footer.php`** (form fields and the "We'll never share your info" microcopy), which exists as a graceful fallback for when Gravity Forms is not yet wired up. Replacing it with a Gravity Form via `accr_pricing_form_id` is the supported path.
+2. **No hardcoded copy in PHP templates.** All headlines, paragraphs, eyebrows, buttons, stats, testimonials, and class names live in the WXR file → postmeta. Templates are pure presentation.
 3. **The schedule table is data-driven from the Class CPT.** The nine dated classes in the design's table were imported as Class CPT entries. To change a date, edit the class, not the page.
 4. **No WooCommerce hooks.** No WC bootstrap, no shop URLs, no product loops.
 5. **`class_category` filter buttons** are rendered as accessible HTML buttons and progressively enhanced by `assets/js/main.js`; if JavaScript is disabled, all class rows remain visible.

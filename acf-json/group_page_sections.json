@@ -1256,7 +1256,7 @@
                                     "name": "open_modal",
                                     "aria-label": "",
                                     "type": "true_false",
-                                    "instructions": "Optional. If checked, this button opens the legacy Request-Pricing modal window.",
+                                    "instructions": "Optional. If checked, this button opens the Request-Pricing modal window.",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
@@ -3263,26 +3263,6 @@
                             "append": ""
                         },
                         {
-                            "key": "f_cs_form_title",
-                            "label": "Form title (legacy, optional)",
-                            "name": "form_title",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "Legacy. Used as fallback if Form heading is empty.",
-                            "required": false,
-                            "conditional_logic": false,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
-                        },
-                        {
                             "key": "f_cs_form_lead",
                             "label": "Form lead text (optional)",
                             "name": "form_lead",
@@ -3737,5 +3717,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1781031999
+    "modified": 1781032449
 }
