@@ -271,6 +271,236 @@
     }
   }
 
+  // ---------- Gravity Forms date picker positioning (modal context) ----------
+  // Gravity Forms renders Date fields with the jQuery UI datepicker, which
+  // appends a single #ui-datepicker-div to <body> and positions it with inline
+  // top/left computed from the input's document offset. When the Date field
+  // lives inside the Request Pricing modal — a fixed, centered, internally
+  // scrolling overlay — jQuery UI's offset math can place the calendar far
+  // below the viewport. We re-pin it under the focused input with
+  // position:fixed using the field's getBoundingClientRect() (viewport)
+  // coordinates, then clamp it into the viewport. Because the popup is fixed
+  // and the field lives in a fixed overlay, no page-scroll offset is added —
+  // doing so would push the calendar away from the field as the page scrolls.
+  // Only date fields inside [data-modal] containers are touched, so site-wide
+  // datepickers keep their native behavior.
+  // Pure helpers, exposed for unit testing (see tests/datepicker-styles.test.js).
+  // These contain the selector and coordinate logic that must keep matching the
+  // theme's real Gravity Forms markup; keeping them pure lets tests exercise the
+  // actual code path instead of a reimplementation.
+  const accrDatepicker = {
+    // CSS selector for a Gravity Forms / jQuery UI date input. GF renders the
+    // visible date input with the `datepicker` class (e.g. "datepicker medium
+    // mdy"), wraps it in `.ginput_container_date`, and ids it `input_<form>_<id>`.
+    // jQuery UI also tags the bound input `hasDatepicker`. Matching any of these
+    // means we no longer depend on a single brittle class token.
+    INPUT_SELECTOR: [
+      'input.datepicker',
+      'input.hasDatepicker',
+      '.ginput_container_date input',
+      '.gfield_date input[type="text"]',
+    ].join(','),
+
+    // True when `el` is a date input that lives inside a theme modal. Scoping to
+    // [data-modal] keeps site-wide datepickers on their native behavior.
+    isModalDateInput(el) {
+      return !!(
+        el &&
+        typeof el.matches === 'function' &&
+        el.matches(this.INPUT_SELECTOR) &&
+        el.closest('[data-modal]')
+      );
+    },
+
+    // Compute the fixed-position viewport coordinates for the calendar popup
+    // given the field's getBoundingClientRect() and the popup/viewport sizes.
+    // Preserves the corrected math from 46a4fe4: viewport coordinates only, no
+    // page-scroll offset (the popup is position:fixed inside a fixed overlay).
+    computePosition(rect, dpWidth, dpHeight, viewportW, viewportH, margin) {
+      const m = typeof margin === 'number' ? margin : 8;
+
+      // Vertical: prefer below the field; flip above if it would overflow and
+      // there's more room above.
+      const spaceBelow = viewportH - rect.bottom;
+      const spaceAbove = rect.top;
+      let top;
+      if (spaceBelow >= dpHeight + m || spaceBelow >= spaceAbove) {
+        top = rect.bottom + m;
+      } else {
+        top = Math.max(m, rect.top - dpHeight - m);
+      }
+
+      // Horizontal: align to the field's left edge, clamped to the viewport.
+      let left = rect.left;
+      if (left + dpWidth + m > viewportW) {
+        left = Math.max(m, viewportW - dpWidth - m);
+      }
+      if (left < m) left = m;
+
+      return { top: Math.round(top), left: Math.round(left) };
+    },
+  };
+  // Expose for the test harness (and only there — harmless in the browser).
+  if (typeof window !== 'undefined') window.accrDatepicker = accrDatepicker;
+
+  // ---------- Gravity Forms date picker positioning (modal context) ----------
+  // Gravity Forms renders Date fields with the jQuery UI datepicker, which
+  // appends a single #ui-datepicker-div to <body> and positions it with inline
+  // top/left computed from the input's document offset. When the Date field
+  // lives inside a modal — a fixed, centered, internally scrolling overlay —
+  // jQuery UI's offset math can place the calendar far below the viewport. We
+  // re-pin it under the focused input with position:fixed using the field's
+  // getBoundingClientRect() (viewport) coordinates, then clamp it into the
+  // viewport. Because the popup is fixed and the field lives in a fixed overlay,
+  // no page-scroll offset is added. Only date fields inside [data-modal]
+  // containers are touched, so site-wide datepickers keep native behavior.
+  //
+  // This runs on every page (not gated on the pricing modal existing) because
+  // any theme modal — pricing, newsletter, future — may host a GF date field,
+  // and the GF form can be injected/redrawn via AJAX after initial load.
+  (function () {
+    // The date input whose calendar is currently open. Resolved from jQuery UI's
+    // own datepicker state first (authoritative), falling back to the last
+    // modal date input we saw focused/clicked.
+    let lastSeenModalInput = null;
+
+    // jQuery UI knows exactly which input the open calendar belongs to via its
+    // current/last instance. Reading it removes any dependence on guessing the
+    // input from event targets or class tokens.
+    function jqueryActiveInput() {
+      const $ = window.jQuery;
+      const dpApi = $ && $.datepicker;
+      if (!dpApi) return null;
+      const inst = dpApi._curInst || null;
+      const input = (inst && inst.input && inst.input[0]) || dpApi._lastInput || null;
+      return input || null;
+    }
+
+    // The input to pin under: prefer jQuery UI's live instance, but only if it
+    // is a modal date input; otherwise fall back to the last modal input we saw.
+    function resolveActiveModalInput() {
+      const jq = jqueryActiveInput();
+      if (accrDatepicker.isModalDateInput(jq)) return jq;
+      if (
+        lastSeenModalInput &&
+        document.body.contains(lastSeenModalInput) &&
+        accrDatepicker.isModalDateInput(lastSeenModalInput)
+      ) {
+        return lastSeenModalInput;
+      }
+      return null;
+    }
+
+    // Track the last modal date input the user interacted with. focusin and
+    // mousedown both fire before jQuery UI opens the calendar; covering all
+    // three (plus click) handles browsers/inputs that skip one of them.
+    function noteInteraction(e) {
+      const target = e.target;
+      if (accrDatepicker.isModalDateInput(target)) {
+        lastSeenModalInput = target;
+      } else if (
+        target &&
+        typeof target.closest === 'function' &&
+        target.closest('#ui-datepicker-div')
+      ) {
+        // Clicks inside the calendar (prev/next/day) must not clear the input.
+        return;
+      }
+    }
+    document.addEventListener('focusin', noteInteraction, true);
+    document.addEventListener('mousedown', noteInteraction, true);
+    document.addEventListener('click', noteInteraction, true);
+
+    // Reposition #ui-datepicker-div directly beneath the active modal input,
+    // flipping above if there's no room below and clamping into the viewport.
+    function repositionDatepicker(dp) {
+      const input = resolveActiveModalInput();
+      if (!input) {
+        dp.classList.remove('accr-datepicker--in-modal');
+        return;
+      }
+      // Apply the class first so width/height reflect final in-modal styling.
+      dp.classList.add('accr-datepicker--in-modal');
+
+      const rect = input.getBoundingClientRect();
+      const pos = accrDatepicker.computePosition(
+        rect,
+        dp.offsetWidth || 0,
+        dp.offsetHeight || 0,
+        document.documentElement.clientWidth,
+        document.documentElement.clientHeight,
+        8
+      );
+
+      // Fixed positioning with raw viewport coordinates: the popup tracks the
+      // field exactly regardless of page scroll. (jQuery UI defaults to
+      // position:absolute with document offsets, which drifts here.)
+      dp.style.position = 'fixed';
+      dp.style.top = pos.top + 'px';
+      dp.style.left = pos.left + 'px';
+    }
+
+    // The calendar is "open" when jQuery UI has shown it. Inline display is the
+    // reliable signal; offsetParent can be transiently null mid-mutation, so we
+    // do not gate on it (that dropped the only reposition pass before).
+    function isOpen(dp) {
+      return !!dp && dp.style.display !== 'none' && dp.getAttribute('aria-hidden') !== 'true';
+    }
+
+    // jQuery UI shows the calendar by setting inline display/top/left after our
+    // handlers run, so we observe the div for those mutations and re-pin on the
+    // next frame (after jQuery UI finishes writing its own coordinates).
+    let rafId = 0;
+    function scheduleReposition(dp) {
+      if (!isOpen(dp)) return;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => repositionDatepicker(dp));
+    }
+
+    function watch(dp) {
+      const observer = new MutationObserver(() => scheduleReposition(dp));
+      observer.observe(dp, {
+        attributes: true,
+        attributeFilter: ['style', 'class'],
+      });
+      // Initial pass in case it is already visible.
+      scheduleReposition(dp);
+    }
+
+    // #ui-datepicker-div is created lazily the first time a datepicker opens, so
+    // watch the body for it, then attach the per-div observer once.
+    const existing = document.getElementById('ui-datepicker-div');
+    if (existing) {
+      watch(existing);
+    } else {
+      const bodyObserver = new MutationObserver(() => {
+        const dp = document.getElementById('ui-datepicker-div');
+        if (dp) {
+          bodyObserver.disconnect();
+          watch(dp);
+        }
+      });
+      bodyObserver.observe(document.body, { childList: true });
+    }
+
+    // jQuery UI fires gform_post_render after AJAX redraws; the datepicker may
+    // be re-initialized, so re-pin if a calendar is already open afterwards.
+    if (window.jQuery) {
+      window.jQuery(document).on('gform_post_render', () => {
+        const dp = document.getElementById('ui-datepicker-div');
+        if (dp) scheduleReposition(dp);
+      });
+    }
+
+    // Keep it pinned while the user scrolls inside the modal or resizes.
+    const onReflow = () => {
+      const dp = document.getElementById('ui-datepicker-div');
+      if (isOpen(dp)) scheduleReposition(dp);
+    };
+    window.addEventListener('resize', onReflow, { passive: true });
+    document.addEventListener('scroll', onReflow, { passive: true, capture: true });
+  })();
+
   // ---------- Staff detail modals ----------
   (function () {
     const triggers = Array.from(document.querySelectorAll('.staff-card__trigger[aria-controls]'));

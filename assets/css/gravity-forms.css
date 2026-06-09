@@ -791,3 +791,240 @@
   font-size: var(--text-xs);
   color: var(--color-text-muted);
 }
+
+/* =========================================================
+   jQuery UI / Gravity Forms date picker calendar
+   ---------------------------------------------------------
+   GF renders Date fields with the jQuery UI datepicker, whose
+   bundled CSS the theme suppresses along with the rest of GF's
+   stylesheet. jQuery UI appends a single #ui-datepicker-div to
+   <body> (outside .gform_wrapper and outside the modal), so
+   these rules are scoped to that element rather than the form
+   wrapper. The z-index sits above the pricing modal backdrop
+   (.modal-backdrop is z-index 100) so the calendar is usable
+   when a Date field is opened from inside the modal.
+   ========================================================= */
+#ui-datepicker-div.ui-datepicker {
+  display: none;
+  width: 19rem;
+  max-width: calc(100vw - var(--space-4) * 2);
+  padding: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000 !important; /* above .modal-backdrop (z-index 100) */
+}
+
+/* Header: month/year label + prev/next navigation */
+#ui-datepicker-div .ui-datepicker-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-1) var(--space-2);
+  margin-bottom: var(--space-1);
+  border-bottom: 1px solid var(--color-divider);
+}
+#ui-datepicker-div .ui-datepicker-title {
+  flex: 1 1 auto;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--color-text-heading);
+}
+#ui-datepicker-div .ui-datepicker-title select {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.35rem;
+  margin: 0 0.1rem;
+}
+
+/* Prev / next arrows */
+#ui-datepicker-div .ui-datepicker-prev,
+#ui-datepicker-div .ui-datepicker-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  background: transparent;
+  transition: background var(--transition-interactive),
+    color var(--transition-interactive);
+  /* jQuery UI hides its icon text off-screen; we draw arrows via ::before */
+  overflow: hidden;
+  text-indent: -9999px;
+  position: relative;
+}
+#ui-datepicker-div .ui-datepicker-prev::before,
+#ui-datepicker-div .ui-datepicker-next::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  text-indent: 0;
+}
+#ui-datepicker-div .ui-datepicker-prev::before {
+  transform: translate(-30%, -50%) rotate(135deg);
+}
+#ui-datepicker-div .ui-datepicker-next::before {
+  transform: translate(-70%, -50%) rotate(-45deg);
+}
+#ui-datepicker-div .ui-datepicker-prev:hover,
+#ui-datepicker-div .ui-datepicker-next:hover {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+/* jQuery UI disables nav by adding .ui-state-disabled */
+#ui-datepicker-div .ui-datepicker-prev.ui-state-disabled,
+#ui-datepicker-div .ui-datepicker-next.ui-state-disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Calendar grid */
+#ui-datepicker-div .ui-datepicker-calendar {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+#ui-datepicker-div .ui-datepicker-calendar th {
+  padding: var(--space-1) 0;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-faint);
+  text-align: center;
+}
+#ui-datepicker-div .ui-datepicker-calendar td {
+  padding: 0.1rem;
+  text-align: center;
+}
+/* Day cells: jQuery UI renders an <a> for selectable days and a <span>
+   for non-selectable (other-month / disabled) days. */
+#ui-datepicker-div .ui-datepicker-calendar td a,
+#ui-datepicker-div .ui-datepicker-calendar td span {
+  display: block;
+  padding: 0.4rem 0;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  text-decoration: none;
+  color: var(--color-text);
+}
+#ui-datepicker-div .ui-datepicker-calendar td a {
+  cursor: pointer;
+  transition: background var(--transition-interactive),
+    color var(--transition-interactive);
+}
+#ui-datepicker-div .ui-datepicker-calendar td a:hover,
+#ui-datepicker-div .ui-datepicker-calendar td a.ui-state-hover {
+  background: var(--color-surface-2);
+  color: var(--color-text-heading);
+}
+/* Today */
+#ui-datepicker-div .ui-datepicker-calendar td.ui-datepicker-today a,
+#ui-datepicker-div .ui-datepicker-calendar td.ui-datepicker-today span {
+  background: var(--color-surface-2);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+/* Selected / active day */
+#ui-datepicker-div .ui-datepicker-calendar td a.ui-state-active,
+#ui-datepicker-div .ui-datepicker-calendar td a.ui-state-highlight,
+#ui-datepicker-div
+  .ui-datepicker-calendar
+  td.ui-datepicker-current-day
+  a {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-weight: 700;
+  box-shadow: none;
+}
+#ui-datepicker-div .ui-datepicker-calendar td a.ui-state-active:hover,
+#ui-datepicker-div
+  .ui-datepicker-calendar
+  td.ui-datepicker-current-day
+  a:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+}
+/* Disabled / unselectable days */
+#ui-datepicker-div .ui-datepicker-calendar td.ui-datepicker-unselectable span,
+#ui-datepicker-div .ui-datepicker-calendar td.ui-state-disabled span,
+#ui-datepicker-div .ui-datepicker-calendar td.ui-datepicker-other-month span {
+  color: var(--color-text-faint);
+  opacity: 0.55;
+  cursor: default;
+}
+/* Week-number column when display is enabled */
+#ui-datepicker-div .ui-datepicker-calendar td.ui-datepicker-week-col,
+#ui-datepicker-div .ui-datepicker-week-end span {
+  color: var(--color-text-muted);
+}
+
+/* Optional button panel (Today / Done) some GF configs enable */
+#ui-datepicker-div .ui-datepicker-buttonpane {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-divider);
+}
+#ui-datepicker-div .ui-datepicker-buttonpane button {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-inverse);
+  background: var(--color-secondary);
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+}
+#ui-datepicker-div .ui-datepicker-buttonpane button:hover {
+  background: var(--color-secondary-hover);
+}
+
+/* Multi-month layouts (numberOfMonths > 1) */
+#ui-datepicker-div.ui-datepicker-multi {
+  width: auto;
+}
+#ui-datepicker-div .ui-datepicker-group {
+  float: left;
+  padding: 0 var(--space-2);
+}
+#ui-datepicker-div .ui-datepicker-row-break {
+  clear: both;
+  width: 100%;
+  font-size: 0;
+}
+
+/* When forced into modal context, the JS toggles this class so the calendar
+   is positioned with our recalculated coordinates and pinned above the modal.
+   position:fixed matches the fixed modal overlay so the inline viewport
+   top/left written by the JS stays aligned with the field as the page scrolls. */
+#ui-datepicker-div.accr-datepicker--in-modal {
+  position: fixed !important;
+  z-index: 1001 !important;
+}
