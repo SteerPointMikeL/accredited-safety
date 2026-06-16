@@ -6,10 +6,11 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$eyebrow      = get_sub_field( 'eyebrow' );
-$title        = get_sub_field( 'title' );
-$show_filters = get_sub_field( 'show_filters' );
-$limit        = (int) get_sub_field( 'limit' );
+$eyebrow               = get_sub_field( 'eyebrow' );
+$title                 = get_sub_field( 'title' );
+$show_filters          = get_sub_field( 'show_filters' );
+$show_empty_categories = (bool) get_sub_field( 'show_empty_categories' );
+$limit                 = (int) get_sub_field( 'limit' );
 if ( $limit < 1 ) {
 	$limit = 50;
 }
@@ -48,7 +49,7 @@ $cat_terms = array();
 if ( $show_filters ) {
 	$cat_terms = get_terms( array(
 		'taxonomy'   => 'class_category',
-		'hide_empty' => false,
+		'hide_empty' => ! $show_empty_categories,
 	) );
 	if ( is_wp_error( $cat_terms ) ) {
 		$cat_terms = array();

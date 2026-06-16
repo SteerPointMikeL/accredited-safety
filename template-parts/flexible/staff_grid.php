@@ -23,11 +23,6 @@ if ( ! $members ) {
 
 $grid_class = 'staff-grid staff-grid--' . intval( $cols );
 
-/* Stable, unique prefix for ids so multiple staff_grid sections coexist on one page. */
-static $accr_staff_grid_n = 0;
-$accr_staff_grid_n++;
-$uid = 'staff-' . get_the_ID() . '-' . $accr_staff_grid_n;
-
 /* Collected modal markup, printed once after the grid. */
 $modals = array();
 
@@ -59,7 +54,7 @@ accr_section_open( array( 'background' => $bg ) );
 				}
 
 				$has_modal = ( '' !== $modal );
-				$modal_id  = $uid . '-modal-' . $i;
+				$modal_id  = wp_unique_id( 'staff-modal-' );
 
 				/* Build the inner card content (shared between button and static markup). */
 				ob_start();

@@ -100,7 +100,7 @@
                     "default_value": "",
                     "maxlength": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "Get Details",
+                    "placeholder": "Get Details \/ More to Come",
                     "prepend": "",
                     "append": ""
                 },
@@ -110,7 +110,7 @@
                     "name": "url",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "Optional. Button will appear in a disabled state if this field is left blank.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -149,5 +149,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1780586983
+    "modified": 1781190569
 }

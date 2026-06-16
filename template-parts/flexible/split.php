@@ -89,11 +89,11 @@ accr_section_open( array(
 				<?php if ( $bullets ) :
 					$bullets_class = 'split__bullets';
 					if ( 'arrow' === $bullet_style ) {
-						$bullets_class .= ' .split__bullets--arrow';
+						$bullets_class .= ' split__bullets--arrow';
 					} elseif ( 'arrow_2col' === $bullet_style ) {
-						$bullets_class .= ' .split__bullets--arrow-2-column';
+						$bullets_class .= ' split__bullets--arrow-2-column';
 					} elseif ( 'check' === $bullet_style ) {
-						$bullets_class .= ' .split__bullets--check';
+						$bullets_class .= ' split__bullets--check';
 					}
 					?>
 					<ul class="<?php echo $bullets_class; ?>">

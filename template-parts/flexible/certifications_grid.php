@@ -80,7 +80,8 @@ accr_section_open( array( 'background' => $bg ) );
 					$image      = get_field( 'card_image', $cert_id );
 					$short_name = get_field( 'short_name', $cert_id );
 					$heading    = $short_name ? $short_name : get_the_title();
-					$summary    = has_excerpt() ? get_the_excerpt() : wp_trim_words( wp_strip_all_tags( get_the_content() ), 28 );
+					//$summary    = has_excerpt() ? get_the_excerpt() : wp_trim_words( wp_strip_all_tags( get_the_content() ), 28 );
+					$summary    = has_excerpt() ? get_the_excerpt() : get_the_content();
 					$anchor     = get_post_field( 'post_name', $cert_id );
 					$button     = get_field( 'button', $cert_id );
 					?>
@@ -101,6 +102,10 @@ accr_section_open( array( 'background' => $bg ) );
 									<?php echo accr_icon( 'arrow_right', array( 'width' => '16', 'height' => '16', 'stroke-width' => '2.5' ) ); ?>
 									<?php echo esc_html( $button['label'] ?: __( 'Get Details', 'accr-theme' ) ); ?>
 								</a>
+							<?php else : ?>
+								<button class="btn btn--secondary" href="#" style="align-self:flex-start;" disabled>
+									<?php echo esc_html( $button['label'] ?: __( 'More to Come', 'accr-theme' ) ); ?>
+								</button>
 							<?php endif; ?>
 						</div>
 					</article>

@@ -123,20 +123,11 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 	</div>
 </div>
 
-<?php
-/* $newsletter_modal_heading  = get_theme_mod( 'accr_newsletter_modal_heading', 'Sign up for our newsletter' );
-$newsletter_modal_subtitle = get_theme_mod( 'accr_newsletter_modal_subtitle', 'Get NCCCO updates, class schedules, and safety guidance delivered to your inbox.' ); */
-?>
 <!-- Newsletter sign-up modal. Opened by the dummy footer newsletter card. -->
 <div class="modal-backdrop" id="newsletter-modal" data-modal="newsletter" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="newsletter-modal-title">
 	<div class="modal">
 		<div class="modal__head">
-			<div>
-				<?php /* <h3 id="newsletter-modal-title"><?php echo esc_html( $newsletter_modal_heading ); ?></h3>
-				<?php if ( $newsletter_modal_subtitle ) : ?>
-					<p><?php echo esc_html( $newsletter_modal_subtitle ); ?></p>
-				<?php endif; ?> */ ?>
-			</div>
+			<div></div>
 			<button class="modal__close" data-modal-close aria-label="<?php esc_attr_e( 'Close', 'accr-theme' ); ?>">
 				<?php echo accr_icon( 'close', array( 'width' => '18', 'height' => '18', 'stroke-width' => '2.5' ) ); ?>
 			</button>
@@ -157,5 +148,23 @@ $newsletter_modal_subtitle = get_theme_mod( 'accr_newsletter_modal_subtitle', 'G
 <!-- wp_footer() -->
 <?php wp_footer(); ?>
 <!-- end wp_footer() -->
+
+<?php /* <script type="text/javascript" src="//cdn.callrail.com/companies/797005176/cb4bc87ea578a6d2da43/12/swap.js"></script>
+<!-- Using Page Slug -->
+<?php if ( is_page('tickets-order') ) { ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-706744652"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-706744652');
+</script>
+<?php } ?>
+
+<!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/45591717.js"></script>
+<!-- End of HubSpot Embed Code --> */ ?>
+
 </body>
 </html>
