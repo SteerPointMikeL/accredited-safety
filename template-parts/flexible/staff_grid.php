@@ -44,7 +44,7 @@ accr_section_open( array( 'background' => $bg ) );
 				$i++;
 				$name    = isset( $member['name'] ) ? $member['name'] : '';
 				$role    = isset( $member['role'] ) ? $member['role'] : '';
-				$photo   = isset( $member['photo'] ) && is_array( $member['photo'] ) ? $member['photo'] : null;
+				$photo   = isset( $member['photo'] ) ? $member['photo'] : null;
 				$details = ! empty( $member['details'] ) && is_array( $member['details'] ) ? $member['details'] : array();
 				$email   = isset( $member['email'] ) ? trim( (string) $member['email'] ) : '';
 				$modal   = isset( $member['modal_content'] ) ? trim( (string) $member['modal_content'] ) : '';
@@ -60,8 +60,8 @@ accr_section_open( array( 'background' => $bg ) );
 				ob_start();
 				?>
 				<div class="staff-card__media">
-					<?php if ( $photo && ! empty( $photo['url'] ) ) : ?>
-						<img src="<?php echo esc_url( $photo['url'] ); ?>" alt="<?php echo esc_attr( $photo['alt'] ? $photo['alt'] : $name ); ?>" loading="lazy" />
+					<?php if ( $photo ) : ?>
+						<?php echo wp_get_attachment_image( $photo, 'medium_large' ); ?>
 					<?php else : ?>
 						<span class="staff-card__noimg"><?php esc_html_e( 'Photo not available', 'accr-theme' ); ?></span>
 					<?php endif; ?>
@@ -83,12 +83,6 @@ accr_section_open( array( 'background' => $bg ) );
 							<?php endforeach; ?>
 						</dl>
 					<?php endif; ?>
-					<?php /* if ( $has_modal ) : ?>
-						<span class="staff-card__more">
-							<?php esc_html_e( 'View bio', 'accr-theme' ); ?>
-							<?php echo accr_icon( 'arrow_right', array( 'width' => '15', 'height' => '15', 'stroke-width' => '2.5' ) ); ?>
-						</span>
-					<?php endif; */ ?>
 				</div>
 				<?php
 				$inner = ob_get_clean();
@@ -120,8 +114,8 @@ accr_section_open( array( 'background' => $bg ) );
 						<div class="staff-modal" role="dialog" aria-modal="true" aria-labelledby="<?php echo esc_attr( $modal_id ); ?>-title">
 							<div class="staff-modal__head">
 								<div class="staff-modal__head-inner">
-									<?php if ( $photo && ! empty( $photo['url'] ) ) : ?>
-										<img class="staff-modal__avatar" src="<?php echo esc_url( $photo['url'] ); ?>" alt="" />
+									<?php if ( $photo ) : ?>
+										<?php echo wp_get_attachment_image( $photo, 'thumb', null, array( 'class' => 'staff-modal__avatar') ); ?>
 									<?php endif; ?>
 									<div>
 										<h3 class="staff-modal__name" id="<?php echo esc_attr( $modal_id ); ?>-title"><?php echo esc_html( $name ); ?></h3>

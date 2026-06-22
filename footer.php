@@ -150,17 +150,6 @@ $legal_line    = get_theme_mod( 'accr_legal_line', 'NCCCO is a registered tradem
 <!-- end wp_footer() -->
 
 <?php /* <script type="text/javascript" src="//cdn.callrail.com/companies/797005176/cb4bc87ea578a6d2da43/12/swap.js"></script>
-<!-- Using Page Slug -->
-<?php if ( is_page('tickets-order') ) { ?>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-706744652"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-706744652');
-</script>
-<?php } ?>
 
 <!-- Start of HubSpot Embed Code -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/45591717.js"></script>

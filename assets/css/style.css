@@ -1879,22 +1879,6 @@ a.contact-split__row-value:focus {
   color: var(--color-text-muted);
 }
 
-/* .staff-card__more {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  margin-top: var(--space-4);
-  font-family: var(--font-display);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--color-orange);
-}
-.staff-card--has-modal .staff-card__trigger:hover .staff-card__more {
-  text-decoration: underline;
-} */
-
 /* ----- Email button (shared .btn fallback below) ----- */
 .staff-card__email {
   width: 100%;
@@ -2323,6 +2307,7 @@ body.staff-modal-open {
 }
 .class-panel__image {
   position: relative;
+  flex-shrink: 0;
   width: min(230px, 50%);
 }
 .class-panel__image__img {

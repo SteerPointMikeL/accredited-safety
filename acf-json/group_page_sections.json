@@ -30,23 +30,24 @@
                             "aria-label": "",
                             "type": "image",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "preview_size": "medium",
+                            "return_format": "id",
                             "library": "all",
-                            "min_width": 0,
-                            "min_height": 0,
-                            "min_size": 0,
-                            "max_width": 0,
-                            "max_height": 0,
-                            "max_size": 0,
-                            "mime_types": ""
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 1,
+                            "preview_size": "medium"
                         },
                         {
                             "key": "f_hi_tagline",
@@ -556,8 +557,8 @@
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -565,15 +566,16 @@
                             },
                             "choices": {
                                 "default": "Default",
-                                "surface_2": "Tinted (surface 2)"
+                                "light-grey": "Light Grey"
                             },
                             "default_value": "default",
+                            "return_format": "value",
                             "multiple": 0,
                             "allow_null": 0,
+                            "allow_in_bindings": 1,
                             "ui": 0,
                             "ajax": 0,
                             "placeholder": "",
-                            "return_format": "value",
                             "create_options": 0,
                             "save_options": 0
                         }
@@ -765,8 +767,8 @@
                             "aria-label": "",
                             "type": "select",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -774,15 +776,16 @@
                             },
                             "choices": {
                                 "default": "Default",
-                                "surface_2": "Tinted (surface 2)"
+                                "light-grey": "Light Grey"
                             },
                             "default_value": "default",
+                            "return_format": "value",
                             "multiple": 0,
                             "allow_null": 0,
+                            "allow_in_bindings": 1,
                             "ui": 0,
                             "ajax": 0,
                             "placeholder": "",
-                            "return_format": "value",
                             "create_options": 0,
                             "save_options": 0
                         }
@@ -1281,23 +1284,24 @@
                             "aria-label": "",
                             "type": "image",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "preview_size": "medium",
+                            "return_format": "id",
                             "library": "all",
-                            "min_width": 0,
-                            "min_height": 0,
-                            "min_size": 0,
-                            "max_width": 0,
-                            "max_height": 0,
-                            "max_size": 0,
-                            "mime_types": ""
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 1,
+                            "preview_size": "medium"
                         },
                         {
                             "key": "f_sp_reverse",
@@ -2274,23 +2278,24 @@
                                     "aria-label": "",
                                     "type": "image",
                                     "instructions": "Leave empty to show a \"Photo not available\" placeholder.",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "array",
-                                    "preview_size": "medium",
+                                    "return_format": "id",
                                     "library": "all",
-                                    "min_width": 0,
-                                    "min_height": 0,
-                                    "min_size": 0,
-                                    "max_width": 0,
-                                    "max_height": 0,
-                                    "max_size": 0,
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
                                     "mime_types": "",
+                                    "allow_in_bindings": 1,
+                                    "preview_size": "medium",
                                     "parent_repeater": "f_sg_members"
                                 },
                                 {
@@ -3746,5 +3751,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1781190830
+    "modified": 1781882091
 }

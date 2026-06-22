@@ -114,9 +114,9 @@ accr_section_open( array(
 				<?php endif; ?>
 			</div>
 
-			<?php if ( $image && is_array( $image ) ) : ?>
+			<?php if ( $image ) : ?>
 				<div class="split__image">
-					<img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>" />
+					<?php echo wp_get_attachment_image( $image, 'large' ); ?>
 				</div>
 			<?php endif; ?>
 		</div>

@@ -13,8 +13,8 @@ $lead    = get_sub_field( 'lead' );
 $buttons = get_sub_field( 'buttons' );
 ?>
 <section class="hero">
-	<?php if ( $image && is_array( $image ) ) : ?>
-		<img class="hero__image" src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>" />
+	<?php if ( $image ) : ?>
+		<?php echo wp_get_attachment_image( $image, 'full', null, array( 'class' => 'hero__image' ) ); ?>
 	<?php endif; ?>
 	<div class="hero__overlay"></div>
 	<div class="container hero__content">
